@@ -1,0 +1,81 @@
+.bio_container{
+    display: flex;
+}
+
+.bio_info:target{
+    height:auto;
+}
+
+.bio_info{
+    flex: 1 1 50%;
+}
+
+.profile_card{
+    flex: 1 1 50%;
+    width:0;
+}
+
+.profile_card .text{
+    visibility: hidden;
+}
+
+.aboutme {
+    display: flex;
+    column-gap: 5rem;
+    margin-left:20px;
+    margin-right: 20px;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.about_me_header {
+    background: #2a006e;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin: auto;
+}
+
+.about_me_header:hover{
+    filter:50%;
+}
+
+.list_frame{
+    border: 5px solid #f8df00;
+    border-radius: 20px;
+}
+
+.about_list_item {
+    list-style-type: none;
+    padding: 15px;
+    margin: 3px;
+    font-size: .9rem;
+    color: white;
+}
+
+.about_list_item:hover{
+    background-color: white;
+}
+
+.profile_pic {
+    width:100%;
+    height: auto;
+    border-radius: 20px;
+    opacity:5;
+    
+}
+
+.profile_pic:hover{
+    filter: brightness(50%);
+}
+
+.main_logo_box{
+    flex: 1 1 50%;
+}
+
+.main_logo{
+    border-radius: 100%;
+    width:100%;
+    height: auto;
+}

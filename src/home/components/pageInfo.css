@@ -1,0 +1,27 @@
+p {
+    font-size: .9rem;
+    padding-left: 5px;
+    padding-right: 5px;
+    z-index: 1;
+    color:white;
+}
+h3 {
+    z-index: 2;
+}
+
+.pageInfo-header {
+        width: 100%;
+        padding-left: 5px; 
+        color: white;
+        border-radius: 7 7px;
+}
+
+.pageinfo_card {
+    position: relative;
+    margin: 0;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 26%);
+    border-radius: 6px;
+    overflow: hidden;
+    flex: 1 1;
+    border: 5px solid #2a006e;
+}

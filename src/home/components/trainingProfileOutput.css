@@ -1,0 +1,39 @@
+.training_list {
+    flex: 1 1 50%;
+}
+
+.list_frame{
+        border: 5px solid #f8df00;
+        border-radius: 20px;
+}
+
+.training-list:target{
+    height: auto;
+}
+
+.training_list_items {
+    list-style-type: none;
+    border-radius: 20px;
+    margin: 3px;
+    color: white;
+    font-size: .9rem;
+}
+
+.training_header{
+    background: #2a006e;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin: auto;
+    
+}
+
+.header{
+    width: fit-content;
+    margin:auto
+}
+
+.training_header:hover{
+    filter: 50%;
+}

@@ -1,0 +1,27 @@
+div .heading {
+    text-align: center;
+    display: block;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
+    padding-left: 7px;
+    padding-right: 7px;
+    color: white;
+}
+
+.page_info_services{
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    column-gap: 1rem;
+    align-content: center;
+    justify-content: center;
+    margin: auto;
+    width: fit-content;
+}
+
+@media screen and (max-width:700px){
+    .page_info_services{
+        flex-direction: column;
+    }
+}

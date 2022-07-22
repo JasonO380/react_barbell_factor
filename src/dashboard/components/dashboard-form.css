@@ -1,0 +1,60 @@
+.form_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3{
+    color: white;
+}
+
+.diet_form_header_box {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.form_box{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.form_inputs {
+    flex: 1 1 30%;
+    text-align: center;
+    color: white;
+}
+
+.macro_input{
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.form_button{
+    background-color: #ff1f06;
+    color: white;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    align-items: baseline;
+    
+}
+
+.error_message{
+    display: flex;
+    justify-content: center;
+    margin:auto;
+}
+
+.form_error_message{
+    color: #ff1f06;
+}
+

@@ -1,0 +1,36 @@
+.test_card_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.test_card{
+    display: flex;
+    align-items: center;
+}
+
+.macro_header_box {
+    /* background-color: #E23626; */
+    /* border-radius: 20px;
+    border: 5px solid black; */
+    color: white;
+    width: fit-content;
+    margin: auto;
+}
+
+.test_card_info {
+    background-color: white;
+}
+
+.form_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diet_form_header_box {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
