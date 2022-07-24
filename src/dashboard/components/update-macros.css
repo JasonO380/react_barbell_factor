@@ -1,3 +1,16 @@
+.update_container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.update_header{
+    flex: 1 1 100%;
+    /* margin: auto; */
+    text-align: center;
+    color: white;
+}
+
 .update_form_header{
     margin-top: 120px;
     text-align: center;
@@ -11,11 +24,18 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    margin: auto;
 }
 
 .form_inputs {
     flex: 1 1 30%;
     text-align: center;
+}
+
+.macro_inputs{
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
 }
 
 .form_button{

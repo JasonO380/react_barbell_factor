@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DashboardOutput from "./dashboard-output";
-import DashboardForm from "./dashboard-form";
+import MacrosForm from "./macros-form";
+import UpdateMacros from "./update-macros";
 import { motion } from 'framer-motion/dist/framer-motion';
-import GetMacros from "./get-macros";
-import { NavLink } from "react-router-dom";
 
 import "./dashboard.css";
 
@@ -15,9 +14,39 @@ const Dashboard = () => {
             return [...prevMacros, newMacros]
         });
     };
+    const [macrosEnteredForDay, setMacrosForDayEntered] = useState(false);
 
-    return(
-        <React.Fragment>
+    useEffect(()=>{
+        const checkMacrosForDayEntered = ()=>{
+            if(macros.length > 0){
+                console.log(true);
+                setMacrosForDayEntered(true);
+            } else {
+                console.log(false)
+            }
+        }
+        checkMacrosForDayEntered();
+    },[macros])
+
+    if(!macrosEnteredForDay){
+        return(
+            <React.Fragment>
+            <motion.div
+            initial={{width: 0}}
+            animate={{width: "100%"}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
+                <div className="macro_header_box">
+                    <h2>MACRO TRACKER</h2>
+                </div>
+                <MacrosForm items={macros} onAdd={addMacros} />
+            </motion.div>
+        </React.Fragment>
+        )
+    };
+
+    if(macrosEnteredForDay){
+        return(
+            <React.Fragment>
             <motion.div
             initial={{width: 0}}
             animate={{width: "100%"}}
@@ -28,12 +57,29 @@ const Dashboard = () => {
                 <DashboardOutput
                 items2={macros}
                 items={macros} />
-                <DashboardForm items={macros} onAdd={addMacros} />
             </motion.div>
         </React.Fragment>
-    )
-};
+        )
+    };
+}
 
 export default Dashboard;
 
+
+//     return(
+//         <React.Fragment>
+//             <motion.div
+//             initial={{width: 0}}
+//             animate={{width: "100%"}}
+//             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
+//                 <div className="macro_header_box">
+//                     <h2>MACRO TRACKER</h2>
+//                 </div>
+//                 <DashboardOutput
+//                 items2={macros}
+//                 items={macros} />
+//                 <MacrosForm items={macros} onAdd={addMacros} />
+//             </motion.div>
+//         </React.Fragment>
+//     )
 

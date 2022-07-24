@@ -4,24 +4,13 @@ import { Link, } from "react-router-dom";
 import UpdateMacros from "./update-macros";
 import { v4 as uuidv4 } from 'uuid';
 
-import "./dashboard-form.css"
+import "./macros-form.css"
 
-const DashboardForm = (props) => {
+const MacrosForm = (props) => {
     const [isValid, setIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
     const [macroData, setMacroData] = useState({
         id:"",
-        // date:[
-        //     {
-        //         year:""
-        //     },
-        //     {
-        //         month:""
-        //     },
-        //     {
-        //         day:""
-        //     }
-        // ],
         year:"",
         month:"",
         day:"",
@@ -89,7 +78,7 @@ const DashboardForm = (props) => {
         <div className="form_container">
         <div className="diet_form">
             <div className="diet_form_header_box">
-            <h3>Enter your macros</h3>
+            <h2>Enter your macros</h2>
             </div>
                 <form className="form_box">
                 <div className="form_inputs">
@@ -143,5 +132,5 @@ const DashboardForm = (props) => {
     );
 };
 
-export default DashboardForm;
+export default MacrosForm;
 

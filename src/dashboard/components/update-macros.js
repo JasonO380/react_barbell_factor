@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
@@ -8,8 +8,15 @@ import "./update-macros.css";
 
 
 const UpdateMacros = (props) => {
-    const macroID= useParams().mid;
-    const foundMacros = macroData.find(macro => macro.id === macroID);
+    const macroID = props.items.map(macro=> macro.id)
+    // console.log(macroID);
+    // const macroID= useParams().mid;
+    // const foundMacros = macroData.find(macro => macro.id === macroID);
+    const foundMacros = props.items.map(macros => macros);
+    // const macrosToUpdate = foundMacros.filter(macros => macros.id === macroID);
+    // console.log(foundMacros);
+    
+    const[macrosToUpdate, setMacrosToUpdate] = useState();
     const navigate = useNavigate();
     const [isValid, setIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
@@ -21,6 +28,26 @@ const UpdateMacros = (props) => {
         fats:""
     });
 
+    useEffect(()=>{
+        const getMacrosToUpdate = () =>{
+            // console.log(macroID);
+            const updateMacros = [];
+            foundMacros.map(macros => {
+                const selectedMacrosID = macros.id
+                console.log(selectedMacrosID);
+                if(selectedMacrosID === macroID){
+                    console.log("here");
+                    updateMacros.push(macros);
+                    // console.log(updateMacros);
+                }
+            });
+            // console.log(updateMacros);
+        };
+        getMacrosToUpdate();
+    },[foundMacros])
+    
+    
+        
     const changeHandler = (event) => {
         const macro = event.target.value;
         const macroName = event.target.name;
@@ -29,8 +56,8 @@ const UpdateMacros = (props) => {
             return {
                 ...preValue,
                 [macroName]: macro,
-                id:uid,
-                day:uid
+                id:preValue.id,
+                day:preValue.day
             }
         });
     };
@@ -58,6 +85,7 @@ const UpdateMacros = (props) => {
             setFormIsValid(false);
             return null;
         } 
+        
         setUpdateData({
             carbs:"",
             fats:"",
@@ -69,23 +97,25 @@ const UpdateMacros = (props) => {
     };
 
     if(!foundMacros){
-        return <h2>NO MACROS FOUND BRUH!!!!</h2>
+        return <h2>NO MACROS YET START ENTERING DATA</h2>
     }
 
 
     return (
         <React.Fragment>
         <motion.div
+            className="update_container"
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-            <div className="update_form_header">
-            <h2>{foundMacros.day}</h2>
-            </div>
+            {/* <div className="update_form_header"> */}
+                <h2 className="update_header">Update Macros for {props.items.map(macros => macros.month)} {props.items.map(macros => macros.day)} </h2>
+            
             <form class="update_form_container">
                 <div className="form_inputs">
                         <h4>Carbs</h4>
                         <input
+                        className="macro_inputs"
                         required
                         id="carbs"
                         element="input"
@@ -94,12 +124,13 @@ const UpdateMacros = (props) => {
                         label="Carbs"
                         // value={foundMacros.carbs}
                         errorText="Please enter your carb intake in grams"
-                        placeholder={foundMacros.carbs}
+                        placeholder={props.items.map(macros => macros.carbs)}
                         onChange={changeHandler} />
                     </div>
                     <div className="form_inputs">
                         <h4>Protein</h4>
                         <input
+                        className="macro_inputs"
                         required
                         id="protein"
                         element="input"
@@ -108,12 +139,13 @@ const UpdateMacros = (props) => {
                         label="Protein"
                         // value={foundMacros.protein}
                         errorText="Please enter your protein intake in grams"
-                        placeholder={foundMacros.protein}
+                        placeholder={props.items.map(macros => macros.protein)}
                         onChange={changeHandler} />
                     </div>
                     <div className="form_inputs">
                         <h4>Fats</h4>
                         <input
+                        className="macro_inputs"
                         required
                         id="fats"
                         element="input"
@@ -122,7 +154,7 @@ const UpdateMacros = (props) => {
                         label="Fats"
                         // value={foundMacros.fats}
                         errorText="Please enter your fat intake in grams"
-                        placeholder={foundMacros.fats}
+                        placeholder={props.items.map(macros => macros.fats)}
                         onChange={changeHandler} />
                     </div>
                         <button

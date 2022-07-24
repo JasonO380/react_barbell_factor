@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import UpdateMacros from "./update-macros";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -38,7 +39,8 @@ const DashboardOutput = (props) => {
     const [chartOptions, setChartOptions] = useState({});
     const macrosForGraph = props.items2.map(macros => macros);
     const macroProps = props.items2;
-    console.log(macrosForGraph);
+    // console.log(macroProps);
+
     useEffect(() => {
         setMacroGraphInfo({
             labels: macrosForGraph.map(macros=> macros.day),
@@ -97,20 +99,10 @@ const DashboardOutput = (props) => {
                                     data={macroGraphInfo}
                                     options={chartOptions} />
                                 </div>
-                        {props.items.map(macros => {
-                            return(
-                                    <div id={macros.id} key={macros.id}  className="dashboard_card_graph">
-                                        <Link className="link_style"  to="/macrosgraph">EXPANDED GRAPH</Link>
-                                        <p className="protein_graph">Protein {macros.protein}</p>
-                                        <p className="carbs_graph">Carbs {macros.carbs}</p>
-                                        <p className="fats_graph">Fats {macros.fats}</p>
-                                        <Link className="link_style"  to="/dashboard/mac4">UPDATE</Link>
-                                    </div>
-                                
-                            )
-                        })}
+                    <UpdateMacros
+                    items={macroProps} />
                     </div>
-                </div>
+                </div> 
         )
 };
 

@@ -61,9 +61,9 @@ const GetMacros = () => {
                                 } 
                             })
                         };
-                        getMonths();
-                        console.log(foundMonth);
-                        console.log(newMonth);
+            getMonths();
+            console.log(foundMonth);
+            console.log(newMonth);
         setMacroInfo({
             labels: foundMonth.map(macros=>macros.day),
             datasets:[
