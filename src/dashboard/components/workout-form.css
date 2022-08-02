@@ -1,0 +1,40 @@
+textarea{
+    font: 13px 'Open Sans', sans-serif;
+    font-weight:500;
+}
+
+.workout_form_header_box{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.workout_form_container{
+    display: flex;
+    width: auto;
+    justify-content: center;
+    color: white;
+}
+
+@media screen and (max-width:440px){
+    .workout_form_container{
+        width: fit-content;
+    }
+}
+
+.workout_form{
+    width: auto;
+    display: flex;
+}
+
+.movement_div{
+    display: flex;
+    flex: 1 1 55%;
+    align-self: center;
+    margin-right: 50px;
+}
+
+.reps_rounds_weight_div{
+    display: flex;
+    flex-direction: column;
+}

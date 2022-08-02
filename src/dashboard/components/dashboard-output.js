@@ -39,7 +39,6 @@ const DashboardOutput = (props) => {
     const [chartOptions, setChartOptions] = useState({});
     const macrosForGraph = props.items2.map(macros => macros);
     const macroProps = props.items2;
-    // console.log(macroProps);
 
     useEffect(() => {
         setMacroGraphInfo({
@@ -52,8 +51,6 @@ const DashboardOutput = (props) => {
                     borderColor: "#257ff5",
                     lineTension: .3,
                     radius: 5,
-                    
-                    
                 },
                 {
                     label:"Grams of protein",

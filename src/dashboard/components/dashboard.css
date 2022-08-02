@@ -10,6 +10,19 @@
     align-items: center;
 }
 
+.dashboard_mode_switch_container{
+    width: fit-content;
+}
+
+.dashboard_mode_switch{
+    background: #2a006e;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin: auto;
+}
+
 .macro_header_box {
     /* background-color: #E23626; */
     /* border-radius: 20px;

@@ -1,0 +1,26 @@
+.workout_wrapper{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.workout_container{
+    border: 2px solid #f8df00;
+    border-radius: 20px;
+    margin-top: 25px;
+}
+
+.movement_data{
+    display: flex;
+    padding: 0 15px;
+}
+
+/* .workout_date_header{
+    text-align: center;
+}
+
+.workout_table {
+    display: grid;
+    color: white;
+    justify-content: center;
+}; */

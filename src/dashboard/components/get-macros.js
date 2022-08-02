@@ -54,6 +54,7 @@ const GetMacros = () => {
         const currentMonth = day.toLocaleString("en-US", { month:"long" });
         const foundMonth = [];
         const newMonth = [];
+        //helper function for selected month
         const getMonths = () => {
             macroData.map((macros)=>{
                 if(selectedMonth === macros.month){
@@ -135,13 +136,6 @@ const GetMacros = () => {
                 options={chartOptions} 
                 />
             </div>
-            {/* <div className="datepicker">
-                <DatePicker
-                dateFormat="yyyy/MM"
-                showMonthYearPicker
-                selected={selectedMonth}
-                onChange={month => setSelectedMonth(month)} />
-            </div> */}
         </React.Fragment>
     )
 };

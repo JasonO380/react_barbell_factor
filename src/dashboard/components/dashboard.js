@@ -35,6 +35,9 @@ const Dashboard = () => {
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
+                <div className="dashboard_mode_switch_container">
+                    <p className="dashboard_mode_switch">WORKOUT TRACKER</p>
+                </div>
                 <div className="macro_header_box">
                     <h2>MACRO TRACKER</h2>
                 </div>
@@ -65,21 +68,4 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-
-//     return(
-//         <React.Fragment>
-//             <motion.div
-//             initial={{width: 0}}
-//             animate={{width: "100%"}}
-//             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-//                 <div className="macro_header_box">
-//                     <h2>MACRO TRACKER</h2>
-//                 </div>
-//                 <DashboardOutput
-//                 items2={macros}
-//                 items={macros} />
-//                 <MacrosForm items={macros} onAdd={addMacros} />
-//             </motion.div>
-//         </React.Fragment>
-//     )
 

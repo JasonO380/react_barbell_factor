@@ -8,13 +8,12 @@ import "./update-macros.css";
 
 
 const UpdateMacros = (props) => {
-    const macroID = props.items.map(macro=> macro.id)
-    // console.log(macroID);
+    const macroID = props.items.map(macro=> macro.id);
+    const foundMacros = props.items.map(macros => macros);
+    // for when node.js is hooked up
     // const macroID= useParams().mid;
     // const foundMacros = macroData.find(macro => macro.id === macroID);
-    const foundMacros = props.items.map(macros => macros);
     // const macrosToUpdate = foundMacros.filter(macros => macros.id === macroID);
-    // console.log(foundMacros);
     
     const[macrosToUpdate, setMacrosToUpdate] = useState();
     const navigate = useNavigate();
@@ -30,7 +29,6 @@ const UpdateMacros = (props) => {
 
     useEffect(()=>{
         const getMacrosToUpdate = () =>{
-            // console.log(macroID);
             const updateMacros = [];
             foundMacros.map(macros => {
                 const selectedMacrosID = macros.id
@@ -38,16 +36,12 @@ const UpdateMacros = (props) => {
                 if(selectedMacrosID === macroID){
                     console.log("here");
                     updateMacros.push(macros);
-                    // console.log(updateMacros);
                 }
             });
-            // console.log(updateMacros);
         };
         getMacrosToUpdate();
     },[foundMacros])
-    
-    
-        
+
     const changeHandler = (event) => {
         const macro = event.target.value;
         const macroName = event.target.name;
@@ -85,7 +79,7 @@ const UpdateMacros = (props) => {
             setFormIsValid(false);
             return null;
         } 
-        
+
         setUpdateData({
             carbs:"",
             fats:"",
@@ -108,9 +102,7 @@ const UpdateMacros = (props) => {
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-            {/* <div className="update_form_header"> */}
                 <h2 className="update_header">Update Macros for {props.items.map(macros => macros.month)} {props.items.map(macros => macros.day)} </h2>
-            
             <form class="update_form_container">
                 <div className="form_inputs">
                         <h4>Carbs</h4>
@@ -122,7 +114,6 @@ const UpdateMacros = (props) => {
                         type="text"
                         name="carbs"
                         label="Carbs"
-                        // value={foundMacros.carbs}
                         errorText="Please enter your carb intake in grams"
                         placeholder={props.items.map(macros => macros.carbs)}
                         onChange={changeHandler} />
@@ -137,7 +128,6 @@ const UpdateMacros = (props) => {
                         type="text"
                         name="protein"
                         label="Protein"
-                        // value={foundMacros.protein}
                         errorText="Please enter your protein intake in grams"
                         placeholder={props.items.map(macros => macros.protein)}
                         onChange={changeHandler} />
@@ -152,7 +142,6 @@ const UpdateMacros = (props) => {
                         type="text"
                         name="fats"
                         label="Fats"
-                        // value={foundMacros.fats}
                         errorText="Please enter your fat intake in grams"
                         placeholder={props.items.map(macros => macros.fats)}
                         onChange={changeHandler} />
@@ -167,29 +156,3 @@ const UpdateMacros = (props) => {
 };
 
 export default UpdateMacros;
-
-
-// {/* <div className="dashboard_card_graph">
-// <div>
-// <p>THIS WILL BE A GRAPH</p>
-// <label>Protein:</label><input
-// name="protein"
-// onChange={changeHandler}
-// placeholder="Update protein in grams" />
-
-// <label>Carbs:</label><input
-// name="carbs"
-// onChange={changeHandler}
-// placeholder="Update carbs in grams" />
-
-// <label>Fats:</label><input
-// name="fats"
-// onChange={changeHandler}
-// placeholder="Update fats in grams" />
-// {/* <p className="protein_graph">Protein {macros.protein}</p>
-// <p className="carbs_graph">Carbs {macros.carbs}</p>
-// <p className="fats_graph">Fats {macros.fats}</p> */}
-// {/* <button onClick={closeUpdateHandler}>UPDATE</button> */}
-// <NavLink to="/dashboard">UPDATE</NavLink>
-// </div>
-// </div> */}

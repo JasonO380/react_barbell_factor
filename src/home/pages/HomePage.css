@@ -6,6 +6,13 @@
     margin-top: 50px;
 }
 
+.center{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
 @media (max-width:700px){
     .page-info {
         flex-direction: column;

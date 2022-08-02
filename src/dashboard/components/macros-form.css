@@ -30,6 +30,12 @@ h2{
     color: white;
 }
 
+@media screen and (max-width:465px){
+    .form_inputs {
+        flex: 1 1 100%;
+    }
+}
+
 .macro_input{
     height: 50px;
     border-radius: 10px;
