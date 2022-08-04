@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import months from "./month-select-options";
 import session from "./workout-data";
+import { motion } from 'framer-motion/dist/framer-motion';
 import "./get-all-workouts.css";
 
 const GetAllWorkoutData = () =>{
@@ -78,6 +79,10 @@ const GetAllWorkoutData = () =>{
 
     return(
         <React.Fragment>
+        <motion.div
+            initial={{width: 0}}
+            animate={{width: "100%"}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
         <div className="select_container">
             <label className="select_label">Select Month</label>
                 <select
@@ -92,7 +97,11 @@ const GetAllWorkoutData = () =>{
                     })}
                 </select>
             </div>
-        <div className="page_container">
+        <motion.div 
+            className="page_container"
+            initial={{width: 0}}
+            animate={{width: "100%"}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
             {loggedMonth.map(session => {
                 const month = session.month;
                 const day = session.days;
@@ -122,7 +131,8 @@ const GetAllWorkoutData = () =>{
                     </div>
                 )
             })}
-        </div>
+        </motion.div>
+        </motion.div>
         </React.Fragment>
     )
     };

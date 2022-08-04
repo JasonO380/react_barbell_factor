@@ -9,11 +9,11 @@ import "./Logo.css";
 const Logo = (props) => {
     return (
         <div className="logo" >
-        <NavLink className="logo" to="/">
-            <img 
-            src={barbellfactor}
-            style={{ width:props.width }} />
-        </NavLink>
+            <NavLink className="logo" to="/">
+                <img 
+                src={barbellfactor}
+                style={{ width:props.width }} />
+            </NavLink>
         </div>
         
     );

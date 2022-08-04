@@ -1,6 +1,6 @@
 const trainingInfo = [
     {
-        title: "Training methodology",
+        title: "Methodology",
         methods:[
             "Heavy emphasis on building a strong base with mobility work with proper warm ups",
             "Build a strong technical foundation with the basic lifts SQUAT DEADLIFT PULLING and PRESSING",

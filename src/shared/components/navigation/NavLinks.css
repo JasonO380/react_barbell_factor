@@ -40,7 +40,9 @@
     color: white;
 }
 
-@media (min-width: 768px) {
+/* Fixing nav links */
+
+/* @media (min-width: 768px) {
     .nav-links {
     flex-direction: row;
     }
@@ -64,4 +66,34 @@
     background: transparent;
     }
 
-}
+} */
+
+.nav-links {
+    flex-direction: row;
+    }
+
+    .nav-links li {
+    margin: 0 0.5rem;
+    background-color: #ff1f06;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid black;
+    }
+
+    @media screen and (max-width:575px){
+        .nav-links li{
+            padding:3px;
+            font-size: .9rem;
+        }
+    }
+
+    .nav-links a {
+    color: white;
+    text-decoration: none;
+    }
+
+    .nav-links button {
+    border: 1px solid white;
+    color: white;
+    background: transparent;
+    }

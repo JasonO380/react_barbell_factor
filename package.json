@@ -1,16 +1,18 @@
 {
   "name": "fitfactor",
   "version": "0.1.0",
-  "homepage": "https://JasonO380.github.io/Barbell_Factor_React",
+  "homepage": "http://JasonO380.github.io/Barbell_Factor_React",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.2.0",
     "chart.js": "^3.8.0",
     "framer-motion": "^6.5.0",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",
+    "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^4.3.1",
     "react-css-transition": "^0.7.4",
     "react-datepicker": "^4.8.0",
@@ -24,9 +26,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

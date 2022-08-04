@@ -12,16 +12,27 @@
     z-index: 5;
     
 }
+@media screen and (max-width:575px){
+    .main-header{
+        height:3rem;
+    }
+}
 
 main {
     margin-top: 5rem;
 }
 
-@media (min-width: 768px) {
+/* Changes for main nav */
+
+/* @media (min-width: 768px) {
     .main-header {
     justify-content: space-between;
     }
-}
+} */
+
+.main-header {
+    justify-content: space-between;
+    }
 
 
 

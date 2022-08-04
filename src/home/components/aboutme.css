@@ -22,9 +22,10 @@
 .aboutme {
     display: flex;
     column-gap: 5rem;
-    margin-left:20px;
+    margin: 20px;
+    /* margin-left:20px;
     margin-right: 20px;
-    margin-top: 50px;
+    margin-top: 50px; */
     justify-content: center;
 }
 
@@ -72,6 +73,7 @@
 
 .main_logo_box{
     flex: 1 1 50%;
+    align-self: center;
 }
 
 .main_logo{

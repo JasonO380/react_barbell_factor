@@ -19,6 +19,7 @@ h3 {
 .pageinfo_card {
     position: relative;
     margin: 0;
+    font-weight: 200;
     box-shadow: 0 2px 8px rgb(0 0 0 / 26%);
     border-radius: 6px;
     overflow: hidden;

@@ -25,10 +25,10 @@
     text-decoration: none;
     color: white;
 }
-
-.main-navigation__header-nav {
+/* Tryin to get the nav display properly */
+/* .main-navigation__header-nav {
     display: none;
-}
+} */
 
 .main-navigation__drawer-nav {
     height: 100%;
@@ -39,7 +39,9 @@
     display: none;
     }
 
-    .main-navigation__header-nav {
+    
+    /* Trying to get main nav looking better */
+    /* .main-navigation__header-nav {
     display: block;
-    }
+    } */
 }

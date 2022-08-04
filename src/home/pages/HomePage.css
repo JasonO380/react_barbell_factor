@@ -3,7 +3,7 @@
     column-gap: 5rem;
     margin-left:20px;
     margin-right: 20px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .center{
@@ -16,5 +16,11 @@
 @media (max-width:700px){
     .page-info {
         flex-direction: column;
+    }
+}
+
+@media (max-width:575px){
+    .page-info{
+        margin-top: -60px;
     }
 }

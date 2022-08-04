@@ -27,8 +27,6 @@ const AboutMe = (props) => {
         <div className="aboutme">
             <div className="profile_card" >
                 <img className="profile_pic" src={profilepic} alt="Profile Pic" />
-                <p className="text">Social media</p>
-                <p className="text">EMail</p>
             </div>
             <div className="main_logo_box">
                 <img className="main_logo" src={barbellfactor} />
@@ -69,7 +67,6 @@ const AboutMe = (props) => {
                 )
             })}
             </div>
-        {/* // </div>  */}
         </React.Fragment>
     )
 };

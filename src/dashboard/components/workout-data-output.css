@@ -13,6 +13,7 @@
 .movement_data{
     display: flex;
     padding: 0 15px;
+    text-align: left;
 }
 
 /* .workout_date_header{
