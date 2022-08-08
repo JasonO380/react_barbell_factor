@@ -38,7 +38,8 @@
     border: 2px solid black;
 }
 
-.form_button{
+/*I THINK THIS IS NOT NEEDED NOT 100% SURE
+/* .form_button{
     background-color: #2a006e;
     color: white;
     padding: 15px;
@@ -48,5 +49,5 @@
     border-radius: 15px;
     align-items: baseline;
     
-}
+} */
 

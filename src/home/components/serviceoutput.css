@@ -4,6 +4,8 @@
     transition: all .2s ease-in-out;
     padding: 15px;
     border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .services_wrapper:hover{

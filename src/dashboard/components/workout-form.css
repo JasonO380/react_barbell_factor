@@ -34,6 +34,11 @@ textarea{
     margin-right: 50px;
 }
 
+/* .movement_data_entry_form{
+    width: fit-content;
+    margin: auto;
+} */
+
 .reps_rounds_weight_div{
     display: flex;
     flex-direction: column;

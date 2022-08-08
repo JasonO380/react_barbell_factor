@@ -155,22 +155,6 @@ const GetMacros = () => {
         name={selectedMonth}
         onChange={handleSelect}
         isLoaded={setIsSelectedMonthLoaded} />
-
-            {/* <div className="select_container">
-            <label className="select_label">Select Month</label>
-                <select
-                className="select_field"
-                name={selectedMonth}
-                onChange={handleSelect}>
-                    {months.map(month => {
-                        
-                        return(
-                            <option className="select_option">{month.month}</option>
-                        )
-                    })}
-                </select>
-            </div> */}
-
             <div className="linechart">
                 <Line
                 data={macroInfo}

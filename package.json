@@ -1,7 +1,7 @@
 {
   "name": "fitfactor",
   "version": "0.1.0",
-  "homepage": "http://JasonO380.github.io/Barbell_Factor_React",
+  "homepage": "https://github.com/JasonO380/react_barbell_factor.git",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",

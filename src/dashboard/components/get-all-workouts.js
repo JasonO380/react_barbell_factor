@@ -97,6 +97,7 @@ const GetAllWorkoutData = () =>{
                     })}
                 </select>
             </div>
+        </motion.div>
         <motion.div 
             className="page_container"
             initial={{width: 0}}
@@ -131,7 +132,6 @@ const GetAllWorkoutData = () =>{
                     </div>
                 )
             })}
-        </motion.div>
         </motion.div>
         </React.Fragment>
     )

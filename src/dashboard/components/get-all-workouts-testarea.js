@@ -1,20 +1,35 @@
 import React, { useState, useEffect } from "react";
 import months from "./month-select-options";
 import session from "./workout-data";
+import DropDownSelect from "../../shared/UIElements/drop-down-select";
 
 import "./get-all-workouts.css";
+import UpdateWorkouts from "./update-workouts";
 
 //Area to test components
 
 const TestWorkoutArea = () => {
     const [selectedMonth, setSelectedMonth] = useState();
     const [loggedMonth, setLoggedMonth] = useState([]);
+    const [isUpdateMode, setIsUpdateMode] = useState (false);
     //Holds the month workout data
     let loggedSession = [];
     let foundMonth = [];
+    let workoutToUpdateArray = [];
+    let selectedWorkoutToUpdate;
+
+    const updateHandler = (event) => {
+        let selectedWorkoutToUpdate = event.target.name;
+        console.log(selectedWorkoutToUpdate);
+        if(isUpdateMode){
+            setIsUpdateMode(false);
+        } else {
+            setIsUpdateMode(true);
+            console.log(isUpdateMode);
+        }
+    };
 
     const handleSelect = (event) =>{
-        console.log("here");
         const choice = event.target.value;
         setSelectedMonth(choice);
     };
@@ -73,31 +88,13 @@ const TestWorkoutArea = () => {
                 console.log(sessions)
                 if(selectedMonth === sessions.month){
                     foundMonth.push(sessions);
-                                } 
+                                }
                             })
                         };
             getMonths();
             setLoggedMonth(foundMonth);
             console.log(foundMonth);
     },[selectedMonth])
-
-    // loggedSession.map(session => {
-    //     const month = session.month;
-    //     const day = session.days
-    //     console.log(day);
-    //     day.map(fDay => {
-    //         console.log(fDay.day);
-    //         const foundDay = fDay.day;
-    //         const foundActivities = fDay.activities;
-    //         foundActivities.map(workouts =>
-    //             console.log(workouts.movement))
-    //     })
-        
-    // })
-
-    foundMonth.map(sessions =>{
-        console.log(sessions);
-    });
 
     return(
         <React.Fragment>
@@ -130,11 +127,27 @@ const TestWorkoutArea = () => {
                                     {foundActivities.map(workouts =>{
                                         return(
                                             <div className="movement_data">
-                                                <p>Movement: {workouts.movement}</p>
-                                                <p>Rounds: {workouts.rounds}</p>
-                                                <p>Reps: {workouts.reps}</p>
-                                                <p>Weight: {workouts.weight}</p>
-                                            </div>
+                                            {isUpdateMode && selectedWorkoutToUpdate === workouts.day  ? <UpdateWorkouts
+                                            isUpdateMode={setIsUpdateMode}
+                                            workoutitems={workouts} /> :
+                                            <React.Fragment>
+                                                <div className="movement_header_box">
+                                                    <p>Movement: {workouts.movement}</p>
+                                                </div>
+                                                <div className="movement_description_box">
+                                                    <p>Rounds: {workouts.rounds}</p>
+                                                    <p>Reps: {workouts.reps}</p>
+                                                    <p>Weight: {workouts.weight}</p>
+                                                </div> 
+                                                <div className="button_container_update_workout">
+                                                    <button
+                                                    name={workouts.day}
+                                                    onClick={updateHandler} 
+                                                    className="form_button" >Edit</button>
+                                                </div>
+                                                </React.Fragment>   
+                                                }
+                                            </div> 
                                         )
                                     })}
                                 </div>
@@ -150,3 +163,4 @@ const TestWorkoutArea = () => {
 };
 
 export default TestWorkoutArea;
+

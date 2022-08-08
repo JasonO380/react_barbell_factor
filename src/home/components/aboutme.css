@@ -21,7 +21,7 @@
 
 .aboutme {
     display: flex;
-    column-gap: 5rem;
+    column-gap: 1rem;
     margin: 20px;
     /* margin-left:20px;
     margin-right: 20px;

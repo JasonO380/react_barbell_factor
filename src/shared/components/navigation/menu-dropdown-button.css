@@ -1,3 +1,9 @@
 #dropdown_button{
-    background-color: #ff1f06;;
+    background-color: #ff1f06;
+    font-family: 'Open Sans', sans-serif;
+}
+.dropdown{
+    background-color: #ff1f06;
+    border-radius: 20px;
+    border: 2px solid black;
 }

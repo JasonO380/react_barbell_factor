@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import UpdateWorkouts from "./update-workouts";
 
 import "./workout-data-output.css";
 
 const WorkoutOutput = (props) => {
+        const [isUpdateMode, setIsUpdateMode] = useState(false);
         //Holds the month workout data
         let loggedSession = [];
         //generates the new movement objects for the new month and day keys
@@ -13,6 +15,16 @@ const WorkoutOutput = (props) => {
                 rounds: props.rounds,
                 reps:props.reps,
                 weight:props.weight
+            }
+        };
+        const updateHandler = (event) => {
+            let selectedWorkoutToUpdate = event.target.name;
+            console.log(selectedWorkoutToUpdate);
+            if(isUpdateMode){
+                setIsUpdateMode(false);
+            } else {
+                setIsUpdateMode(true);
+                console.log(isUpdateMode);
             }
         };
     
@@ -70,15 +82,25 @@ const WorkoutOutput = (props) => {
                                     <div className="session_container">
                                         {foundActivities.map(workouts =>{
                                             return(
+                                                <div>
+                                                {isUpdateMode ? <UpdateWorkouts isUpdateMode={setIsUpdateMode} workoutitems={workouts} /> :
+                                                <React.Fragment>
                                                 <div className="movement_data">
                                                     <p>Movement: {workouts.movement}</p>
                                                     <p>Rounds: {workouts.rounds}</p>
                                                     <p>Reps: {workouts.reps}</p>
                                                     <p>Weight: {workouts.weight}</p>
                                                 </div>
+                                                <div className="button_container_update_workout">
+                                                    <button
+                                                    name={workouts.day}
+                                                    onClick={updateHandler} 
+                                                    className="form_button" >Update</button>
+                                                </div>
+                                                </React.Fragment>}
+                                                </div>
                                             )
                                         })}
-                                        <button className="form_button" in={props.in}>Update</button>
                                     </div>
                                 )
                             })}
@@ -89,5 +111,34 @@ const WorkoutOutput = (props) => {
         )
 };
 
+                            // <div className="all_workouts_session_container">
+                            //         <h2>{foundDay}</h2>
+                            //         {foundActivities.map(workouts =>{
+                            //             return(
+                            //                 <div className="movement_data">
+                            //                 {isUpdateMode && selectedWorkoutToUpdate === workouts.day  ? <UpdateWorkouts
+                            //                 isUpdateMode={setIsUpdateMode}
+                            //                 workoutitems={workouts} /> :
+                            //                 <React.Fragment>
+                            //                     <div className="movement_header_box">
+                            //                         <p>Movement: {workouts.movement}</p>
+                            //                     </div>
+                            //                     <div className="movement_description_box">
+                            //                         <p>Rounds: {workouts.rounds}</p>
+                            //                         <p>Reps: {workouts.reps}</p>
+                            //                         <p>Weight: {workouts.weight}</p>
+                            //                     </div> 
+                            //                     <div className="button_container_update_workout">
+                            //                         <button
+                            //                         name={workouts.day}
+                            //                         onClick={updateHandler} 
+                            //                         className="form_button" >Edit</button>
+                            //                     </div>
+                            //                     </React.Fragment>   
+                            //                     }
+                            //                 </div> 
+                            //             )
+                            //         })}
+                            //     </div>
 
 export default WorkoutOutput;
