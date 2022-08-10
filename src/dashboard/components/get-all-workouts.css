@@ -9,7 +9,6 @@
 }
 
 .all_workouts_session_container{
-    /* display: flex; */
     border: 2px solid #f8df00;
     border-radius: 20px;
     margin-bottom: 15px;
@@ -26,9 +25,11 @@
 }
 
 .movement_data{
+    display: flex;
     flex-wrap: wrap;
-    /* width: max-content; */
+    width: fit-content;
     margin: auto;
+    color: white;
 }
 
 .movement_header_box{
@@ -54,4 +55,9 @@
     margin: auto;
 }
 
-
+@media screen and (max-width:415px){
+    .all_workouts_session_container{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

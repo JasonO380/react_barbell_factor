@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { motion } from 'framer-motion/dist/framer-motion';
+import session from "./workout-data";
 
 import "./update-workouts.css";
 
 const UpdateWorkouts = (props) => {
-
+    const workoutToUpdate = props;
+    console.log(workoutToUpdate);
     const[updateInfo, setUpdateInfo] = useState({
         movement:"",
         rounds:"",
@@ -35,7 +38,11 @@ const UpdateWorkouts = (props) => {
 
     return (
         <form className="all_workouts_session_container_form">
-        <div className="movement_data">
+        <motion.div
+        initial={{width: 0}}
+        animate={{width: "fit-content"}}
+        exit={{x: window.innerWidth, transition: {duration: 0.2}}} 
+        className="movement_data">
                     <div className="movement_header_box">
                         <h4>Movement:</h4>
                         <textarea
@@ -69,9 +76,8 @@ const UpdateWorkouts = (props) => {
                         className="form_button"
                         onClick={postUpdate}>Update</button>
                     </div>
-        </div>
+        </motion.div>
         </form>
-        
     );
 };
 

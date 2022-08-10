@@ -11,16 +11,29 @@ import UpdateWorkouts from "./update-workouts";
 const TestWorkoutArea = () => {
     const [selectedMonth, setSelectedMonth] = useState();
     const [loggedMonth, setLoggedMonth] = useState([]);
+    const [updateWorkout, setUpdateWorkout] = useState([]);
+    const [isSelectedMonthLoaded, setIsSelectedMonthLoaded] = useState(false);
     const [isUpdateMode, setIsUpdateMode] = useState (false);
     //Holds the month workout data
     let loggedSession = [];
+    //for conditionally rendered selected month
     let foundMonth = [];
+    //array to hold the workout to update
     let workoutToUpdateArray = [];
+    //grabs the workout ID
     let selectedWorkoutToUpdate;
 
-    const updateHandler = (event) => {
-        let selectedWorkoutToUpdate = event.target.name;
+    const getWorkoutToUpdateId = (event) => {
+        let selectedWorkoutToUpdate = event.target.value;
         console.log(selectedWorkoutToUpdate);
+        session.map(workouts => {
+            if(selectedWorkoutToUpdate === workouts.id){
+                workoutToUpdateArray.push(workouts);
+                setUpdateWorkout(workouts);
+                console.log(workoutToUpdateArray);
+            }
+            return workoutToUpdateArray;
+        })
         if(isUpdateMode){
             setIsUpdateMode(false);
         } else {
@@ -28,6 +41,15 @@ const TestWorkoutArea = () => {
             console.log(isUpdateMode);
         }
     };
+
+    const updateModeHandler = () => {
+        if(isUpdateMode){
+            setIsUpdateMode(false);
+        } else {
+            setIsUpdateMode(true);
+            console.log(isUpdateMode);
+        }
+    }
 
     const handleSelect = (event) =>{
         const choice = event.target.value;
@@ -40,6 +62,7 @@ const TestWorkoutArea = () => {
                         //generates the new movement objects for the new month and day keys
                         const generateMovementObjects = (session)=> {
                             return {
+                                id:session.id,
                                 movement:session.movement,
                                 rounds: session.rounds,
                                 reps:session.reps,
@@ -87,30 +110,58 @@ const TestWorkoutArea = () => {
             loggedSession.map((sessions)=>{
                 console.log(sessions)
                 if(selectedMonth === sessions.month){
+                    setIsSelectedMonthLoaded(true);
                     foundMonth.push(sessions);
-                                }
+                                } if (foundMonth.length === 0){
+                                    setIsSelectedMonthLoaded(false);
+                                } 
                             })
                         };
             getMonths();
             setLoggedMonth(foundMonth);
-            console.log(foundMonth);
     },[selectedMonth])
+
+    if(!selectedMonth && !isSelectedMonthLoaded){
+        return (
+            <React.Fragment>
+                <DropDownSelect
+                name={selectedMonth}
+                onChange={handleSelect}
+                isLoaded={setIsSelectedMonthLoaded} />
+                <div className="center">
+                    <h2>Please select a month to view workouts for that month</h2>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    if (!isSelectedMonthLoaded && selectedMonth){
+        return (
+            <React.Fragment>
+                <DropDownSelect
+                name={selectedMonth}
+                onChange={handleSelect}
+                isLoaded={setIsSelectedMonthLoaded} />
+                <div className="center">
+                    <h2>No data yet for the selected month</h2>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    if(isUpdateMode){
+        return(
+            <UpdateWorkouts
+            workoutitems={updateWorkout} />
+        )
+    }
 
     return(
         <React.Fragment>
-            <div className="select_container">
-                <label className="select_label">Select Month</label>
-                    <select
-                    className="select_field"
-                    name={selectedMonth}
-                    onChange={handleSelect}>
-                        {months.map(month => {
-                            return(
-                                <option className="select_option">{month.month}</option>
-                            )
-                        })}
-                    </select>
-            </div>
+        <DropDownSelect
+            name={selectedMonth}
+            onChange={handleSelect}
+            isLoaded={setIsSelectedMonthLoaded} />
         <div className="page_container">
             {loggedMonth.map(session => {
                 const month = session.month;
@@ -123,14 +174,11 @@ const TestWorkoutArea = () => {
                             const foundActivities = fDay.activities;
                             return (
                                 <div className="all_workouts_session_container">
-                                    <h2>{foundDay}</h2>
+                                    <h2>{foundDay}</h2> 
                                     {foundActivities.map(workouts =>{
+                                        let selectedWorkoutToUpdate = workouts.id;
                                         return(
-                                            <div className="movement_data">
-                                            {isUpdateMode && selectedWorkoutToUpdate === workouts.day  ? <UpdateWorkouts
-                                            isUpdateMode={setIsUpdateMode}
-                                            workoutitems={workouts} /> :
-                                            <React.Fragment>
+                                            <div id={workouts.id} className="movement_data">
                                                 <div className="movement_header_box">
                                                     <p>Movement: {workouts.movement}</p>
                                                 </div>
@@ -141,12 +189,12 @@ const TestWorkoutArea = () => {
                                                 </div> 
                                                 <div className="button_container_update_workout">
                                                     <button
-                                                    name={workouts.day}
-                                                    onClick={updateHandler} 
+                                                    value={selectedWorkoutToUpdate}
+                                                    name={workouts.movement}
+                                                    onUpdate={updateModeHandler}
+                                                    onClick={getWorkoutToUpdateId} 
                                                     className="form_button" >Edit</button>
-                                                </div>
-                                                </React.Fragment>   
-                                                }
+                                                </div> 
                                             </div> 
                                         )
                                     })}

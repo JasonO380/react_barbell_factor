@@ -9,21 +9,3 @@
     border-radius: 20px;
     margin-top: 25px;
 }
-
-.movement_data{
-    display: flex;
-    color: white;
-    padding: 0 15px;
-    text-align: left;
-    padding-bottom: 15px;
-}
-
-/* .workout_date_header{
-    text-align: center;
-}
-
-.workout_table {
-    display: grid;
-    color: white;
-    justify-content: center;
-}; */

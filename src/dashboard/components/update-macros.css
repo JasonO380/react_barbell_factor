@@ -1,12 +1,10 @@
-.update_container{
+/* .update_container{
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
 }
 
 .update_header{
     flex: 1 1 100%;
-    /* margin: auto; */
     text-align: center;
     color: white;
 }
@@ -25,6 +23,10 @@
     justify-content: center;
     flex-wrap: wrap;
     margin: auto;
+} */
+
+.movement_data{
+    width: fit-content;
 }
 
 .form_inputs {
@@ -38,16 +40,4 @@
     border: 2px solid black;
 }
 
-/*I THINK THIS IS NOT NEEDED NOT 100% SURE
-/* .form_button{
-    background-color: #2a006e;
-    color: white;
-    padding: 15px;
-    margin: auto;
-    margin-top: 15px;
-    border: 5px solid #f8df00;
-    border-radius: 15px;
-    align-items: baseline;
-    
-} */
 
