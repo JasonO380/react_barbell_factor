@@ -1,5 +1,6 @@
 import React , { useState, useEffect } from "react";
 import macroData from "./macro-items";
+import DropDownSelect from "../../shared/UIElements/drop-down-select";
 import DatePicker from "react-datepicker";
 import months from "./month-select-options";
 import LineChart from "../../shared/components/LineChart";
@@ -35,6 +36,7 @@ ChartJS.register(
 const GetMacros = () => {
     const date = new Date();
     const monthName = date.toLocaleString("en-US", { month:"long" });
+    const [isSelectedMonthLoaded, setIsSelectedMonthLoaded] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState();
     const [macroInfo, setMacroInfo] = useState ({
         datasets:[],
@@ -58,8 +60,13 @@ const GetMacros = () => {
         const getMonths = () => {
             macroData.map((macros)=>{
                 if(selectedMonth === macros.month){
+                    setIsSelectedMonthLoaded(true);
                     foundMonth.push(macros);
-                                } 
+                                } if (foundMonth.length === 0){
+                                    console.log(foundMonth.length);
+                                    setIsSelectedMonthLoaded(false);
+                                    console.log(isSelectedMonthLoaded);
+                                }
                             })
                         };
             getMonths();
@@ -114,22 +121,40 @@ const GetMacros = () => {
         console.log(selectedMonth);
     },[selectedMonth])
 
+    if(!selectedMonth && !isSelectedMonthLoaded){
+        return (
+            <React.Fragment>
+                <DropDownSelect
+                name={selectedMonth}
+                onChange={handleSelect}
+                isLoaded={setIsSelectedMonthLoaded} />
+                <div className="center">
+                    <h2>Please select a month to view macro for that month</h2>
+                </div>
+            </React.Fragment>
+        )
+    }
+
+    if (!isSelectedMonthLoaded && selectedMonth){
+        return (
+            <React.Fragment>
+                <DropDownSelect
+                name={selectedMonth}
+                onChange={handleSelect}
+                isLoaded={setIsSelectedMonthLoaded} />
+                <div className="center">
+                    <h2>No data yet for the selected month</h2>
+                </div>
+            </React.Fragment>
+        )
+    }
+
     return(
         <React.Fragment>
-            <div className="select_container">
-            <label className="select_label">Select Month</label>
-                <select
-                className="select_field"
-                name={selectedMonth}
-                onChange={handleSelect}>
-                    {months.map(month => {
-                        
-                        return(
-                            <option className="select_option">{month.month}</option>
-                        )
-                    })}
-                </select>
-            </div>
+        <DropDownSelect
+        name={selectedMonth}
+        onChange={handleSelect}
+        isLoaded={setIsSelectedMonthLoaded} />
             <div className="linechart">
                 <Line
                 data={macroInfo}

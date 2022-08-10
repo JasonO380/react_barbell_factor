@@ -4,20 +4,60 @@
     justify-content: center;
 }
 
+.month_container{
+    width: 80%;
+}
+
 .all_workouts_session_container{
-    /* display: flex; */
     border: 2px solid #f8df00;
     border-radius: 20px;
     margin-bottom: 15px;
     text-align: center;
+    color: white;
+}
+
+.all_workouts_session_container_form{
+    border: none;
 }
 
 .month_header_center{
     text-align: center;
 }
 
-/* .movement_data{
-    margin: auto;
+.movement_data{
     display: flex;
-    flex-direction: column;
-} */
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+    color: white;
+}
+
+.movement_header_box{
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+}
+
+.movement_description_box{
+    justify-self: center;
+    align-self: center;
+    text-align: left;
+    flex: 1 1 75%;
+    padding-bottom: 7px;
+}
+
+.button_container{
+    text-align: center;
+}
+
+.button_container_update_workout{
+    text-align: center;
+    margin: auto;
+}
+
+@media screen and (max-width:415px){
+    .all_workouts_session_container{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}

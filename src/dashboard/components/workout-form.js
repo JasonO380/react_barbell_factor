@@ -74,7 +74,93 @@ const WorkoutForm = (props)=>{
             <div className="workout_form_header_box">
                     <h2>Enter your workout</h2>
             </div>
-            <div className="workout_form_container">
+            <form className="all_workouts_session_container_form">
+            <div className="movement_data">
+            <div className="movement_header_box">
+                <h4>Movement:</h4>
+                <textarea
+                name="movement"
+                value={workoutData.movement}
+                label="Movement"
+                placeholder="Enter movement"
+                onChange={changeHandler} />
+            </div>
+                <div className="movement_description_box">
+                    <h4>Rounds:</h4>
+                    <input
+                    name="rounds"
+                    value={workoutData.rounds}
+                    label="Rounds"
+                    placeholder="Enter rounds"
+                    onChange={changeHandler} />
+                    <h4>Reps:</h4>
+                    <input
+                    name="reps"
+                    value={workoutData.reps}
+                    label="Reps"
+                    placeholder="Enter reps"
+                    onChange={changeHandler} />
+                    <h4>Weight:</h4>
+                    <input
+                    name="weight"
+                    value={workoutData.weight}
+                    label="Weight"
+                    placeholder="Enter weight"
+                    onChange={changeHandler} />
+            </div>
+            <div className="button_container_update_workouts">
+                <button 
+                className="form_button"
+                onClick={postWorkoutData}>Enter</button>
+            </div>
+            </div>
+</form>
+        </React.Fragment>
+    )
+};
+
+export default WorkoutForm;
+
+{/* <form className="all_workouts_session_container_form">
+<div className="movement_data">
+            <div className="movement_header_box">
+                <h4>Movement:</h4>
+                <textarea
+                name="movement"
+                label="Movement"
+                placeholder={props.workoutitems.movement}
+                onChange={handleChange} />
+            </div>
+                <div className="movement_description_box">
+                    <h4>Rounds:</h4>
+                    <input
+                    name="rounds"
+                    label="Rounds"
+                    placeholder={props.workoutitems.rounds}
+                    onChange={handleChange} />
+                    <h4>Reps:</h4>
+                    <input
+                    name="reps"
+                    label="Reps"
+                    placeholder={props.workoutitems.reps}
+                    onChange={handleChange} />
+                    <h4>Weight:</h4>
+                    <input
+                    name="weight"
+                    label="Weight"
+                    placeholder={props.workoutitems.weight}
+                    onChange={handleChange} />
+            </div>
+            <div className="button_container_update_workouts">
+                <button 
+                className="form_button"
+                onClick={postUpdate}>Update</button>
+            </div>
+</div>
+</form> */}
+
+
+            {/* <div className="workout_form_container">
                 <form className="workout_form">
                     <div className="movement_div">
                         <h4>Movement:</h4>
@@ -115,9 +201,4 @@ const WorkoutForm = (props)=>{
                         in={props.in}>Click me</button>
                     </div>
                 </form>
-            </div>
-        </React.Fragment>
-    )
-};
-
-export default WorkoutForm;
+            </div> */}

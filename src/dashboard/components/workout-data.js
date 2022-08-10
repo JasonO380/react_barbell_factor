@@ -1,5 +1,6 @@
 const session = [
     {
+        id:"w1",
         month:"July",
         day:"1",
         movement:"Back Squat",
@@ -8,6 +9,7 @@ const session = [
         weight:"143kg"
     },
     {
+        id:"w2",
         month:"July",
         day:"1",
         movement:"Power clean",
@@ -16,6 +18,7 @@ const session = [
         weight:"85kg"
     },
     {
+        id:"w3",
         month:"July",
         day:"1",
         movement:"Press",
@@ -24,6 +27,7 @@ const session = [
         weight:"65kg"
     },
     {
+        id:"w4",
         month:"July",
         day:"2",
         movement:"Power Snatch",
@@ -32,6 +36,7 @@ const session = [
         weight:"60kg"
     },
     {
+        id:"w5",
         month:"July",
         day:"2",
         movement:"Snatch pull + floating snatch + snatch",
@@ -40,6 +45,7 @@ const session = [
         weight:"80kg"
     },
     {
+        id:"w6",
         month:"July",
         day:"2",
         movement:"OHS",
@@ -48,6 +54,7 @@ const session = [
         weight:"80kg"
     },
     {
+        id:"w7",
         month:"July",
         day:"3",
         movement:"Front Squat",
@@ -56,6 +63,7 @@ const session = [
         weight:"125kg"
     },
     {
+        id:"w8",
         month:"July",
         day:"3",
         movement:"Muscle Snatch",
@@ -64,6 +72,7 @@ const session = [
         weight:"55kg"
     },
     {
+        id:"w9",
         month:"August",
         day:"1",
         movement:"Clean pull + clean",
@@ -72,6 +81,7 @@ const session = [
         weight:"115kg"
     },
     {
+        id:"w10",
         month:"August",
         day:"1",
         movement:"Push Jerk + Split Jerk",
@@ -80,6 +90,7 @@ const session = [
         weight:"100kg"
     },
     {
+        id:"w11",
         month:"August",
         day:"2",
         movement:"Front Squat",
@@ -88,6 +99,7 @@ const session = [
         weight:"128kg"
     },
     {
+        id:"w12",
         month:"August",
         day:"2",
         movement:"hip snatch + hang snatch",

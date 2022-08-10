@@ -2,6 +2,8 @@ import React ,{ useState, useEffect } from "react";
 import WorkoutForm from "../../dashboard/components/workout-form";
 import WorkoutOutput from "../../dashboard/components/workout-data-output";
 
+import "./workout-tracker.css";
+
 
 const Workout = (props) =>{
     const [workoutData, setWorkoutData] = useState([]);
