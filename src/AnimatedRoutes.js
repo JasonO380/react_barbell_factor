@@ -24,13 +24,13 @@ import { AnimatePresence } from 'framer-motion/dist/framer-motion';
         return(
             <AnimatePresence>
                 <Routes location={location} key={location.pathname}>
-                        <Route path="/react_barbell_factor" element={<HomePage />} />
-                        <Route path="/react_barbell_factor/dashboard" element={<Dashboard />} />
-                        <Route path="/react_barbell_factor/workoutlog" element={<Workout />} />
-                        <Route path="/react_barbell_factor/workoutview" element={<GetAllWorkoutData />} />
-                        <Route path="/react_barbell_factor/workouttest" element={<TestWorkoutArea />} />
-                        <Route path="/react_barbell_factor/dashboard/:mid" element={<UpdateMacros />} />
-                        <Route path="/react_barbell_factor/macrosgraph" element={<GetMacros />} />
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/workoutlog" element={<Workout />} />
+                        <Route path="/workoutview" element={<GetAllWorkoutData />} />
+                        <Route path="/workouttest" element={<TestWorkoutArea />} />
+                        <Route path="/dashboard/:mid" element={<UpdateMacros />} />
+                        <Route path="/macrosgraph" element={<GetMacros />} />
                 </Routes>
             </AnimatePresence>
         )
