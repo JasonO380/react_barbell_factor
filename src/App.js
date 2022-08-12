@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { 
-  BrowserRouter as Router, 
+  BrowserRouter as Router,
+  HashRouter, 
   Route,
   Routes, 
   Redirect, 
@@ -15,9 +16,11 @@ import './App.css';
 function App() {
   return (
     <Router>
+    <HashRouter basename="/">
       <Routes>
         <Route path="*" element={<MainLayoutRoutes />} />
       </Routes>
+    </HashRouter>
     </Router>
   );
 }
