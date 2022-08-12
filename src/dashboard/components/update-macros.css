@@ -25,9 +25,17 @@
     margin: auto;
 } */
 
-.movement_data{
-    width: fit-content;
+.update_form_container{
+    text-align: center;
 }
+
+.update_header{
+    text-align: center;
+}
+
+/* .movement_data{
+    width: fit-content;
+} */
 
 .form_inputs {
     flex: 1 1 30%;
@@ -35,6 +43,7 @@
 }
 
 .macro_inputs{
+    text-align: center;
     height: 50px;
     border-radius: 10px;
     border: 2px solid black;
