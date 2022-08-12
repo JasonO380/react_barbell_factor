@@ -16,11 +16,9 @@ import './App.css';
 function App() {
   return (
     <Router>
-    <HashRouter basename="/">
-      <Routes>
+      <Routes basename="/">
         <Route path="*" element={<MainLayoutRoutes />} />
       </Routes>
-    </HashRouter>
     </Router>
   );
 }
