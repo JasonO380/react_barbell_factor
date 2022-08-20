@@ -4,6 +4,7 @@ import profilepic from "../../profilepic.jpeg";
 import trainingInfo from "./training-profile-list";
 import TrainingList from "./trainingProfileOutput";
 import { MdArrowDropDownCircle } from "react-icons/md";
+import LogoProfilePicFlipCard from "./logo-profile-pic-flip-card";
 import barbellfactor from "../../barbellfactor.jpeg";
 
 
@@ -25,12 +26,20 @@ const AboutMe = (props) => {
     return (
         <React.Fragment>
         <div className="aboutme">
-            <div className="profile_card" >
+        <LogoProfilePicFlipCard
+        className="profile_card"
+        imgClassName="profile_pic"
+        src={profilepic} />
+        <LogoProfilePicFlipCard
+        className="main_logo_box"
+        imgClassName="main_logo"
+        src={barbellfactor} />
+            {/* <div className="profile_card" >
                 <img className="profile_pic" src={profilepic} alt="Profile Pic" />
             </div>
             <div className="main_logo_box">
                 <img className="main_logo" src={barbellfactor} />
-            </div>
+            </div> */}
         </div>
             <div className="bio_container">
             <div className="bio_info">

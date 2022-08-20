@@ -34,12 +34,16 @@ textarea{
     margin-right: 50px;
 }
 
+.button_container_enter_workouts{
+    margin: auto;
+}
+
 /* .movement_data_entry_form{
     width: fit-content;
     margin: auto;
 } */
 
-.reps_rounds_weight_div{
+/* .reps_rounds_weight_div{
     display: flex;
     flex-direction: column;
-}
+} */

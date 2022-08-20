@@ -34,6 +34,20 @@
     height: 100%;
 }
 
+.register_login_div{
+    display: flex;
+}
+
+.register_login_form_button{
+    background-color: #ff1f06;
+    color: white;
+    padding: 7px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    align-items: baseline;
+}
+
 @media (min-width: 768px) {
     .main-navigation__menu-btn {
     display: none;

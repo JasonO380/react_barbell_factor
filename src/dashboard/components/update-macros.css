@@ -27,15 +27,13 @@
 
 .update_form_container{
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .update_header{
     text-align: center;
 }
-
-/* .movement_data{
-    width: fit-content;
-} */
 
 .form_inputs {
     flex: 1 1 30%;
@@ -47,6 +45,11 @@
     height: 50px;
     border-radius: 10px;
     border: 2px solid black;
+}
+
+.update_macros_button_container{
+    width: 100%;
+    margin: 15px 0 50px;
 }
 
 

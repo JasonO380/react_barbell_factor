@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
-import { Link, } from "react-router-dom";
-import UpdateMacros from "./update-macros";
 import { v4 as uuidv4 } from 'uuid';
 
 import "./macros-form.css"
@@ -124,7 +121,7 @@ const MacrosForm = (props) => {
                     <button
                     className="form_button" 
                     onClick={postMacroData}
-                    in={props.in}>Click me</button>
+                    in={props.in}>Enter</button>
                 </form>
                 {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
         </div>
