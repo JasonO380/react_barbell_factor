@@ -108,13 +108,13 @@ const WorkoutForm = (props)=>{
                     placeholder="Enter weight"
                     onChange={changeHandler} />
             </div>
-            <div className="button_container_update_workouts">
+            <div className="button_container_enter_workouts">
                 <button 
                 className="form_button"
                 onClick={postWorkoutData}>Enter</button>
             </div>
             </div>
-</form>
+            </form>
         </React.Fragment>
     )
 };

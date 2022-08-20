@@ -1,5 +1,7 @@
 import React from "react";
 import HomePage from "./home/pages/HomePage";
+import Register from "./login/registration/components/register";
+import Login from "./login/registration/components/login";
 import Dashboard from './dashboard/components/dashboard';
 import UpdateMacros from "./dashboard/components/update-macros";
 import GetMacros from "./dashboard/components/get-macros";
@@ -25,6 +27,8 @@ import { AnimatePresence } from 'framer-motion/dist/framer-motion';
             <AnimatePresence>
                 <Routes location={location} key={location.pathname}>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/workoutlog" element={<Workout />} />
                         <Route path="/workoutview" element={<GetAllWorkoutData />} />

@@ -6,12 +6,12 @@
     /* margin-top: 50px; */
 }
 
-.center{
+/* .center{
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-}
+} */
 
 @media (max-width:700px){
     .page-info {
@@ -19,8 +19,8 @@
     }
 }
 
-@media (max-width:575px){
+/* @media (max-width:575px){
     .page-info{
         margin-top: -60px;
     }
-}
+} */

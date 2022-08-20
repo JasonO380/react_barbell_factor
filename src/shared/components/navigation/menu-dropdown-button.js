@@ -21,11 +21,3 @@ const DropdownMenu = () => {
 };
 
 export default DropdownMenu;
-
-{/* <Route path="/" element={<HomePage />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/workoutlog" element={<Workout />} />
-                        <Route path="/workoutview" element={<GetAllWorkoutData />} />
-                        <Route path="/workouttest" element={<TestWorkoutArea />} />
-                        <Route path="/dashboard/:mid" element={<UpdateMacros />} />
-                        <Route path="/macrosgraph" element={<GetMacros />} /> */}

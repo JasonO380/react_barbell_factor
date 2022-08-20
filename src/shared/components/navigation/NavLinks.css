@@ -1,3 +1,4 @@
+/* Just blocked this out */
 .nav-links {
     list-style: none;
     margin: 0;
@@ -10,9 +11,9 @@
     align-items: center;
 }
 
-.nav-links li {
+/* .nav-links li {
     margin: 1rem;
-}
+} */
 
 .nav-links a {
     border: 1px solid transparent;
@@ -73,17 +74,20 @@
     }
 
     .nav-links li {
-    margin: 0 0.5rem;
+    margin-right: 15px;
     background-color: #ff1f06;
-    padding: 10px;
+    padding: 7px;
     border-radius: 10px;
     border: 2px solid black;
     }
 
+
+
     @media screen and (max-width:575px){
         .nav-links li{
             padding:3px;
-            font-size: .9rem;
+            font-size: 10px;
+            /* font-size: .9rem; */
         }
     }
 

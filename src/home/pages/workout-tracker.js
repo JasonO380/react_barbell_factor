@@ -1,6 +1,7 @@
 import React ,{ useState, useEffect } from "react";
 import WorkoutForm from "../../dashboard/components/workout-form";
 import WorkoutOutput from "../../dashboard/components/workout-data-output";
+import { motion } from 'framer-motion/dist/framer-motion';
 
 import "./workout-tracker.css";
 
@@ -32,12 +33,16 @@ const Workout = (props) =>{
     if(!sessionForDayIsLoaded){
         return(
             <React.Fragment>
-            <div className="workout_page_container">
+            <motion.div 
+            className="workout_page_container"
+            initial={{width: 0}}
+            animate={{width: "100%"}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                 <WorkoutForm workoutItems={addWorkout} />
                 <div className="center">
                     <h2>No workout data on the day yet</h2>
                 </div>
-            </div>
+            </motion.div>
             </React.Fragment>
         )
     };
@@ -45,10 +50,14 @@ const Workout = (props) =>{
     if(sessionForDayIsLoaded){
         return(
             <React.Fragment>
-            <div className="workout_page_container">
+            <motion.div 
+            className="workout_page_container"
+            initial={{width: 0}}
+            animate={{width: "100%"}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                 <WorkoutForm workoutItems={addWorkout} />
                 <WorkoutOutput  workoutItems={workoutData} />
-            </div>
+            </motion.div>
             </React.Fragment>
         )
     }

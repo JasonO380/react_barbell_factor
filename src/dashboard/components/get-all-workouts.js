@@ -124,9 +124,13 @@ const GetAllWorkoutData = () =>{
                 name={selectedMonth}
                 onChange={handleSelect}
                 isLoaded={setIsSelectedMonthLoaded} />
-                <div className="center">
+                <motion.div 
+                className="center"
+                initial={{width: 0}}
+                animate={{width: "100%"}}
+                exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                     <h2>Please select a month to view workouts for that month</h2>
-                </div>
+                </motion.div>
             </React.Fragment>
         )
     }
@@ -138,9 +142,13 @@ const GetAllWorkoutData = () =>{
                 name={selectedMonth}
                 onChange={handleSelect}
                 isLoaded={setIsSelectedMonthLoaded} />
-                <div className="center">
+                <motion.div 
+                className="center"
+                initial={{width: 0}}
+                animate={{width: "100%"}}
+                exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                     <h2>No data yet for the selected month</h2>
-                </div>
+                </motion.div>
             </React.Fragment>
         )
     }

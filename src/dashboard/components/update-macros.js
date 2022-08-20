@@ -146,9 +146,11 @@ const UpdateMacros = (props) => {
                         placeholder={props.items.map(macros => macros.fats)}
                         onChange={changeHandler} />
                     </div>
+                    <div className="update_macros_button_container">
                         <button
                         className="form_button" 
-                        onClick={postUpdateMacroData}>Click me</button>
+                        onClick={postUpdateMacroData}>Enter</button>
+                    </div>
             </form>
         </motion.div>
         </React.Fragment>

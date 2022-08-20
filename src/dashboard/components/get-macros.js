@@ -1,10 +1,6 @@
 import React , { useState, useEffect } from "react";
 import macroData from "./macro-items";
 import DropDownSelect from "../../shared/UIElements/drop-down-select";
-import DatePicker from "react-datepicker";
-import months from "./month-select-options";
-import LineChart from "../../shared/components/LineChart";
-import { Link } from "react-router-dom";
 import { motion } from 'framer-motion/dist/framer-motion';
 import {
     Chart as ChartJS,
@@ -128,9 +124,13 @@ const GetMacros = () => {
                 name={selectedMonth}
                 onChange={handleSelect}
                 isLoaded={setIsSelectedMonthLoaded} />
-                <div className="center">
+                <motion.div 
+                className="center"
+                initial={{width: 0}}
+                animate={{width: "100%"}}
+                exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                     <h2>Please select a month to view macro for that month</h2>
-                </div>
+                </motion.div>
             </React.Fragment>
         )
     }
@@ -142,9 +142,13 @@ const GetMacros = () => {
                 name={selectedMonth}
                 onChange={handleSelect}
                 isLoaded={setIsSelectedMonthLoaded} />
-                <div className="center">
+                <motion.div 
+                className="center"
+                initial={{width: 0}}
+                animate={{width: "100%"}}
+                exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                     <h2>No data yet for the selected month</h2>
-                </div>
+                </motion.div>
             </React.Fragment>
         )
     }
@@ -155,12 +159,16 @@ const GetMacros = () => {
         name={selectedMonth}
         onChange={handleSelect}
         isLoaded={setIsSelectedMonthLoaded} />
-            <div className="linechart">
+            <motion.div 
+            className="linechart"
+            initial={{width: 0}}
+            animate={{width: "100%"}}
+            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                 <Line
                 data={macroInfo}
                 options={chartOptions} 
                 />
-            </div>
+            </motion.div>
         </React.Fragment>
     )
 };
