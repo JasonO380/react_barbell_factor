@@ -111,34 +111,4 @@ const WorkoutOutput = (props) => {
         )
 };
 
-                            // <div className="all_workouts_session_container">
-                            //         <h2>{foundDay}</h2>
-                            //         {foundActivities.map(workouts =>{
-                            //             return(
-                            //                 <div className="movement_data">
-                            //                 {isUpdateMode && selectedWorkoutToUpdate === workouts.day  ? <UpdateWorkouts
-                            //                 isUpdateMode={setIsUpdateMode}
-                            //                 workoutitems={workouts} /> :
-                            //                 <React.Fragment>
-                            //                     <div className="movement_header_box">
-                            //                         <p>Movement: {workouts.movement}</p>
-                            //                     </div>
-                            //                     <div className="movement_description_box">
-                            //                         <p>Rounds: {workouts.rounds}</p>
-                            //                         <p>Reps: {workouts.reps}</p>
-                            //                         <p>Weight: {workouts.weight}</p>
-                            //                     </div> 
-                            //                     <div className="button_container_update_workout">
-                            //                         <button
-                            //                         name={workouts.day}
-                            //                         onClick={updateHandler} 
-                            //                         className="form_button" >Edit</button>
-                            //                     </div>
-                            //                     </React.Fragment>   
-                            //                     }
-                            //                 </div> 
-                            //             )
-                            //         })}
-                            //     </div>
-
 export default WorkoutOutput;

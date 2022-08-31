@@ -23,7 +23,7 @@ const MacrosForm = (props) => {
         const uid = uuidv4();
         const dayOfMonth = Math.floor((Math.random() * 15) +1 );
         const macroDateEntry = new Date();
-
+        console.log(macroData);
         setMacroData(preValue => {
             return {
                 ...preValue,
