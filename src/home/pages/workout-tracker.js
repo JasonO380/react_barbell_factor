@@ -38,7 +38,7 @@ const Workout = (props) =>{
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                <WorkoutForm workoutItems={addWorkout} />
+                <WorkoutForm workoutFormItems={addWorkout} />
                 <div className="center">
                     <h2>No workout data on the day yet</h2>
                 </div>
@@ -55,8 +55,8 @@ const Workout = (props) =>{
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                <WorkoutForm workoutItems={addWorkout} />
-                <WorkoutOutput  workoutItems={workoutData} />
+                <WorkoutForm workoutFormItems={addWorkout} />
+                <WorkoutOutput workoutItems={workoutData} />
             </motion.div>
             </React.Fragment>
         )

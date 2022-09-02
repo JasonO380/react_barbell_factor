@@ -38,7 +38,8 @@ const Dashboard = () => {
                 <div className="macro_header_box">
                     <h2>MACRO TRACKER</h2>
                 </div>
-                <MacrosForm items={macros} onAdd={addMacros} />
+                <MacrosForm  
+                onAdd={addMacros} />
             </motion.div>
         </React.Fragment>
         )
