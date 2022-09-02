@@ -1,30 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import { motion } from 'framer-motion/dist/framer-motion';
+import { LoginRegisterContext } from '../components/context/login-register-context';
 
 import "./register.css";
 
+const inputReducer = (state, action) => {
+    switch (action.type){
+        case 'INPUT_CHANGE':
+            return {
+                ...state,
+                [action.name]: action.value,
+                };
+                default: return state
+            };
+    };
+
 const Register = () => {
-    // const [loginMode, setIsLogginMode] = useState(false);
-    const [registerInfo, setRegisterInfo] = useState ({
+    const loginRegister = useContext(LoginRegisterContext);
+    const [inputState, dispatch] = useReducer(inputReducer, {
         username:"",
         email:"",
         password:""
-    })
+    });
 
-    // const loginModeHandler = () => {
-    //     setIsLogginMode(false);
-    //     if (!loginMode){
-    //         setIsLogginMode(true);
-    //     }
-    // }; 
-
-    const postUserData = (event) => {
+    const postUserData = async (event) => {
         event.preventDefault();
-        setRegisterInfo({
-            username:"",
-            email:"",
-            password:""
-        })
+        try {
+            const response = await fetch('http://localhost:5000/api/users/signup', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: inputState.username,
+                email: inputState.email,
+                password: inputState.password
+            })
+        });
+        const responseData = await response.json();
+        console.log(responseData);
+        } catch (err){
+            console.log(err)
+        }
+        loginRegister.login();
     };
 
     const changeHandler = (event) => {
@@ -32,13 +50,11 @@ const Register = () => {
         const inputName = event.target.name;
         console.log(inputValue);
         console.log(inputName);
-        setRegisterInfo(prevValue => {
-            return {
-                ...prevValue,
-                [inputName]:inputValue
-            }
+        dispatch({
+            type:'INPUT_CHANGE',
+            name: inputName,
+            value: inputValue
         })
-        console.log(registerInfo);
     }
 
     return (
@@ -52,19 +68,19 @@ const Register = () => {
                 <h4>Username</h4>
                 <input
                 name="username"
-                value={registerInfo.username}
+                value={inputState.username}
                 placeholder="enter username"
                 onChange={changeHandler} />
                 <h4>Email</h4>
                 <input
                 name="email"
-                value={registerInfo.email}
+                value={inputState.email}
                 placeholder="enter email"
                 onChange={changeHandler} />
                 <h4>Password</h4>
                 <input
                 name="password"
-                value={registerInfo.password}
+                value={inputState.password}
                 placeholder="enter password"
                 onChange={changeHandler} />
                 <div className="login_register_form_enter_button_box">
@@ -72,11 +88,6 @@ const Register = () => {
                 className="form_button"
                 onClick={postUserData}>REGISTER</button>
                 </div>
-                {/* <div className="login_register_form_switch_mode_box">
-                <button 
-                className="form_button"
-                onClick={loginModeHandler}>SWITCH TO LOGIN</button>
-                </div> */}
             </form>
         </motion.div>
     )

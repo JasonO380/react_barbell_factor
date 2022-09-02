@@ -1,74 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import { v4 as uuidv4 } from 'uuid';
 
-import "./macros-form.css"
+import "./macros-form.css";
+
+const inputReducer = (state, action) => {
+    const uid = uuidv4();
+    const macroDateEntry = new Date();
+    switch (action.type){
+        case 'INPUT_CHANGE':
+            return {
+                ...state,
+                [action.name]: action.value,
+                id:uid,
+                year:macroDateEntry.getFullYear(),
+                dayOfWeek: macroDateEntry.toLocaleString("default", { weekday: "long" }),
+                month:macroDateEntry.toLocaleString("en-US", { month:"long" }),
+                day:macroDateEntry.getDate(),
+                };
+                default: return state
+            };
+    };
 
 const MacrosForm = (props) => {
     const [isValid, setIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
-    const [macroData, setMacroData] = useState({
+    const [inputState, dispatch] = useReducer(inputReducer, {
         id:"",
         year:"",
         month:"",
         day:"",
         carbs:"",
         protein:"",
-        fats:""
+        fats:"",
     });
 
-
     const changeHandler = (event) => {
-        const macro = event.target.value;
+        const macroValue = event.target.value;
         const macroName = event.target.name;
-        const uid = uuidv4();
-        const dayOfMonth = Math.floor((Math.random() * 15) +1 );
-        const macroDateEntry = new Date();
-
-        setMacroData(preValue => {
-            return {
-                ...preValue,
-                [macroName]: macro,
-                id:uid,
-                year: macroDateEntry.getFullYear(),
-                month: macroDateEntry.toLocaleString("en-US", { month:"long" }),
-                day:macroDateEntry.getDate(),
-            }
-        });
+        dispatch({
+            type:'INPUT_CHANGE',
+            name: macroName,
+            value: macroValue
+        })
     };
 
     const postMacroData = (event) => {
-        console.log(macroData);
-        if(macroData.carbs.length === 0){
+        console.log(inputState);
+        if(inputState.carbs.length === 0){
             setIsValid(false);
             setFormIsValid(false);
             return null;
         } 
-        if (macroData.carbs.length === 0){
+        if (inputState.carbs.length === 0){
             setIsValid(false);
             setFormIsValid(false);
             console.log(isValid);
             return null;
         } 
-        if (macroData.protein.length === 0){
+        if (inputState.protein.length === 0){
                 setIsValid(false);
                 setFormIsValid(false);
                 return null;
             }
-        if (macroData.fats.length === 0){
+        if (inputState.fats.length === 0){
             setIsValid(false);
             setFormIsValid(false);
             return null;
         } else {
-            props.onAdd(macroData);
+            props.onAdd(inputState);
         }
-        setMacroData({
+        dispatch({
             carbs:"",
-            fats:"",
-            protein:""
-        });
+            protein:"",
+            fats:""
+        })
         setFormIsValid(true);
         event.preventDefault();
-        
     };
 
     return (
@@ -84,10 +92,10 @@ const MacrosForm = (props) => {
                     className="macro_input"
                     required
                     size="large"
-                    id={macroData.day}
+                    id={inputState.day}
                     name="carbs"
                     label="Carbs"
-                    value={macroData.carbs}
+                    value={inputState.carbs}
                     errorText="Please enter your carb intake in grams"
                     placeholder="Grams of crabs"
                     onChange={changeHandler} />
@@ -97,10 +105,10 @@ const MacrosForm = (props) => {
                     <input
                     className="macro_input"
                     required
-                    id={macroData.day}
+                    id={inputState.day}
                     name="protein"
                     label="Protein"
-                    value={macroData.protein}
+                    value={inputState.protein}
                     errorText="Please enter your protein intake in grams"
                     placeholder="Grams of protein"
                     onChange={changeHandler} />
@@ -110,10 +118,10 @@ const MacrosForm = (props) => {
                     <input
                     className="macro_input"
                     required
-                    id={macroData.day}
+                    id={inputState.day}
                     name="fats"
                     label="Fats"
-                    value={macroData.fats}
+                    value={inputState.fats}
                     errorText="Please enter your fat intake in grams"
                     placeholder="Grams of fat"
                     onChange={changeHandler} />

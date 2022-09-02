@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, useCallback } from 'react';
 import { 
   BrowserRouter as Router,
   HashRouter, 
@@ -15,11 +15,11 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
-      <Routes basename="/">
-        <Route path="*" element={<MainLayoutRoutes />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes basename="/">
+          <Route path="*" element={<MainLayoutRoutes />} />
+        </Routes>
+      </Router>
   );
 }
 
