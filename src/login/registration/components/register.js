@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { motion } from 'framer-motion/dist/framer-motion';
 import { LoginRegisterContext } from '../components/context/login-register-context';
+import { useNavigate } from "react-router-dom";
 
 import "./register.css";
 
@@ -16,6 +17,7 @@ const inputReducer = (state, action) => {
     };
 
 const Register = () => {
+    const navigate = useNavigate();
     const loginRegister = useContext(LoginRegisterContext);
     const [inputState, dispatch] = useReducer(inputReducer, {
         username:"",
@@ -39,10 +41,11 @@ const Register = () => {
         });
         const responseData = await response.json();
         console.log(responseData);
+        loginRegister.login(responseData.userID, responseData.token);
+        navigate('/dashboard');
         } catch (err){
             console.log(err)
         }
-        loginRegister.login();
     };
 
     const changeHandler = (event) => {

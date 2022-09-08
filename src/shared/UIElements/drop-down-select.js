@@ -18,7 +18,6 @@ const DropDownSelect =(props) => {
             isLoaded={props.isLoaded}
             onChange={props.onChange}>
                 {months.map(month => {
-                    
                     return(
                         <option className="select_option">{month.month}</option>
                     )

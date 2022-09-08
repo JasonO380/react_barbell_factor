@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,11 +18,19 @@ const inputReducer = (state, action) => {
                 month:macroDateEntry.toLocaleString("en-US", { month:"long" }),
                 day:macroDateEntry.getDate(),
                 };
+                case 'CLEAR_FORM':
+                    return {
+                        movement:'',
+                        reps:'',
+                        rounds:'',
+                        weight:''
+                    }
                 default: return state
             };
     };
 
 const MacrosForm = (props) => {
+    const auth = useContext(LoginRegisterContext);
     const [isValid, setIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
     const [inputState, dispatch] = useReducer(inputReducer, {
@@ -45,7 +53,8 @@ const MacrosForm = (props) => {
         })
     };
 
-    const postMacroData = (event) => {
+    const postMacroData = async (event) => {
+        event.preventDefault();
         console.log(inputState);
         if(inputState.carbs.length === 0){
             setIsValid(false);
@@ -68,13 +77,29 @@ const MacrosForm = (props) => {
             setFormIsValid(false);
             return null;
         } else {
+            console.log(inputState);
             props.onAdd(inputState);
         }
+        try {
+            const response = await fetch('http://localhost:5000/api/macros', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Issuer ' + auth.token
+            },
+            body: JSON.stringify({
+                carbs:inputState.carbs,
+                protein: inputState.carbs,
+                fats:inputState.fats,
+                athlete:auth.userID
+            })
+        });
+        const responseData = await response.json();
+        console.log(responseData);
+        } catch (err){};
         dispatch({
-            carbs:"",
-            protein:"",
-            fats:""
-        })
+            type:'CLEAR_FORM'
+        });
         setFormIsValid(true);
         event.preventDefault();
     };

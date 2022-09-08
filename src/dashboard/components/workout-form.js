@@ -1,4 +1,5 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
+import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import { v4 as uuidv4 } from 'uuid';
 
 import "./workout-form.css";
@@ -11,7 +12,7 @@ const inputReducer = (state, action) => {
             return {
                 ...state,
                 [action.name]: action.value,
-                id:uid,
+                athlete:'',
                 year:dateEntry.getFullYear(),
                 dayOfWeek: dateEntry.toLocaleString("default", { weekday: "long" }),
                 month:dateEntry.toLocaleString("en-US", { month:"long" }),
@@ -29,17 +30,17 @@ const inputReducer = (state, action) => {
     };
 
 const WorkoutForm = (props)=>{
+    const auth = useContext(LoginRegisterContext);
     const [formIsValid, setFormIsValid] = useState(true);
     const[isValid, setIsValid] = useState(true);
     const [inputState, dispatch] = useReducer(inputReducer, {
-        id:"",
-        year:"",
-        month:"",
-        day:"",
-        carbs:"",
-        protein:"",
-        fats:"",
+        movement:"",
+        reps:"",
+        rounds:"",
+        weight:"",
+        athlete:auth.userID
     });
+    console.log(auth);
 
     const changeHandler = (event)=>{
         const inputName = event.target.name;
@@ -51,7 +52,8 @@ const WorkoutForm = (props)=>{
         })
     };
 
-    const postWorkoutData = (event) => {
+    const postWorkoutData = async (event) => {
+        console.log(auth.userID);
         event.preventDefault();
         console.log(inputState);
         if(!inputState.movement){
@@ -77,10 +79,29 @@ const WorkoutForm = (props)=>{
         else {
             props.workoutFormItems(inputState);
         }
+        try {
+            const response = await fetch('http://localhost:5000/api/workouts', {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Issuer ' + auth.token
+            },
+            body: JSON.stringify({
+                movement: inputState.movement,
+                rounds: inputState.rounds,
+                reps:inputState.reps,
+                weight:inputState.weight,
+                athlete:auth.userID
+            })
+        });
+        const responseData = await response.json();
+        console.log(responseData);
+        } catch (err){};
         dispatch({
             type:'CLEAR_FORM'
         });
         setFormIsValid(true);
+
         event.preventDefault();
         console.log(inputState);
     };

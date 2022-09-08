@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import UpdateMacros from "./update-macros";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import UpdateMacros from './update-macros';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -13,7 +14,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
-import { Link } from "react-router-dom";
 
 import "./dashboard-output.css";
 
@@ -30,16 +30,28 @@ ChartJS.register(
     Legend
 );
 
-const DashboardOutput = (props) => {
+const MacrosOutput = (props) => {
     const date = new Date();
     const monthName = date.toLocaleString("en-US", { month:"long" });
     const [macroGraphInfo, setMacroGraphInfo] = useState ({
         datasets:[],
     });
     const [chartOptions, setChartOptions] = useState({});
-    const macrosForGraph = props.items2.map(macros => macros);
-    const macroProps = props.items2;
+    const [macrosForGraph, setMacrosForGraph] = useState();
+    // const macrosForGraph = props.items2.map(macros => macros);
+    // const macroProps = props.items2;
+    const userID = useParams().userID;
     console.log(macrosForGraph);
+
+    useEffect(()=> {
+        const fetchMacrosForDay = async (event) => {
+            try {
+                const responseData = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`)
+                setMacrosForGraph(responseData.macros);
+            } catch (err){}
+        }
+        fetchMacrosForDay();
+    },[])
 
     useEffect(() => {
         setMacroGraphInfo({
@@ -87,23 +99,21 @@ const DashboardOutput = (props) => {
             },
             },
         });
-    },[macroProps])
+    },[])
 
-        return(
-                <div className="dashboard_card_container">
-                    <div className="dashboard_card_info">
-                                <div className="linechart">
-                                    <Bar
-                                    data={macroGraphInfo}
-                                    options={chartOptions} />
-                                </div>
-                    <UpdateMacros
-                    items={macroProps} />
-                    </div>
-                </div> 
-        )
-};
+    return(
+        <div className="dashboard_card_container">
+            <div className="dashboard_card_info">
+                        <div className="linechart">
+                            <Bar
+                            data={macroGraphInfo}
+                            options={chartOptions} />
+                        </div>
+            <UpdateMacros
+            items={macrosForGraph} />
+            </div>
+        </div> 
+)
+}
 
-export default DashboardOutput;
-
-
+export default MacrosOutput;

@@ -18,11 +18,11 @@ const Dashboard = () => {
 
     useEffect(()=>{
         const checkMacrosForDayEntered = ()=>{
-            if(macros.length > 0){
-                console.log(true);
+            if(macros.length){
+                console.log(macrosEnteredForDay);
                 setMacrosForDayEntered(true);
             } else {
-                console.log(false)
+                console.log(macros)
             }
         }
         checkMacrosForDayEntered();

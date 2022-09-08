@@ -1,6 +1,7 @@
 import React , { useState, useContext, useReducer, useCallback, useEffect } from "react";
 import { motion } from 'framer-motion/dist/framer-motion';
 import { LoginRegisterContext } from "./context/login-register-context";
+import { useNavigate } from "react-router-dom";
 
 const inputReducer = (state, action) => {
     switch (action.type){
@@ -13,7 +14,11 @@ const inputReducer = (state, action) => {
             };
     };
 
+let accessGranted;
+
 const Login = () => {
+    const navigate = useNavigate();
+    const [login, setLogin] = useState(true);
     const [inputState, dispatch] = useReducer(inputReducer, {
             email:"",
             password:""
@@ -47,11 +52,18 @@ const Login = () => {
             })
         });
         const responseData = await response.json();
-        console.log(responseData);
+        accessGranted = responseData.message;
+        console.log(responseData.message);
+        loginRegister.login(responseData.userID, responseData.token);
         } catch (err){
             console.log(err)
         }
-        loginRegister.login();
+
+        if(accessGranted !== "Success"){
+            setLogin(false);
+        } else {
+            navigate('/dashboard');
+        }
     } 
     return (
         <motion.div 
@@ -79,9 +91,8 @@ const Login = () => {
                 className="form_button"
                 >LOGIN</button>
                 </div>
-                <div className="login_register_form_switch_mode_box">
-                </div>
             </form>
+            {!login && <div className="error_message"><p className="form_error_message">{accessGranted}</p></div>}
         </motion.div>
     )
 };
