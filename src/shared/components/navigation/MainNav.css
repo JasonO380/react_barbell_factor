@@ -25,10 +25,6 @@
     text-decoration: none;
     color: white;
 }
-/* Tryin to get the nav display properly */
-/* .main-navigation__header-nav {
-    display: none;
-} */
 
 .main-navigation__drawer-nav {
     height: 100%;
@@ -48,14 +44,12 @@
     align-items: baseline;
 }
 
+.logout_div{
+    color: white;
+}
+
 @media (min-width: 768px) {
     .main-navigation__menu-btn {
     display: none;
     }
-
-    
-    /* Trying to get main nav looking better */
-    /* .main-navigation__header-nav {
-    display: block;
-    } */
 }

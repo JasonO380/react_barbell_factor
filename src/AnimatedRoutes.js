@@ -7,6 +7,7 @@ import UpdateMacros from "./dashboard/components/update-macros";
 import GetMacros from "./dashboard/components/get-macros";
 import GetAllWorkoutData from "./dashboard/components/get-all-workouts";
 import TestWorkoutArea from "./dashboard/components/get-all-workouts-testarea";
+import MacrosOutput from "./dashboard/components/macros-output";
 import WorkoutForm from "./dashboard/components/workout-form";
 import Workout from "./home/pages/workout-tracker";
 import { 
@@ -18,6 +19,7 @@ import {
     useLocation 
     } from "react-router-dom";
 import { AnimatePresence } from 'framer-motion/dist/framer-motion';
+import { LoginRegisterContext } from "./login/registration/components/context/login-register-context";
 
 
 
@@ -32,7 +34,7 @@ import { AnimatePresence } from 'framer-motion/dist/framer-motion';
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/workoutlog" element={<Workout />} />
                         <Route path="/workoutview" element={<GetAllWorkoutData />} />
-                        <Route path="/workouttest" element={<TestWorkoutArea />} />
+                        <Route path="/macrotest" element={<MacrosOutput />} />
                         <Route path="/dashboard/:mid" element={<UpdateMacros />} />
                         <Route path="/macrosgraph" element={<GetMacros />} />
                 </Routes>
