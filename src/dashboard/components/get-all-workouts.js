@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, } from "react";
+import ReactDOM  from "react-dom";
 import months from "./month-select-options";
-import session from "./workout-data";
+// import session from "./workout-data";
 import UpdateWorkouts from "./update-workouts";
+import Backdrop from "../../shared/UIElements/Backdrop";
 import DropDownSelect from "../../shared/UIElements/drop-down-select";
+import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import { motion } from 'framer-motion/dist/framer-motion';
 import "./get-all-workouts.css";
 
+
+
 const GetAllWorkoutData = () =>{
     const [updateWorkout, setUpdateWorkout] = useState([]);
+    const [workout, setWorkout] = useState();
     const [isSelectedMonthLoaded, setIsSelectedMonthLoaded] = useState(false);
     const [isUpdateMode, setIsUpdateMode] = useState (false);
     //State to store selected month
     const [selectedMonth, setSelectedMonth] = useState();
     //State to store foundMonth to be populated on page
     const [loggedMonth, setLoggedMonth] = useState([]);
+    const auth = useContext(LoginRegisterContext);
     //Store the selected month data in new array
     let foundMonth = [];
     //Holds the month workout data
@@ -23,43 +30,32 @@ const GetAllWorkoutData = () =>{
     // Holds the ID of selected workout
     let selectedWorkoutToUpdate;
     //helper function to select month
-
-    const getWorkoutToUpdateId = (event) => {
-        let selectedWorkoutToUpdate = event.target.value;
-        console.log(selectedWorkoutToUpdate);
-        session.map(workouts => {
-            if(selectedWorkoutToUpdate === workouts.id){
-                workoutToUpdateArray.push(workouts);
-                setUpdateWorkout(workouts);
-                console.log(workoutToUpdateArray);
-            }
-            return workoutToUpdateArray;
-        })
-        if(isUpdateMode){
-            setIsUpdateMode(false);
-        } else {
-            setIsUpdateMode(true);
-            console.log(isUpdateMode);
-        }
-    };
-
-    const updateModeHandler = () => {
-        if(isUpdateMode){
-            setIsUpdateMode(false);
-        } else {
-            setIsUpdateMode(true);
-            console.log(isUpdateMode);
-        }
-    }
+    let choice;
+    
+    
 
     const handleSelect = (event) =>{
+        choice = event.target.value;
         console.log("here");
-        const choice = event.target.value;
         setSelectedMonth(choice);
+        fetchWorkouts();
     };
 
-    useEffect(()=>{
-    //generates the new movement objects for the new month and day keys
+    const fetchWorkouts = async () => {
+        const userID = auth.userID;
+        try {
+            const response = await fetch(`http://localhost:5000/api/workouts/workoutlog/${userID}`);
+            const responseData = await response.json();
+            const session = responseData.workout;
+            setWorkout(session);
+            console.log(responseData.workout);
+            console.log(workout);
+            monthDayActivitiesObject(session);
+        } catch (err){}
+    }
+
+    const monthDayActivitiesObject = (session) => {
+        //generates the new movement objects for the new month and day keys
     const generateMovementObjects = (session)=> {
         return {
             id:session.id,
@@ -100,22 +96,61 @@ const GetAllWorkoutData = () =>{
                 days:[generateDaySession(sessions)]
             })
         }
+        console.log(loggedSession);
+        getMonths(loggedSession);
     })
+    }
 
-    const getMonths = () => {
+    const getMonths = (loggedSession) => {
         loggedSession.map((sessions)=>{
-            if(selectedMonth === sessions.month){
-                foundMonth.push(sessions);
+            console.log(sessions)
+            console.log(choice);
+            if(choice === sessions.month){
                 setIsSelectedMonthLoaded(true);
+                foundMonth.push(sessions);
+                let noDuplicates = [...new Set(foundMonth)]
+                setLoggedMonth(noDuplicates);
+                console.log(noDuplicates);
                             } if (foundMonth.length === 0){
                                 setIsSelectedMonthLoaded(false);
-                            }
+                            } 
                         })
-                    };
-        getMonths();
-        setLoggedMonth(foundMonth);
-        console.log(foundMonth);
-    },[selectedMonth])
+        };
+
+    const getWorkoutToUpdateId = async (event) => {
+        const selectedWorkoutToUpdate = event.target.value;
+        console.log(selectedWorkoutToUpdate);
+        try {
+            const response = await fetch(`http://localhost:5000/api/workouts/${selectedWorkoutToUpdate}`);
+            const responseData = await response.json();
+            const updateWorkout = responseData.workout;
+            workoutToUpdateArray.push(updateWorkout);
+            setUpdateWorkout(workoutToUpdateArray);
+            console.log(updateWorkout);
+        } catch (err) {}
+        if(isUpdateMode){
+            setIsUpdateMode(false);
+        } else {
+            setIsUpdateMode(true);
+            console.log(isUpdateMode);
+        }
+    };
+
+    const updateModeHandler = () => {
+        if(isUpdateMode){
+            setIsUpdateMode(false);
+        } else {
+            setIsUpdateMode(true);
+            console.log(isUpdateMode);
+        }
+    }
+
+    const UpdateDeleteModal = (props) => {
+        return ReactDOM.createPortal(
+        <UpdateWorkouts
+        isUpdateMode={setIsUpdateMode} 
+        workoutitems={updateWorkout} />, document.getElementById('update-delete-overaly'))
+    }
 
     if(!selectedMonth && !isSelectedMonthLoaded){
         return (
@@ -130,6 +165,9 @@ const GetAllWorkoutData = () =>{
                 animate={{width: "100%"}}
                 exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                     <h2>Please select a month to view workouts for that month</h2>
+                    {/* <button 
+                    className="form_button"
+                    onClick={fetchWorkouts}>Enter</button> */}
                 </motion.div>
             </React.Fragment>
         )
@@ -153,12 +191,16 @@ const GetAllWorkoutData = () =>{
         )
     }
 
-    if(isUpdateMode){
-        return(
-            <UpdateWorkouts
-            workoutitems={updateWorkout} />
-        )
-    }
+    // if(isUpdateMode){
+    //     return(
+    //         <React.Fragment>
+    //         <Backdrop onClick={setIsUpdateMode}/>
+    //         <UpdateDeleteModal />
+    //         <UpdateWorkouts
+    //         workoutitems={updateWorkout} />
+    //         </React.Fragment>
+    //     )
+    // }
 
     return(
         <React.Fragment>
@@ -166,6 +208,7 @@ const GetAllWorkoutData = () =>{
             name={selectedMonth}
             onChange={handleSelect}
             isLoaded={setIsSelectedMonthLoaded} />
+            {isUpdateMode && <UpdateDeleteModal />}
             <motion.div 
             className="page_container"
             initial={{width: 0}}

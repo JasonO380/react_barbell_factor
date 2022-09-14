@@ -33,9 +33,10 @@ import { LoginRegisterContext } from "./login/registration/components/context/lo
                         <Route path="/login" element={<Login />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/workoutlog" element={<Workout />} />
+                        <Route path="/test" element={<TestWorkoutArea />} />
                         <Route path="/workoutview" element={<GetAllWorkoutData />} />
                         <Route path="/macrotest" element={<MacrosOutput />} />
-                        <Route path="/dashboard/:mid" element={<UpdateMacros />} />
+                        {/* <Route path="/dashboard/:mid" element={<UpdateMacros />} /> */}
                         <Route path="/macrosgraph" element={<GetMacros />} />
                 </Routes>
             </AnimatePresence>
