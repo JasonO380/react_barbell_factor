@@ -1,3 +1,14 @@
+.update_delete_session_container{
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: black;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+    margin:auto;
+}
+
 .button_container_update_workouts{
     /* margin: 10px 0; */
     margin: auto;

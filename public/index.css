@@ -50,6 +50,16 @@ body {
     margin: auto; */
 }
 
+#update-delete-overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: black;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+}
+
 @media screen and(max-width:575px){
     #root{
         margin-top: 60px;

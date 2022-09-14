@@ -91,6 +91,10 @@ const WorkoutForm = (props)=>{
                 rounds: inputState.rounds,
                 reps:inputState.reps,
                 weight:inputState.weight,
+                dayOfWeek: inputState.dayOfWeek,
+                month:inputState.month,
+                day:inputState.day,
+                year:inputState.year,
                 athlete:auth.userID
             })
         });
