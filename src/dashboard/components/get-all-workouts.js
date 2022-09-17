@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext, } from "react";
 import ReactDOM  from "react-dom";
-import months from "./month-select-options";
-// import session from "./workout-data";
+import GetAllWorkoutsOutput from "./get-all-workouts-output";
 import UpdateWorkouts from "./update-workouts";
-import Backdrop from "../../shared/UIElements/Backdrop";
 import DropDownSelect from "../../shared/UIElements/drop-down-select";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import { motion } from 'framer-motion/dist/framer-motion';
@@ -13,6 +11,7 @@ import "./get-all-workouts.css";
 
 const GetAllWorkoutData = () =>{
     const [updateWorkout, setUpdateWorkout] = useState([]);
+    const [showUpdate, setShowUpdate] = useState(false);
     const [workout, setWorkout] = useState();
     const [isSelectedMonthLoaded, setIsSelectedMonthLoaded] = useState(false);
     const [isUpdateMode, setIsUpdateMode] = useState (false);
@@ -32,8 +31,6 @@ const GetAllWorkoutData = () =>{
     //helper function to select month
     let choice;
     
-    
-
     const handleSelect = (event) =>{
         choice = event.target.value;
         console.log("here");
@@ -100,12 +97,12 @@ const GetAllWorkoutData = () =>{
         getMonths(loggedSession);
     })
     }
-
+    
     const getMonths = (loggedSession) => {
         loggedSession.map((sessions)=>{
             console.log(sessions)
-            console.log(choice);
-            if(choice === sessions.month){
+            console.log(selectedMonth)
+            if(choice || selectedMonth === sessions.month){
                 setIsSelectedMonthLoaded(true);
                 foundMonth.push(sessions);
                 let noDuplicates = [...new Set(foundMonth)]
@@ -118,8 +115,10 @@ const GetAllWorkoutData = () =>{
         };
 
     const getWorkoutToUpdateId = async (event) => {
+        console.log('here');
         const selectedWorkoutToUpdate = event.target.value;
-        console.log(selectedWorkoutToUpdate);
+        setIsUpdateMode(true);
+        console.log(isUpdateMode);
         try {
             const response = await fetch(`http://localhost:5000/api/workouts/${selectedWorkoutToUpdate}`);
             const responseData = await response.json();
@@ -136,18 +135,11 @@ const GetAllWorkoutData = () =>{
         }
     };
 
-    const updateModeHandler = () => {
-        if(isUpdateMode){
-            setIsUpdateMode(false);
-        } else {
-            setIsUpdateMode(true);
-            console.log(isUpdateMode);
-        }
-    }
-
     const UpdateDeleteModal = (props) => {
         return ReactDOM.createPortal(
         <UpdateWorkouts
+        fetch={fetchWorkouts}
+        showUpdate={setShowUpdate}
         isUpdateMode={setIsUpdateMode} 
         workoutitems={updateWorkout} />, document.getElementById('update-delete-overaly'))
     }
@@ -165,9 +157,6 @@ const GetAllWorkoutData = () =>{
                 animate={{width: "100%"}}
                 exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                     <h2>Please select a month to view workouts for that month</h2>
-                    {/* <button 
-                    className="form_button"
-                    onClick={fetchWorkouts}>Enter</button> */}
                 </motion.div>
             </React.Fragment>
         )
@@ -190,18 +179,7 @@ const GetAllWorkoutData = () =>{
             </React.Fragment>
         )
     }
-
-    // if(isUpdateMode){
-    //     return(
-    //         <React.Fragment>
-    //         <Backdrop onClick={setIsUpdateMode}/>
-    //         <UpdateDeleteModal />
-    //         <UpdateWorkouts
-    //         workoutitems={updateWorkout} />
-    //         </React.Fragment>
-    //     )
-    // }
-
+    
     return(
         <React.Fragment>
         <DropDownSelect
@@ -209,54 +187,9 @@ const GetAllWorkoutData = () =>{
             onChange={handleSelect}
             isLoaded={setIsSelectedMonthLoaded} />
             {isUpdateMode && <UpdateDeleteModal />}
-            <motion.div 
-            className="page_container"
-            initial={{width: 0}}
-            animate={{width: "100%"}}
-            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                {loggedMonth.map(session => {
-                    const month = session.month;
-                    const day = session.days;
-                    return (
-                        <div className="month_container">
-                            <h2 className="month_header_center">{month}</h2>
-                            {day.map(fDay => {
-                                const foundDay = fDay.day;
-                                const foundActivities = fDay.activities;
-                                return (
-                                    <div className="all_workouts_session_container">
-                                        <h2>{foundDay}</h2> 
-                                        {foundActivities.map(workouts =>{
-                                            let selectedWorkoutToUpdate = workouts.id;
-                                            return(
-                                                <div id={workouts.id} className="movement_data">
-                                                    <div className="movement_header_box">
-                                                        <p>Movement: {workouts.movement}</p>
-                                                    </div>
-                                                    <div className="movement_description_box">
-                                                        <p>Rounds: {workouts.rounds}</p>
-                                                        <p>Reps: {workouts.reps}</p>
-                                                        <p>Weight: {workouts.weight}</p>
-                                                    </div> 
-                                                    <div className="button_container_update_workout">
-                                                        <button
-                                                        value={selectedWorkoutToUpdate}
-                                                        name={workouts.movement}
-                                                        onUpdate={updateModeHandler}
-                                                        onClick={getWorkoutToUpdateId} 
-                                                        className="form_button" >Edit</button>
-                                                    </div> 
-                                                </div> 
-                                            )
-                                        })}
-                                    </div>
-                                    
-                                )
-                            })}
-                        </div>
-                    )
-                })}
-            </motion.div>
+            <GetAllWorkoutsOutput
+            loggedMonth={loggedMonth}
+            onClick={getWorkoutToUpdateId} />
         </React.Fragment>
 
     )
