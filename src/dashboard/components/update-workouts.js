@@ -52,6 +52,8 @@ const UpdateWorkouts = (props) => {
 
     const postUpdate = async (event) => {
         event.preventDefault();
+        props.isUpdateMode(false);
+        props.showUpdate(true);
         try {
             const response = await fetch(`http://localhost:5000/api/workouts/${wid}`, {
             method:'PATCH',
@@ -66,10 +68,10 @@ const UpdateWorkouts = (props) => {
                 weight:inputState.weight
             })
         });
-        props.setIsUpdateMode(false);
         const responseData = await response.json();
         console.log(responseData);
         } catch (err){};
+        props.fetch();
     };
 
     const deleteWorkout = async (event) => {
