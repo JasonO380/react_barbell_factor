@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect, useReducer, useContext, useRef, createRef } from "react";
 import { motion } from 'framer-motion/dist/framer-motion';
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 
@@ -29,17 +29,87 @@ const inputReducer = (state, action) => {
     };
 
 const UpdateWorkouts = (props) => {
+    const [formIsValid, setFormIsValid] = useState(true);
+    const [showModal, setShowModal] = useState(true);
+    const [isValid, setIsValid] = useState(true);
     const auth = useContext(LoginRegisterContext);
     const update = props.workoutitems.map(workouts => workouts);
     const wid = props.workoutitems.map(workouts => workouts.id);
-    console.log(wid);
+    const refPoint = useRef(null);
     const [inputState, dispatch] = useReducer(inputReducer, {
         movement:"",
         reps:"",
         rounds:"",
         weight:""
     });
-    
+    console.log(refPoint);
+
+    // useEffect(()=> {
+    //     const handleClickOutsideDiv = (event)=>{
+    //         const updateDiv = refPoint.current;
+    //         console.log(event.target);
+    //         console.log(refPoint);
+    //         console.log(updateDiv);
+    //         if(updateDiv && !!updateDiv.contains(event.target)){
+    //             console.log('Clicked inside')
+    //             // props.fetch();
+    //         } else {
+    //             console.log('Clicked outside');
+    //             props.isUpdateMode(false);
+    //         }
+    //         document.addEventListener('click', handleClickOutsideDiv);
+    //         return () => {
+    //             document.removeEventListener('click', handleClickOutsideDiv);
+    //         }
+    //     }
+    // },[update])
+
+    // if(updateDiv.current && !!updateDiv.current.contains(event.target))
+    // useEffect(()=> {
+    //     document.addEventListener("click", handleClickOutsideDiv, true);
+    //     return () => {
+    //         document.removeEventListener('click', handleClickOutsideDiv)
+    //     }
+    // },[wid])
+
+    // const handleClickOutsideDiv = (event) => {
+    //     const updateDiv = refPoint.current;
+    //     console.log(refPoint);
+    //     console.log(refPoint.current);
+    //     console.log(event.target);
+    //     if(updateDiv && updateDiv.contains(event.target)){
+    //         console.log('Clicked inside')
+    //         // props.fetch();
+    //     } else {
+    //         console.log('Clicked outside');
+    //         props.isUpdateMode(false);
+    //     }
+    //     return () => {
+    //         document.removeEventListener('click', handleClickOutsideDiv)
+    //     }
+    // }
+
+    useEffect(()=> {
+        document.addEventListener("click", handleClickOutsideDiv)
+    },[wid])
+
+    const handleClickOutsideDiv = (event) => {
+        console.log(event.target);
+        console.log(refPoint)
+        const updateDiv = refPoint.current;
+        console.log(updateDiv);
+        if(updateDiv && updateDiv.contains(event.target)){
+            setShowModal(true);
+            console.log('Clicked inside')
+        } else {
+            console.log('clicked outside');
+            setShowModal(false);
+        }
+        return () => {
+            document.removeEventListener("click", handleClickOutsideDiv)
+        }
+    }
+
     const handleChange = (event) => {
         const inputName = event.target.name;
         const inputValue = event.target.value;
@@ -52,8 +122,30 @@ const UpdateWorkouts = (props) => {
 
     const postUpdate = async (event) => {
         event.preventDefault();
-        props.isUpdateMode(false);
-        props.showUpdate(true);
+        if(!inputState.movement){
+            setIsValid(false);
+            setFormIsValid(false);
+            return null;
+        } 
+        if (!inputState.reps){
+            setIsValid(false);
+            setFormIsValid(false);
+            return null;
+        } 
+        if (!inputState.rounds){
+                setIsValid(false);
+                setFormIsValid(false);
+                return null;
+            }
+        if (!inputState){
+            setIsValid(false);
+            setFormIsValid(false);
+            return null;
+        }
+        else {
+            props.isUpdateMode(false);
+            props.showUpdate(true);
+        }
         try {
             const response = await fetch(`http://localhost:5000/api/workouts/${wid}`, {
             method:'PATCH',
@@ -70,7 +162,9 @@ const UpdateWorkouts = (props) => {
         });
         const responseData = await response.json();
         console.log(responseData);
+        // props.fetch();
         } catch (err){};
+        // props.isUpdateMode(false);
         props.fetch();
     };
 
@@ -84,17 +178,21 @@ const UpdateWorkouts = (props) => {
                 Authorization: 'Issuer ' + auth.token
             }
         })
-        props.setIsUpdateMode(false);
         } catch (err){}
+        props.isUpdateMode(false);
+        props.fetch();
     }
 
     return (
         //all_workouts_session_container_form
-        <form className="update_delete_session_container">
+        <form 
+        ref={refPoint}
+        style={{display: !showModal && 'none' }} 
+        className="update_delete_session_container" >
         <motion.div
         initial={{width: 0}}
         animate={{width: "fit-content"}}
-        exit={{x: window.innerWidth, transition: {duration: 0.2}}} 
+        exit={{x: window.innerWidth, transition: {duration: 0.2}}}
         className="movement_data">
                     <div className="movement_header_box">
                         <h4>Movement:</h4>
@@ -133,6 +231,7 @@ const UpdateWorkouts = (props) => {
                         className="form_button" >Delete</button>
                     </div>
         </motion.div>
+        {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
         </form>
     );
 };

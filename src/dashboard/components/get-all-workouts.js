@@ -8,7 +8,6 @@ import { motion } from 'framer-motion/dist/framer-motion';
 import "./get-all-workouts.css";
 
 
-
 const GetAllWorkoutData = () =>{
     const [updateWorkout, setUpdateWorkout] = useState([]);
     const [showUpdate, setShowUpdate] = useState(false);
@@ -33,8 +32,9 @@ const GetAllWorkoutData = () =>{
     
     const handleSelect = (event) =>{
         choice = event.target.value;
+        console.log(choice);
         console.log("here");
-        setSelectedMonth(choice);
+        console.log(selectedMonth)
         fetchWorkouts();
     };
 
@@ -99,17 +99,25 @@ const GetAllWorkoutData = () =>{
     }
     
     const getMonths = (loggedSession) => {
+        console.log(selectedMonth);
+        setSelectedMonth(choice);
+        if(choice === undefined){
+            choice = selectedMonth;
+            console.log(choice);
+        }
+        console.log(choice);
         loggedSession.map((sessions)=>{
-            console.log(sessions)
-            console.log(selectedMonth)
-            if(choice || selectedMonth === sessions.month){
+            if(choice === sessions.month){
+                console.log(sessions);
                 setIsSelectedMonthLoaded(true);
+                console.log(isSelectedMonthLoaded);
                 foundMonth.push(sessions);
                 let noDuplicates = [...new Set(foundMonth)]
                 setLoggedMonth(noDuplicates);
                 console.log(noDuplicates);
                             } if (foundMonth.length === 0){
                                 setIsSelectedMonthLoaded(false);
+                                console.log(isSelectedMonthLoaded);
                             } 
                         })
         };
@@ -126,13 +134,8 @@ const GetAllWorkoutData = () =>{
             workoutToUpdateArray.push(updateWorkout);
             setUpdateWorkout(workoutToUpdateArray);
             console.log(updateWorkout);
-        } catch (err) {}
-        if(isUpdateMode){
-            setIsUpdateMode(false);
-        } else {
             setIsUpdateMode(true);
-            console.log(isUpdateMode);
-        }
+        } catch (err) {}
     };
 
     const UpdateDeleteModal = (props) => {
@@ -191,7 +194,6 @@ const GetAllWorkoutData = () =>{
             loggedMonth={loggedMonth}
             onClick={getWorkoutToUpdateId} />
         </React.Fragment>
-
     )
     };
 
