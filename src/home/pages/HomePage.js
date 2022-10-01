@@ -36,22 +36,7 @@ const HomePage = () => {
         initial={{width: 0}}
         animate={{width: "100%"}}
         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-        <PageHeader />
-            {/* <div className="page-info">
-                {infoItems.map(createPageInfo)}
-            </div> */}
-                    {/* <RegisterLoginPageInfo
-                    onClick={accordionHandler}
-                    items={info}
-                    style= {{
-                        // padding:!isOpen ? 0 : 15, 
-                        // margin:!isOpen ? 0 : 3,
-                        width: !isOpen ? 0 : "fit-content",
-                        height: !isOpen ? 0 : "auto", 
-                        opacity: !isOpen ? 0 : 1, 
-                        transition: "all .2s ease-out"
-                    }} /> */}
-
+            <PageHeader />
             <Greeting />
             <Services />
         </motion.div>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import UpdateMacros from "./update-macros";
+import React from "react";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,9 +10,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
-import { Link } from "react-router-dom";
 
 import "./dashboard-output.css";
 
@@ -33,17 +30,9 @@ ChartJS.register(
 const DashboardOutput = (props) => {
     const date = new Date();
     const monthName = date.toLocaleString("en-US", { month:"long" });
-    const [macroGraphInfo, setMacroGraphInfo] = useState ({
-        datasets:[],
-    });
-    const [chartOptions, setChartOptions] = useState({});
-    const macrosForGraph = props.items2.map(macros => macros);
-    const macroProps = props.items2;
-    console.log(macrosForGraph);
-
-    useEffect(() => {
-        setMacroGraphInfo({
-            labels: macrosForGraph.map(macros=> macros.day),
+    const macrosForGraph = [props.items2];
+    const macroGraphInfo = {
+        labels: macrosForGraph.map(macros=> macros.day),
             datasets:[
                 {
                     label:"Grams of carbs",
@@ -63,15 +52,15 @@ const DashboardOutput = (props) => {
                 },
                 {
                     label:"Grams of fat",
-                    data: macrosForGraph.map(macros=> macros.fats) ,
+                    data: macrosForGraph.map(macros=> macros.fats),
                     backgroundColor:"#f8df00",
                     borderColor: "#f8df00",
                     lineTension: .3,
                     radius: 5
                 },
             ],
-        });
-        setChartOptions({
+    }
+        const chartOptions ={
             maintainAspectRatio: false,
             responsive: true,
             plugins: {
@@ -86,21 +75,14 @@ const DashboardOutput = (props) => {
                 }
             },
             },
-        });
-    },[macroProps])
+        }
 
         return(
-                <div className="dashboard_card_container">
-                    <div className="dashboard_card_info">
-                                <div className="linechart">
-                                    <Bar
-                                    data={macroGraphInfo}
-                                    options={chartOptions} />
-                                </div>
-                    <UpdateMacros
-                    items={macroProps} />
-                    </div>
-                </div> 
+            <div className="linechart">
+                <Bar
+                data={macroGraphInfo}
+                options={chartOptions} />
+            </div>
         )
 };
 

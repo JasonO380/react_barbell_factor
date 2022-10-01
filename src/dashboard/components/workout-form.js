@@ -1,18 +1,19 @@
 import React, { useState, useReducer, useContext } from "react";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
-import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from "react-router-dom";
+import WorkoutEditMode from "./workout-edit-mode";
 
 import "./workout-form.css";
 
+let id;
 const inputReducer = (state, action) => {
-    const uid = uuidv4();
     const dateEntry = new Date();
     switch (action.type){
         case 'INPUT_CHANGE':
             return {
                 ...state,
                 [action.name]: action.value,
-                athlete:'',
+                athlete:id,
                 year:dateEntry.getFullYear(),
                 dayOfWeek: dateEntry.toLocaleString("default", { weekday: "long" }),
                 month:dateEntry.toLocaleString("en-US", { month:"long" }),
@@ -31,8 +32,10 @@ const inputReducer = (state, action) => {
 
 const WorkoutForm = (props)=>{
     const auth = useContext(LoginRegisterContext);
+    const [switchToEditMode, setSwitchToEditMode] = useState(false);
     const [formIsValid, setFormIsValid] = useState(true);
     const[isValid, setIsValid] = useState(true);
+    const navigate = useNavigate();
     const [inputState, dispatch] = useReducer(inputReducer, {
         movement:"",
         reps:"",
@@ -52,7 +55,14 @@ const WorkoutForm = (props)=>{
         })
     };
 
+    const editMode = () =>{
+        setSwitchToEditMode(true);
+        console.log(switchToEditMode);
+        // navigate('/workouteditmode')
+    }
+
     const postWorkoutData = async (event) => {
+        id = auth.userID;
         console.log(auth.userID);
         event.preventDefault();
         console.log(inputState);
@@ -95,7 +105,7 @@ const WorkoutForm = (props)=>{
                 month:inputState.month,
                 day:inputState.day,
                 year:inputState.year,
-                athlete:auth.userID
+                athlete:id
             })
         });
         const responseData = await response.json();
@@ -110,6 +120,14 @@ const WorkoutForm = (props)=>{
         console.log(inputState);
     };
 
+    if(switchToEditMode){
+        return (
+            <div className="center">
+                <WorkoutEditMode />
+            </div>
+        )
+    }
+
     return(
         <React.Fragment>
             <div className="workout_form_header_box">
@@ -120,6 +138,7 @@ const WorkoutForm = (props)=>{
             <div className="movement_header_box">
                 <h4>Movement:</h4>
                 <textarea
+                className="workout_input"
                 name="movement"
                 value={inputState.movement}
                 label="Movement"
@@ -129,6 +148,7 @@ const WorkoutForm = (props)=>{
                 <div className="movement_description_box">
                     <h4>Rounds:</h4>
                     <input
+                    className="workout_input"
                     name="rounds"
                     value={inputState.rounds}
                     label="Rounds"
@@ -136,6 +156,7 @@ const WorkoutForm = (props)=>{
                     onChange={changeHandler} />
                     <h4>Reps:</h4>
                     <input
+                    className="workout_input"
                     name="reps"
                     value={inputState.reps}
                     label="Reps"
@@ -143,6 +164,7 @@ const WorkoutForm = (props)=>{
                     onChange={changeHandler} />
                     <h4>Weight:</h4>
                     <input
+                    className="workout_input"
                     name="weight"
                     value={inputState.weight}
                     label="Weight"
@@ -157,6 +179,11 @@ const WorkoutForm = (props)=>{
             </div>
             </form>
             {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
+            <div className="center">
+                <button 
+                className="form_button"
+                onClick={editMode}>Edit Mode</button>
+            </div>
         </React.Fragment>
     )
 };

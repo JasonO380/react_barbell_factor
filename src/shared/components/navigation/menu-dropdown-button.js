@@ -11,7 +11,7 @@ const DropdownMenu = () => {
     
             <Dropdown.Menu>
                 <Dropdown.Item href="/">Home</Dropdown.Item>
-                <Dropdown.Item href="/dashboard">Macro logger</Dropdown.Item>
+                <Dropdown.Item href="/macrolog">Macro logger</Dropdown.Item>
                 <Dropdown.Item href="/macrosgraph">Macro viewer</Dropdown.Item>
                 <Dropdown.Item href="/workoutlog">Workout logger</Dropdown.Item>
                 <Dropdown.Item href="/workoutview">Workout viewer</Dropdown.Item>

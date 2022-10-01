@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import UpdateWorkouts from "./update-workouts";
+import UpdateDeleteModal from "./update-delete-overlay";
 
 import "./workout-data-output.css";
 
 const WorkoutOutput = (props) => {
         const [isUpdateMode, setIsUpdateMode] = useState(false);
+        const [editArray, setEditArry] = useState([]);
         //Holds the month workout data
         let loggedSession = [];
         //generates the new movement objects for the new month and day keys
@@ -20,6 +22,8 @@ const WorkoutOutput = (props) => {
         const updateHandler = (event) => {
             let selectedWorkoutToUpdate = event.target.name;
             console.log(selectedWorkoutToUpdate);
+            // setIsUpdateMode(true);
+            console.log(isUpdateMode)
             if(isUpdateMode){
                 setIsUpdateMode(false);
             } else {
@@ -65,6 +69,8 @@ const WorkoutOutput = (props) => {
         })
         loggedSession.map(session=>{
             console.log(session);
+            // setEditArry(session);
+            // console.log(editArray)
         })
 
         return (

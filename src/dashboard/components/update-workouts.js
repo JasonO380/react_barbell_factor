@@ -44,51 +44,6 @@ const UpdateWorkouts = (props) => {
     });
     console.log(refPoint);
 
-    // useEffect(()=> {
-    //     const handleClickOutsideDiv = (event)=>{
-    //         const updateDiv = refPoint.current;
-    //         console.log(event.target);
-    //         console.log(refPoint);
-    //         console.log(updateDiv);
-    //         if(updateDiv && !!updateDiv.contains(event.target)){
-    //             console.log('Clicked inside')
-    //             // props.fetch();
-    //         } else {
-    //             console.log('Clicked outside');
-    //             props.isUpdateMode(false);
-    //         }
-    //         document.addEventListener('click', handleClickOutsideDiv);
-    //         return () => {
-    //             document.removeEventListener('click', handleClickOutsideDiv);
-    //         }
-    //     }
-    // },[update])
-
-    // if(updateDiv.current && !!updateDiv.current.contains(event.target))
-    // useEffect(()=> {
-    //     document.addEventListener("click", handleClickOutsideDiv, true);
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutsideDiv)
-    //     }
-    // },[wid])
-
-    // const handleClickOutsideDiv = (event) => {
-    //     const updateDiv = refPoint.current;
-    //     console.log(refPoint);
-    //     console.log(refPoint.current);
-    //     console.log(event.target);
-    //     if(updateDiv && updateDiv.contains(event.target)){
-    //         console.log('Clicked inside')
-    //         // props.fetch();
-    //     } else {
-    //         console.log('Clicked outside');
-    //         props.isUpdateMode(false);
-    //     }
-    //     return () => {
-    //         document.removeEventListener('click', handleClickOutsideDiv)
-    //     }
-    // }
-
     useEffect(()=> {
         document.addEventListener("click", handleClickOutsideDiv)
     },[wid])
