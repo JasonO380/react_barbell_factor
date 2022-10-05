@@ -33,8 +33,10 @@ const UpdateWorkouts = (props) => {
     const [showModal, setShowModal] = useState(true);
     const [isValid, setIsValid] = useState(true);
     const auth = useContext(LoginRegisterContext);
-    const update = props.workoutitems.map(workouts => workouts);
-    const wid = props.workoutitems.map(workouts => workouts.id);
+    const update = [props.workoutitems];
+    console.log(update)
+    // const update = props.workoutitems.map(workouts => workouts);
+    const wid = [props.workoutitems.map(workouts => workouts._id)];
     const refPoint = useRef(null);
     const [inputState, dispatch] = useReducer(inputReducer, {
         movement:"",
@@ -42,7 +44,12 @@ const UpdateWorkouts = (props) => {
         rounds:"",
         weight:""
     });
+    console.log(wid);
     console.log(refPoint);
+<<<<<<< Updated upstream
+=======
+    console.log('here in update workouts')
+>>>>>>> Stashed changes
 
     useEffect(()=> {
         document.addEventListener("click", handleClickOutsideDiv)
@@ -59,6 +66,8 @@ const UpdateWorkouts = (props) => {
         } else {
             console.log('clicked outside');
             setShowModal(false);
+            //added this in to see if Iget a false console.log
+            // props.isUpdateMode(false);
         }
         return () => {
             document.removeEventListener("click", handleClickOutsideDiv)

@@ -34,7 +34,7 @@ const GetAllWorkoutsOutput = (props) => {
                                     {foundActivities.map(workouts =>{
                                         let selectedWorkoutToUpdate = workouts.id;
                                         return(
-                                            <div id={workouts.id} className="movement_data">
+                                            <div className="movement_data">
                                                 <div className="movement_header_box">
                                                     <p>Movement: {workouts.movement}</p>
                                                 </div>

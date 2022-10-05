@@ -5,7 +5,11 @@ import WorkoutEditMode from "./workout-edit-mode";
 
 import "./workout-form.css";
 
+<<<<<<< Updated upstream
 let id;
+=======
+let id = [];
+>>>>>>> Stashed changes
 const inputReducer = (state, action) => {
     const dateEntry = new Date();
     switch (action.type){
@@ -13,7 +17,11 @@ const inputReducer = (state, action) => {
             return {
                 ...state,
                 [action.name]: action.value,
+<<<<<<< Updated upstream
                 athlete:id,
+=======
+                // athlete:id,
+>>>>>>> Stashed changes
                 year:dateEntry.getFullYear(),
                 dayOfWeek: dateEntry.toLocaleString("default", { weekday: "long" }),
                 month:dateEntry.toLocaleString("en-US", { month:"long" }),
@@ -43,7 +51,7 @@ const WorkoutForm = (props)=>{
         weight:"",
         athlete:auth.userID
     });
-    console.log(auth);
+    // console.log(auth);
 
     const changeHandler = (event)=>{
         const inputName = event.target.name;
@@ -63,9 +71,13 @@ const WorkoutForm = (props)=>{
 
     const postWorkoutData = async (event) => {
         id = auth.userID;
+<<<<<<< Updated upstream
         console.log(auth.userID);
+=======
+        // console.log(auth.userID);
+>>>>>>> Stashed changes
         event.preventDefault();
-        console.log(inputState);
+        // console.log(inputState);
         if(!inputState.movement){
             setIsValid(false);
             setFormIsValid(false);
@@ -86,9 +98,9 @@ const WorkoutForm = (props)=>{
             setFormIsValid(false);
             return null;
         }
-        else {
-            props.workoutFormItems(inputState);
-        }
+        // else {
+        //     props.workoutFormItems(inputState);
+        // }
         try {
             const response = await fetch('http://localhost:5000/api/workouts', {
             method:'POST',
@@ -109,15 +121,16 @@ const WorkoutForm = (props)=>{
             })
         });
         const responseData = await response.json();
-        console.log(responseData);
+        // console.log(responseData.session);
+        props.workoutFormItems(responseData.session);
         } catch (err){};
         dispatch({
             type:'CLEAR_FORM'
         });
         setFormIsValid(true);
-
+        
         event.preventDefault();
-        console.log(inputState);
+        // console.log(inputState);
     };
 
     if(switchToEditMode){
@@ -172,7 +185,8 @@ const WorkoutForm = (props)=>{
                     onChange={changeHandler} />
             </div>
             <div className="button_container_enter_workouts">
-                <button 
+                <button
+                value={inputState.id} 
                 className="form_button"
                 onClick={postWorkoutData}>Enter</button>
             </div>
