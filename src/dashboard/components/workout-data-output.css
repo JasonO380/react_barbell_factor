@@ -13,3 +13,19 @@
 .session_container{
     margin: 5px;
 }
+
+.button_container_workout_data_output{
+    /* margin: 10px 0; */
+    margin: auto;
+}
+
+.form_button_workout_data{
+    background-color: #ff1f06;
+    color: white;
+    padding: 10px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 10px;
+    align-items: baseline;
+    
+}

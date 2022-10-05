@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import UpdateMacros from './update-macros';
+import React from "react";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -12,10 +10,9 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
 
-import "./dashboard-output.css";
+import "./Macro-LineBar.css";
 
 ChartJS.defaults.color = "black";
 
@@ -30,34 +27,12 @@ ChartJS.register(
     Legend
 );
 
-const MacrosOutput = (props) => {
+const MacroLineBarGraph = (props) => {
     const date = new Date();
     const monthName = date.toLocaleString("en-US", { month:"long" });
-    const [macroGraphInfo, setMacroGraphInfo] = useState ({
-        datasets:[],
-    });
-    const [chartOptions, setChartOptions] = useState({});
-    const [macrosForGraph, setMacrosForGraph] = useState();
-    // const macrosForGraph = props.items2.map(macros => macros);
-    // const macroProps = props.items2;
-    const userID = useParams().userID;
-    console.log(macrosForGraph);
-
-    useEffect(()=> {
-        const fetchMacrosForDay = async (event) => {
-            try {
-                const responseData = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`)
-                setMacrosForGraph(responseData.macros);
-                console.log(responseData)
-            } 
-            catch (err){}
-        }
-        fetchMacrosForDay();
-    },[])
-
-    useEffect(() => {
-        setMacroGraphInfo({
-            labels: macrosForGraph.map(macros=> macros.day),
+    const macrosForGraph = [props.items2];
+    const macroGraphInfo = {
+        labels: macrosForGraph.map(macros=> macros.day),
             datasets:[
                 {
                     label:"Grams of carbs",
@@ -77,15 +52,15 @@ const MacrosOutput = (props) => {
                 },
                 {
                     label:"Grams of fat",
-                    data: macrosForGraph.map(macros=> macros.fats) ,
+                    data: macrosForGraph.map(macros=> macros.fats),
                     backgroundColor:"#f8df00",
                     borderColor: "#f8df00",
                     lineTension: .3,
                     radius: 5
                 },
             ],
-        });
-        setChartOptions({
+    }
+        const chartOptions ={
             maintainAspectRatio: false,
             responsive: true,
             plugins: {
@@ -100,22 +75,15 @@ const MacrosOutput = (props) => {
                 }
             },
             },
-        });
-    },[])
+        }
 
-    return(
-        <div className="dashboard_card_container">
-            <div className="dashboard_card_info">
-                        <div className="linechart">
-                            <Bar
-                            data={macroGraphInfo}
-                            options={chartOptions} />
-                        </div>
-            <UpdateMacros
-            items={macrosForGraph} />
+        return(
+            <div className="linechart">
+                <Bar
+                data={macroGraphInfo}
+                options={chartOptions} />
             </div>
-        </div> 
-)
-}
+        )
+};
 
-export default MacrosOutput;
+export default MacroLineBarGraph;

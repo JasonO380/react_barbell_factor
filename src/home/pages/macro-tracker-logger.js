@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
-import DashboardOutput from "./dashboard-output";
-import MacrosForm from "./macros-form";
-import UpdateMacros from "./update-macros";
+import React, { useEffect, useState } from "react";
+import MacroTrackerLoggerOutput from "../../dashboard/components/macro-tracker-logger-output";
+import MacrosForm from "../../dashboard/components/macros-form";
+import EditOutput from "../../dashboard/components/edit-mode-output";
 import { motion } from 'framer-motion/dist/framer-motion';
 
-import "./dashboard.css";
 
-
-const Dashboard = () => {
+const MacroTrackerLogger = () => {
     const [macros, setMacros] = useState([]);
+    const [macrosToEdit, setMacrosToEdit] = useState([])
     const [isUpdateMode, setIsUpdateMode] = useState(false);
     const addMacros = (newMacros) => {
         setMacros((prevMacros)=> {
             return [...prevMacros, newMacros]
         });
     };
+    const editMacros = (update) => {
+        setMacrosToEdit((prevUpdate)=> {
+            return [...prevUpdate, update]
+        })
+    }
     const [macrosEnteredForDay, setMacrosForDayEntered] = useState(false);
 
     useEffect(()=>{
@@ -39,7 +43,9 @@ const Dashboard = () => {
                 <div className="macro_header_box">
                     <h2>MACRO TRACKER</h2>
                 </div>
-                <MacrosForm  
+                <MacrosForm
+                updateMode={isUpdateMode}
+                onUpdate={editMacros}  
                 onAdd={addMacros} />
             </motion.div>
         </React.Fragment>
@@ -56,7 +62,7 @@ const Dashboard = () => {
                 <div className="macro_header_box">
                     <h2>MACRO TRACKER</h2>
                 </div>
-                <DashboardOutput
+                <MacroTrackerLoggerOutput
                 items2={macros}
                 items={macros} />
             </motion.div>
@@ -65,6 +71,4 @@ const Dashboard = () => {
     };
 }
 
-export default Dashboard;
-
-
+export default MacroTrackerLogger;

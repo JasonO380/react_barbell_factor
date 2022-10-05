@@ -1,31 +1,119 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
+import ReactDOM  from "react-dom";
 import UpdateWorkouts from "./update-workouts";
+<<<<<<< Updated upstream
+import UpdateDeleteModal from "./update-delete-overlay";
+=======
+import UpdateWorkoutsFormPage from "./update-workout-form-output";
+>>>>>>> Stashed changes
 
 import "./workout-data-output.css";
 
+let month;
+let foundDay;
+let wid;
+
 const WorkoutOutput = (props) => {
         const [isUpdateMode, setIsUpdateMode] = useState(false);
+<<<<<<< Updated upstream
+=======
+        const auth = useContext(LoginRegisterContext);
+        //takes away the first empty array
+        const initialArray = props.workoutItems.slice(1);
+        console.log(initialArray)
+        wid = initialArray[0]._id;
+        console.log(wid);
+>>>>>>> Stashed changes
+        const [editArray, setEditArry] = useState([]);
         //Holds the month workout data
         let loggedSession = [];
+        let updateArray = [];
+        let newArray = [];
+        let finalEditArray =[];
         //generates the new movement objects for the new month and day keys
-        const generateMovementObjects = (props)=> {
+        const generateMovementObjects = (session)=> {
             return {
-                movement:props.movement,
-                rounds: props.rounds,
-                reps:props.reps,
-                weight:props.weight
+                //adding id
+                id:session.id,
+                movement:session.movement,
+                rounds: session.rounds,
+                reps:session.reps,
+                weight:session.weight
             }
         };
+
+        const fetchWorkouts = async () => {
+            const userID = auth.userID;
+            try {
+                const date = new Date();
+                const currentDay = date.getDate();
+                const currentMonth = date.toLocaleString("en-US", { month:"long" });
+                const currentYear = date.getFullYear();
+                const response = await fetch(`http://localhost:5000/api/workouts/workoutlog/${userID}`);
+                const responseData = await response.json();
+                const session = responseData.workout;
+                console.log(responseData.workout);
+                session.map(s => {
+                    if(s.day === currentDay && s.month === currentMonth){
+                        newArray.push(s)
+                        finalEditArray = [...new Set(newArray)]
+                        console.log(finalEditArray);
+                        console.log(finalEditArray.length)
+                        props.updateItems2(finalEditArray);
+                }})
+            } catch (err){}
+        }
+
         const updateHandler = (event) => {
             let selectedWorkoutToUpdate = event.target.name;
+            let selectedWorkoutID = event.target.value;
+            setIsUpdateMode(true)
+            console.log(event.target.name)
+            console.log(selectedWorkoutID)
             console.log(selectedWorkoutToUpdate);
+<<<<<<< Updated upstream
+            // setIsUpdateMode(true);
+            console.log(isUpdateMode)
             if(isUpdateMode){
                 setIsUpdateMode(false);
             } else {
+=======
+            getWorkoutToUpdateId(selectedWorkoutID)
+            //Added to initiate modal
+            // props.isUpdateMode(true);
+            // setIsUpdateMode(true);
+            console.log(isUpdateMode)
+            // setIsUpdateMode(prevMode => !prevMode)
+            // if(isUpdateMode){
+            //     setIsUpdateMode(false);
+            // } else {
+            //     setIsUpdateMode(true);
+            // }
+        };
+
+        const getWorkoutToUpdateId = async (workoutID) => {
+            console.log('here');
+            // const selectedWorkoutToUpdate = 
+            setIsUpdateMode(true);
+            console.log(isUpdateMode);
+            try {
+                const response = await fetch(`http://localhost:5000/api/workouts/${workoutID}`);
+                const responseData = await response.json();
+                const updateWorkout = responseData.workout;
+                console.log('here in fetch')
+                console.log(responseData);
+                setEditArry([updateWorkout]);
+                console.log(editArray);
+                updateArray.push(updateWorkout);
+                // let updateArray2 = updateArray.slice(1)
+                console.log(updateArray);
+                UpdateDeleteModal();
+                //send to workout-tracker component
+                // props.onUpdate(updateWorkout);
+>>>>>>> Stashed changes
                 setIsUpdateMode(true);
-                console.log(isUpdateMode);
-            }
+            } catch (err) {}
         };
     
         //Check to see if month exists
@@ -47,7 +135,7 @@ const WorkoutOutput = (props) => {
         }
     
         //map through the incoming data
-        props.workoutItems.map((sessions)=>{
+        initialArray.map((sessions)=>{
             let isMonthFound = doesMonthExist(sessions);
             if(isMonthFound){
                 let isDayFound = doesDayExist(isMonthFound, sessions);
@@ -64,26 +152,53 @@ const WorkoutOutput = (props) => {
             }
         })
         loggedSession.map(session=>{
+<<<<<<< Updated upstream
             console.log(session);
+            // setEditArry(session);
+            // console.log(editArray)
+=======
+            // console.log(session);
+>>>>>>> Stashed changes
         })
 
+        const UpdateDeleteModal = () => {
+            console.log('here in modal');
+            console.log(updateArray);
+            console.log(editArray);
+            return ReactDOM.createPortal(
+            <UpdateWorkouts
+            fetch={fetchWorkouts}
+            isUpdateMode={setIsUpdateMode} 
+            workoutitems={editArray} />, document.getElementById('update-delete-overaly'))
+        }
+
+        if(finalEditArray.length > 0){
+            return (
+                <UpdateWorkoutsFormPage
+                workoutItems2={finalEditArray} />
+            )
+        }
+
         return (
+            <React.Fragment>
+            {isUpdateMode && <UpdateDeleteModal />}
             <div className="workout_wrapper">
                 {loggedSession.map(session => {
-                    const month = session.month;
+                    {/* id = session.days[0].activities[0].id; */}
+                    month = session.month;
                     const day = session.days;
-                    const foundDay = day.map(fDay => fDay.day);
+                    foundDay = day.map(fDay => fDay.day);
                     return (
                         <div className="workout_container">
                             <h2 className="workout_date_header">{month} {foundDay}</h2>
                             {day.map(fDay => {
                                 const foundActivities = fDay.activities;
+                                foundDay = fDay.days
                                 return (
                                     <div className="session_container">
                                         {foundActivities.map(workouts =>{
                                             return(
                                                 <div>
-                                                {isUpdateMode ? <UpdateWorkouts isUpdateMode={setIsUpdateMode} workoutitems={workouts} /> :
                                                 <React.Fragment>
                                                 <div className="movement_data">
                                                     <p>Movement: {workouts.movement}</p>
@@ -91,13 +206,14 @@ const WorkoutOutput = (props) => {
                                                     <p>Reps: {workouts.reps}</p>
                                                     <p>Weight: {workouts.weight}</p>
                                                 </div>
-                                                <div className="button_container_update_workout">
+                                                <div className="button_container_workout_data_output">
                                                     <button
-                                                    name={workouts.day}
+                                                    value={wid}
+                                                    // isUpdateMode={props.isUpdateMode}
                                                     onClick={updateHandler} 
-                                                    className="form_button" >Update</button>
+                                                    className="form_button_workout_data" >Update</button>
                                                 </div>
-                                                </React.Fragment>}
+                                                </React.Fragment>
                                                 </div>
                                             )
                                         })}
@@ -108,6 +224,7 @@ const WorkoutOutput = (props) => {
                     )
                 })}
             </div>
+            </React.Fragment>
         )
 };
 

@@ -28,6 +28,8 @@
     display: flex;
     flex-wrap: wrap;
     width: fit-content;
+    /* Much better for large screens */
+    /* width:50%; */
     margin: auto;
     color: white;
 }
