@@ -46,10 +46,7 @@ const UpdateWorkouts = (props) => {
     });
     console.log(wid);
     console.log(refPoint);
-<<<<<<< Updated upstream
-=======
     console.log('here in update workouts')
->>>>>>> Stashed changes
 
     useEffect(()=> {
         document.addEventListener("click", handleClickOutsideDiv)

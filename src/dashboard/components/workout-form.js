@@ -5,11 +5,7 @@ import WorkoutEditMode from "./workout-edit-mode";
 
 import "./workout-form.css";
 
-<<<<<<< Updated upstream
 let id;
-=======
-let id = [];
->>>>>>> Stashed changes
 const inputReducer = (state, action) => {
     const dateEntry = new Date();
     switch (action.type){
@@ -17,11 +13,8 @@ const inputReducer = (state, action) => {
             return {
                 ...state,
                 [action.name]: action.value,
-<<<<<<< Updated upstream
                 athlete:id,
-=======
                 // athlete:id,
->>>>>>> Stashed changes
                 year:dateEntry.getFullYear(),
                 dayOfWeek: dateEntry.toLocaleString("default", { weekday: "long" }),
                 month:dateEntry.toLocaleString("en-US", { month:"long" }),
@@ -71,11 +64,8 @@ const WorkoutForm = (props)=>{
 
     const postWorkoutData = async (event) => {
         id = auth.userID;
-<<<<<<< Updated upstream
         console.log(auth.userID);
-=======
         // console.log(auth.userID);
->>>>>>> Stashed changes
         event.preventDefault();
         // console.log(inputState);
         if(!inputState.movement){
@@ -121,7 +111,7 @@ const WorkoutForm = (props)=>{
             })
         });
         const responseData = await response.json();
-        // console.log(responseData.session);
+        console.log(responseData.session);
         props.workoutFormItems(responseData.session);
         } catch (err){};
         dispatch({
