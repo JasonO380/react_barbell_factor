@@ -8,13 +8,19 @@ import "./workout-data-output.css";
 
 let month;
 let foundDay;
+// let workoutsForTheDay = [];
+let newArray = [];
+// let loggedSession = [];
 
 const WorkoutOutput = (props) => {
+        let workoutsForTheDay = [];
         const [isUpdateMode, setIsUpdateMode] = useState(false);
         const auth = useContext(LoginRegisterContext);
+        workoutsForTheDay = props.workoutItems;
         //takes away the first empty array
         const initialArray = props.workoutItems.slice(1);
         console.log(initialArray)
+        console.log(workoutsForTheDay);
         const [editArray, setEditArry] = useState([]);
         //Holds the month workout data
         let loggedSession = [];
@@ -47,10 +53,12 @@ const WorkoutOutput = (props) => {
                 session.map(s => {
                     if(s.day === currentDay && s.month === currentMonth){
                         newArray.push(s)
-                        finalEditArray = [...new Set(newArray)]
-                        console.log(finalEditArray);
-                        console.log(finalEditArray.length)
-                        props.updateItems2(finalEditArray);
+                        workoutsForTheDay = [...new Set(newArray)]
+                        loggedSession = [...new Set(newArray)]
+                        console.log(workoutsForTheDay);
+                        console.log(workoutsForTheDay.length)
+                        console.log(loggedSession);
+                        refreshWorkouts(workoutsForTheDay);
                 }})
             } catch (err){}
         }
@@ -91,7 +99,7 @@ const WorkoutOutput = (props) => {
                 updateArray.push(updateWorkout);
                 // let updateArray2 = updateArray.slice(1)
                 console.log(updateArray);
-                UpdateDeleteModal();
+                // UpdateDeleteModal();
                 //send to workout-tracker component
                 // props.onUpdate(updateWorkout);
                 setIsUpdateMode(true);
@@ -117,7 +125,7 @@ const WorkoutOutput = (props) => {
         }
     
         //map through the incoming data
-        initialArray.map((sessions)=>{
+        workoutsForTheDay.map((sessions)=>{
             let isMonthFound = doesMonthExist(sessions);
             if(isMonthFound){
                 let isDayFound = doesDayExist(isMonthFound, sessions);
@@ -133,6 +141,33 @@ const WorkoutOutput = (props) => {
                 })
             }
         })
+
+        const refreshWorkouts = (refreshWorkouts)=>{
+            console.log(refreshWorkouts);
+            loggedSession = refreshWorkouts
+            console.log(loggedSession)
+            // refreshWorkouts.map((sessions)=>{
+            //     let isMonthFound = doesMonthExist(sessions);
+            //     if(isMonthFound){
+            //         let isDayFound = doesDayExist(isMonthFound, sessions);
+            //         if(isDayFound){
+            //             isDayFound.activities.push(generateMovementObjects(sessions))
+            //         } else {
+            //             isMonthFound.days.push(generateDaySession(sessions))
+            //         }
+            //     } else {
+            //         loggedSession.push({
+            //             month:sessions.month,
+            //             days:[generateDaySession(sessions)]
+            //         })
+            //     }
+            // })
+        }
+
+        useEffect(()=>{
+            refreshWorkouts();
+        },[fetchWorkouts])
+
         loggedSession.map(session=>{
             console.log(session);
         })
@@ -144,16 +179,17 @@ const WorkoutOutput = (props) => {
             return ReactDOM.createPortal(
             <UpdateWorkouts
             fetch={fetchWorkouts}
-            isUpdateMode={setIsUpdateMode} 
+            isUpdateMode={setIsUpdateMode}
+            showUpdate={setIsUpdateMode} 
             workoutitems={editArray} />, document.getElementById('update-delete-overaly'))
         }
 
-        if(finalEditArray.length > 0){
-            return (
-                <UpdateWorkoutsFormPage
-                workoutItems2={finalEditArray} />
-            )
-        }
+        // if(finalEditArray.length > 0){
+        //     return (
+        //         <UpdateWorkoutsFormPage
+        //         workoutItems2={finalEditArray} />
+        //     )
+        // }
 
         return (
             <React.Fragment>
