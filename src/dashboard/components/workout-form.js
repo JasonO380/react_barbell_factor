@@ -120,16 +120,7 @@ const WorkoutForm = (props)=>{
         setFormIsValid(true);
         
         event.preventDefault();
-        // console.log(inputState);
     };
-
-    if(switchToEditMode){
-        return (
-            <div className="center">
-                <WorkoutEditMode />
-            </div>
-        )
-    }
 
     return(
         <React.Fragment>
@@ -183,11 +174,6 @@ const WorkoutForm = (props)=>{
             </div>
             </form>
             {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
-            {/* <div className="center">
-                <button 
-                className="form_button"
-                onClick={editMode}>Edit Mode</button>
-            </div> */}
         </React.Fragment>
     )
 };
