@@ -2,21 +2,20 @@ import React, { useState, useContext, useEffect } from "react";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import ReactDOM  from "react-dom";
 import UpdateWorkouts from "./update-workouts";
-import UpdateWorkoutsFormPage from "./update-workout-form-output";
 
 import "./workout-data-output.css";
 
 let month;
 let foundDay;
-// let workoutsForTheDay = [];
-let newArray = [];
-// let loggedSession = [];
 
 const WorkoutOutput = (props) => {
         let workoutsForTheDay = [];
         const [isUpdateMode, setIsUpdateMode] = useState(false);
         const auth = useContext(LoginRegisterContext);
+        console.log(noDuplicates);
         workoutsForTheDay = props.workoutItems;
+        let noDuplicates = [...new Set(workoutsForTheDay)];
+        console.log(noDuplicates);
         //takes away the first empty array
         const initialArray = props.workoutItems.slice(1);
         console.log(initialArray)
@@ -26,11 +25,9 @@ const WorkoutOutput = (props) => {
         let loggedSession = [];
         let updateArray = [];
         let newArray = [];
-        let finalEditArray =[];
         //generates the new movement objects for the new month and day keys
         const generateMovementObjects = (session)=> {
             return {
-                //adding id
                 id:session._id,
                 movement:session.movement,
                 rounds: session.rounds,
@@ -41,6 +38,7 @@ const WorkoutOutput = (props) => {
 
         const fetchWorkouts = async () => {
             const userID = auth.userID;
+            // let finalEditArray =[];
             try {
                 const date = new Date();
                 const currentDay = date.getDate();
@@ -58,6 +56,7 @@ const WorkoutOutput = (props) => {
                         console.log(workoutsForTheDay);
                         console.log(workoutsForTheDay.length)
                         console.log(loggedSession);
+                        props.getNewWorkouts()
                         refreshWorkouts(workoutsForTheDay);
                 }})
             } catch (err){}
@@ -66,26 +65,15 @@ const WorkoutOutput = (props) => {
         const updateHandler = (event) => {
             let selectedWorkoutToUpdate = event.target.name;
             let selectedWorkoutID = event.target.value;
-            // setIsUpdateMode(true)
             console.log(event.target.name)
             console.log(selectedWorkoutID)
             console.log(selectedWorkoutToUpdate);
             getWorkoutToUpdateId(selectedWorkoutID)
-            //Added to initiate modal
-            // props.isUpdateMode(true);
-            // setIsUpdateMode(true);
             console.log(isUpdateMode)
-            // setIsUpdateMode(prevMode => !prevMode)
-            // if(isUpdateMode){
-            //     setIsUpdateMode(false);
-            // } else {
-            //     setIsUpdateMode(true);
-            // }
         };
 
         const getWorkoutToUpdateId = async (workoutID) => {
             console.log('here');
-            // const selectedWorkoutToUpdate = 
             setIsUpdateMode(true);
             console.log(isUpdateMode);
             try {
@@ -97,11 +85,7 @@ const WorkoutOutput = (props) => {
                 setEditArry([updateWorkout]);
                 console.log(editArray);
                 updateArray.push(updateWorkout);
-                // let updateArray2 = updateArray.slice(1)
                 console.log(updateArray);
-                // UpdateDeleteModal();
-                //send to workout-tracker component
-                // props.onUpdate(updateWorkout);
                 setIsUpdateMode(true);
             } catch (err) {}
         };
@@ -146,27 +130,11 @@ const WorkoutOutput = (props) => {
             console.log(refreshWorkouts);
             loggedSession = refreshWorkouts
             console.log(loggedSession)
-            // refreshWorkouts.map((sessions)=>{
-            //     let isMonthFound = doesMonthExist(sessions);
-            //     if(isMonthFound){
-            //         let isDayFound = doesDayExist(isMonthFound, sessions);
-            //         if(isDayFound){
-            //             isDayFound.activities.push(generateMovementObjects(sessions))
-            //         } else {
-            //             isMonthFound.days.push(generateDaySession(sessions))
-            //         }
-            //     } else {
-            //         loggedSession.push({
-            //             month:sessions.month,
-            //             days:[generateDaySession(sessions)]
-            //         })
-            //     }
-            // })
         }
 
         useEffect(()=>{
             refreshWorkouts();
-        },[fetchWorkouts])
+        },[newArray])
 
         loggedSession.map(session=>{
             console.log(session);
@@ -183,13 +151,6 @@ const WorkoutOutput = (props) => {
             showUpdate={setIsUpdateMode} 
             workoutitems={editArray} />, document.getElementById('update-delete-overaly'))
         }
-
-        // if(finalEditArray.length > 0){
-        //     return (
-        //         <UpdateWorkoutsFormPage
-        //         workoutItems2={finalEditArray} />
-        //     )
-        // }
 
         return (
             <React.Fragment>

@@ -125,7 +125,7 @@ const UpdateWorkouts = (props) => {
         console.log(responseData);
         // props.fetch();
         } catch (err){};
-        // props.isUpdateMode(false);
+        props.isUpdateMode(false);
         props.fetch();
     };
 
