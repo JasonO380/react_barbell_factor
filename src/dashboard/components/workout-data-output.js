@@ -38,7 +38,6 @@ const WorkoutOutput = (props) => {
 
         const fetchWorkouts = async () => {
             const userID = auth.userID;
-            // let finalEditArray =[];
             try {
                 const date = new Date();
                 const currentDay = date.getDate();
