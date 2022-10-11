@@ -44,7 +44,8 @@ const EditOutput = (props) => {
         fats:"",
         athlete:auth.userID
     });
-    // const mid = props.updateData.filter(macros => macros.id === id)
+    const test = props.updateData;
+    console.log(test);
 
     const changeHandler = (event) => {
         const value = event.target.value;
