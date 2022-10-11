@@ -151,6 +151,7 @@ const UpdateMacros = (props) => {
                         className="form_button" 
                         onClick={postUpdateMacroData}>Enter</button>
                     </div>
+                    {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
             </form>
         </motion.div>
         </React.Fragment>

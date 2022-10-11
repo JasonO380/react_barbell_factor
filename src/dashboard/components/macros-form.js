@@ -1,9 +1,5 @@
-import React, { useState, useReducer, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useReducer, useContext } from "react";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
-import EditMode from "./edit-mode";
-import UpdateMacros from "./update-macros";
-import { v4 as uuidv4 } from 'uuid';
 
 import "./macros-form.css";
 
@@ -32,12 +28,9 @@ const inputReducer = (state, action) => {
 
 const MacrosForm = (props) => {
     const auth = useContext(LoginRegisterContext);
-    const navigate = useNavigate();
     const [macrosAreLoaded, setMacrosAreLoaded] = useState(false);
-    const [macrosToEdit, setMacrosToEdit] = useState()
     const [isValid, setIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false);
-    const [switchToEditMode, setSwitchToEditMode] = useState(false);
     const [inputState, dispatch] = useReducer(inputReducer, {
         id:"",
         year:"",
@@ -48,7 +41,6 @@ const MacrosForm = (props) => {
         protein:"",
         fats:"",
     });
-    let updateMode;
 
     const changeHandler = (event) => {
         const macroValue = event.target.value;
@@ -59,16 +51,6 @@ const MacrosForm = (props) => {
             value: macroValue
         })
     };
-
-    const editMode = (event) => {
-        console.log("clicked")
-        props.onUpdate(true);
-        setSwitchToEditMode(true);
-    }
-
-    const checkIfMacrosLoaded = (data)=> {
-        console.log(data);
-    }
 
     const postMacroData = async (event) => {
         event.preventDefault();
@@ -117,7 +99,7 @@ const MacrosForm = (props) => {
         const responseData = await response.json();
         console.log(responseData.message);
         console.log(inputState);
-        checkIfMacrosLoaded(responseData.message);
+        props.fetch()
         } catch (err){};
         dispatch({
             type:'CLEAR_FORM'
@@ -126,14 +108,6 @@ const MacrosForm = (props) => {
         event.preventDefault();
         console.log(macrosAreLoaded);
     };
-
-    if(switchToEditMode){
-        return (
-            <div className="center">
-                <EditMode />
-            </div>
-        )
-    }
 
     return (
         <div className="form_container">
@@ -186,13 +160,8 @@ const MacrosForm = (props) => {
                     className="form_button" 
                     onClick={postMacroData}
                     in={props.in}>Enter</button>
-                    <button
-                    className="form_button" 
-                    onClick={editMode}
-                    >Edit Mode</button>
                 </form>
                 {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
-                {macrosAreLoaded && <div className="error_message"><p className="form_error_message">Macros already entered</p></div>}
         </div>
     </div>
     );
