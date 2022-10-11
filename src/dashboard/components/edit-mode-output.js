@@ -160,9 +160,10 @@ const EditOutput = (props) => {
                                 <div className="update_macros_button_container">
                                     <button
                                     className="form_button" 
-                                    onClick={postUpdateMacroData}>Enter</button>
+                                    onClick={postUpdateMacroData}>Update</button>
                                 </div>
                         </form>
+                        {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
                     </motion.div>
                         )
                     })}
