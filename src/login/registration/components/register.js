@@ -70,18 +70,21 @@ const Register = () => {
             <form className="login_register_form">
                 <h4>Username</h4>
                 <input
+                className="login_register_input"
                 name="username"
                 value={inputState.username}
                 placeholder="enter username"
                 onChange={changeHandler} />
                 <h4>Email</h4>
                 <input
+                className="login_register_input"
                 name="email"
                 value={inputState.email}
                 placeholder="enter email"
                 onChange={changeHandler} />
                 <h4>Password</h4>
                 <input
+                className="login_register_input"
                 name="password"
                 value={inputState.password}
                 placeholder="enter password"

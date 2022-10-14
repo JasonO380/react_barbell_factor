@@ -8,61 +8,33 @@ import "./dashboard.css";
 
 
 const Dashboard = () => {
-    const [macros, setMacros] = useState([]);
-    const [isUpdateMode, setIsUpdateMode] = useState(false);
-    const addMacros = (newMacros) => {
-        setMacros((prevMacros)=> {
-            return [...prevMacros, newMacros]
-        });
-    };
-    const [macrosEnteredForDay, setMacrosForDayEntered] = useState(false);
-
-    useEffect(()=>{
-        const checkMacrosForDayEntered = ()=>{
-            if(macros.length){
-                console.log(macrosEnteredForDay);
-                setMacrosForDayEntered(true);
-            } else {
-                console.log(macros)
-            }
-        }
-        checkMacrosForDayEntered();
-    },[macros])
-
-    if(!macrosEnteredForDay){
-        return(
-            <React.Fragment>
+    return(
+        <React.Fragment>
             <motion.div
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                <div className="macro_header_box">
-                    <h2>MACRO TRACKER</h2>
-                </div>
-                <MacrosForm  
-                onAdd={addMacros} />
-            </motion.div>
-        </React.Fragment>
-        )
-    };
-
-    if(macrosEnteredForDay){
-        return(
             <React.Fragment>
-            <motion.div
-            initial={{width: 0}}
-            animate={{width: "100%"}}
-            exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                <div className="macro_header_box">
-                    <h2>MACRO TRACKER</h2>
+            <div className="heading">
+            <header>
+                <h1>DASHBOARD</h1>
+            </header>
+            </div>
+            <div className="page_info_services">
+                <div>
+                    <p>Area for Macro logger info</p>
                 </div>
-                <DashboardOutput
-                items2={macros}
-                items={macros} />
+                <div>
+                    <p>Area for Workout logger info</p>
+                </div>
+                <div>
+                    <p>Area for to promote coaching help</p>
+                </div>
+            </div>
+            </React.Fragment>
             </motion.div>
         </React.Fragment>
-        )
-    };
+    )
 }
 
 export default Dashboard;

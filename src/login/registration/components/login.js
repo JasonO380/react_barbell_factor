@@ -75,12 +75,14 @@ const Login = () => {
             <form className="login_register_form" onSubmit={loginUser}>
                 <h4>Email</h4>
                 <input
+                className="login_register_input"
                 name="email"
                 value={inputState.email}
                 placeholder="enter email"
                 onChange={changeHandler} />
                 <h4>Password</h4>
                 <input
+                className="login_register_input"
                 name="password"
                 value={inputState.password}
                 placeholder="enter password"
