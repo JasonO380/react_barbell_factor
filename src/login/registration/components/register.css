@@ -10,3 +10,10 @@
 .login_register_form_switch_mode_box{
     margin-bottom: 75px;
 }
+
+.login_register_input{
+    text-align: center;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+}

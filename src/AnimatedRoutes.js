@@ -6,6 +6,7 @@ import Dashboard from './dashboard/components/dashboard';
 import MacroTrackerLogger from "./home/pages/macro-tracker-logger";
 import EditMode from "./dashboard/components/edit-mode";
 import WorkoutEditMode from "./dashboard/components/workout-edit-mode";
+import MacroViewer from "./Macros/macro-viewer";
 import UpdateMacros from "./dashboard/components/update-macros";
 import GetMacros from "./dashboard/components/get-macros";
 import GetAllWorkoutData from "./dashboard/components/get-all-workouts";
@@ -34,7 +35,7 @@ import { LoginRegisterContext } from "./login/registration/components/context/lo
                         <Route path="/" element={<HomePage />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/dashboard" element={<MacroTrackerLogger />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/macrolog" element={<MacroTrackerLogger />} />
                         <Route path="/editmacromode" element={<EditMode />} />
                         <Route path="/workouteditmode" element={<WorkoutEditMode />} />
@@ -42,7 +43,7 @@ import { LoginRegisterContext } from "./login/registration/components/context/lo
                         <Route path="/test" element={<TestWorkoutArea />} />
                         <Route path="/workoutview" element={<GetAllWorkoutData />} />
                         <Route path="/macrotest" element={<MacrosOutput />} />
-                        <Route path="/macrosgraph" element={<GetMacros />} />
+                        <Route path="/macrosgraph" element={<MacroViewer />} />
                 </Routes>
             </AnimatePresence>
         )

@@ -67,9 +67,9 @@ const MacroTrackerLogger = () => {
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                <div className="macro_header_box">
+                {/* <div className="macro_header_box">
                     <h2>EDIT MODE</h2>
-                </div>
+                </div> */}
                 <EditOutput
                 updateData={editArray} />
             </motion.div>

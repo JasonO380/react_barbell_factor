@@ -3,6 +3,7 @@ import { LoginRegisterContext } from "../../login/registration/components/contex
 import { useNavigate } from "react-router-dom";
 import EditMode from "./edit-mode";
 import MacroLineBarGraph from "../../shared/UIElements/Macro-LineBar-Graph";
+import DoughnutChart from "../../shared/UIElements/DoughnutChart";
 import { motion } from 'framer-motion/dist/framer-motion';
 
 
@@ -112,8 +113,8 @@ const EditOutput = (props) => {
                         initial={{width: 0}}
                         animate={{width: "100%"}}
                         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                        <MacroLineBarGraph items2={macros} />
-                        <h2 className="update_header">Update Macros for {macros.month} {macros.day}</h2>
+                        <DoughnutChart items2={macros} />
+                        {/* <h2 className="update_header">Update Macros for {macros.month} {macros.day}</h2> */}
                         <form className="update_form_container">
                             <div className="form_inputs">
                                     <h4>Carbs</h4>
