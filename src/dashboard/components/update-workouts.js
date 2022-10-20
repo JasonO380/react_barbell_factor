@@ -35,6 +35,9 @@ const UpdateWorkouts = (props) => {
     const auth = useContext(LoginRegisterContext);
     const update = [props.workoutitems];
     console.log(update)
+    if(update.length < 1){
+        props.allWorkoutsDeleted(true);
+    }
     // const update = props.workoutitems.map(workouts => workouts);
     const wid = [props.workoutitems.map(workouts => workouts._id)];
     const refPoint = useRef(null);

@@ -11,6 +11,7 @@ let workoutsArray = [];
 let userID;
 const Workout = (props) =>{
     const [workoutData, setWorkoutData] = useState([finalEditArray]);
+    // const [allWorkoutsDeleted, setAllWorkoutsDeleted] = useState(false);
     const [newEntries, setNewEntries] = useState([]);
     const auth = useContext(LoginRegisterContext);
     userID = auth.userID;
@@ -19,6 +20,7 @@ const Workout = (props) =>{
         workoutsArray = [...new Set(newWorkoutData)]
         console.log(finalEditArray);
         console.log(workoutsArray);
+        console.log(workoutsArray.length);
         setWorkoutData((prevWorkoutData)=>{
             return[...prevWorkoutData, newWorkoutData]
         });
@@ -58,6 +60,18 @@ const Workout = (props) =>{
         fetchWorkouts();
     }, [userID, newEntries])
 
+    // if(resetDay){
+    //     return(
+    //         <motion.div 
+    //         className="workout_page_container"
+    //         initial={{width: 0}}
+    //         animate={{width: "100%"}}
+    //         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
+    //             <WorkoutForm workoutFormItems={getNewWorkoutEntries} />
+    //         </motion.div>
+    //     )
+    // }
+
     return (
         <React.Fragment>
             <motion.div 
@@ -67,7 +81,8 @@ const Workout = (props) =>{
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                 <WorkoutForm workoutFormItems={getNewWorkoutEntries} />
                 <WorkoutOutput
-                getNewWorkouts={fetchWorkouts}
+                fetch={getNewWorkoutEntries}
+                updateWorkouts={fetchWorkouts}
                 workoutItems={finalEditArray} />
             </motion.div>
             </React.Fragment>
