@@ -36,29 +36,9 @@ const WorkoutOutput = (props) => {
             }
         };
 
-        const fetchWorkouts = async () => {
-            const userID = auth.userID;
-            try {
-                const date = new Date();
-                const currentDay = date.getDate();
-                const currentMonth = date.toLocaleString("en-US", { month:"long" });
-                const currentYear = date.getFullYear();
-                const response = await fetch(`http://localhost:5000/api/workouts/workoutlog/${userID}`);
-                const responseData = await response.json();
-                const session = responseData.workout;
-                console.log(responseData.workout);
-                session.map(s => {
-                    if(s.day === currentDay && s.month === currentMonth){
-                        newArray.push(s)
-                        workoutsForTheDay = [...new Set(newArray)]
-                        loggedSession = [...new Set(newArray)]
-                        console.log(workoutsForTheDay);
-                        console.log(workoutsForTheDay.length)
-                        console.log(loggedSession);
-                        props.getNewWorkouts()
-                        refreshWorkouts(workoutsForTheDay);
-                }})
-            } catch (err){}
+        const fetchWorkouts = () => {
+            console.log('new attempt')
+            props.updateWorkouts()
         }
 
         const updateHandler = (event) => {
@@ -124,16 +104,6 @@ const WorkoutOutput = (props) => {
                 })
             }
         })
-
-        const refreshWorkouts = (refreshWorkouts)=>{
-            console.log(refreshWorkouts);
-            loggedSession = refreshWorkouts
-            console.log(loggedSession)
-        }
-
-        useEffect(()=>{
-            refreshWorkouts();
-        },[newArray])
 
         loggedSession.map(session=>{
             console.log(session);
