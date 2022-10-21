@@ -7,7 +7,7 @@ import { LoginRegisterContext } from "../../login/registration/components/contex
 import { motion } from 'framer-motion/dist/framer-motion';
 import "./get-all-workouts.css";
 
-
+let choice;
 const GetAllWorkoutData = () =>{
     const [updateWorkout, setUpdateWorkout] = useState([]);
     const [showUpdate, setShowUpdate] = useState(false);
@@ -28,7 +28,7 @@ const GetAllWorkoutData = () =>{
     // Holds the ID of selected workout
     let selectedWorkoutToUpdate;
     //helper function to select month
-    let choice;
+    // let choice;
     
     const handleSelect = (event) =>{
         choice = event.target.value;
@@ -190,6 +190,9 @@ const GetAllWorkoutData = () =>{
             onChange={handleSelect}
             isLoaded={setIsSelectedMonthLoaded} />
             {isUpdateMode && <UpdateDeleteModal />}
+            <div className="month_header">
+                <h2>{choice}</h2>
+            </div>
             <GetAllWorkoutsOutput
             loggedMonth={loggedMonth}
             onClick={getWorkoutToUpdateId} />

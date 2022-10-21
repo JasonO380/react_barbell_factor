@@ -31,7 +31,7 @@ const MacroViewer = () => {
             const response = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`);
             const responseData = await response.json();
             const macros = responseData.macros;
-            macroData = macros
+            macroData = macros.reverse()
             setMacroMonth(macroData)
             getMonths()
         } catch (err){}

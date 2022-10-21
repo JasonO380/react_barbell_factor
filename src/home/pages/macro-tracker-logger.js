@@ -27,6 +27,7 @@ const MacroTrackerLogger = () => {
         const currentMonth = date.toLocaleString("en-US", { month:"long" });
         const currentYear = date.getFullYear();
         console.log(macrosEnteredForDay)
+        console.log(isCurrentDay);
         console.log(isCurrentDay.map(m => m.day === currentDay && m.month === currentMonth))
     }
 
@@ -41,9 +42,10 @@ const MacroTrackerLogger = () => {
             const currentMonth = date.toLocaleString("en-US", { month:"long" });
             const currentYear = date.getFullYear();
             console.log(macros.map(m => m.day === currentDay))
+            console.log(macros.map(m => m.month === currentMonth))
             editOptions = macros.slice(-2);
             console.log(editOptions)
-            editArray = editOptions;
+            editArray = editOptions.reverse();
             console.log(editArray)
             editMacros(editArray)
             macros.map(m => {

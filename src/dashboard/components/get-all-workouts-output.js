@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from 'framer-motion/dist/framer-motion';
 
 const GetAllWorkoutsOutput = (props) => {
+    let month
     props.loggedMonth.map(session => {
+        month = session.month
         console.log(session)
     });
     
-    // const [addEditButton, setAddEditButton] = useState(false)
     return (
         <motion.div 
         className="page_container"
@@ -14,20 +15,14 @@ const GetAllWorkoutsOutput = (props) => {
         animate={{width: "100%"}}
         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
             {props.loggedMonth.map(session => {
-                const month = session.month;
                 const day = session.days;
                 return (
                     <div className="month_container">
-                        <h2 className="month_header_center">{month}</h2>
                         {day.map(fDay => {
                             const foundDay = fDay.day;
                             const foundActivities = fDay.activities;
                             const date = new Date();
                             const currentDay = date.getDay();
-                            {/* if(currentDay === foundDay -2 || foundDay - 1){
-                                setAddEditButton(true);
-                                console.log('button goes here')
-                            } */}
                             return (
                                 <div className="all_workouts_session_container">
                                     <h2>{foundDay}</h2> 
