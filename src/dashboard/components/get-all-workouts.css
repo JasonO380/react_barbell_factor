@@ -1,3 +1,10 @@
+.month_header{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .page_container{
     display: flex;
     margin: auto;
@@ -6,6 +13,8 @@
 
 .month_container{
     width: 80%;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .all_workouts_session_container{
@@ -18,6 +27,8 @@
 
 .all_workouts_session_container_form{
     border: none;
+    width: 95%;
+    margin: auto;
 }
 
 .month_header_center{
@@ -57,9 +68,15 @@
     margin: auto;
 }
 
-@media screen and (max-width:415px){
+/* @media screen and (max-width:415px){
     .all_workouts_session_container{
         margin-left: 10px;
         margin-right: 10px;
+    }
+} */
+
+@media screen and (max-width:550px){
+    .movement_data{
+        width: 99%;
     }
 }
