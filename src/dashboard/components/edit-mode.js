@@ -21,7 +21,7 @@ const EditMode = (props) => {
         const fetchMacros = async () => {
             const userID = auth.userID;
             try {
-                const response = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`);
+                const response = await fetch(`https://barbell-factor.herokuapp.com/api/macros/macroslog/${userID}`);
                 const responseData = await response.json();
                 const macros = responseData.macros;
                 editOptions = macros.slice(-2);
@@ -39,7 +39,6 @@ const EditMode = (props) => {
     
     return(
         <EditOutput
-        // fetchMacroUpdate={fetchMacros}
         updateData={macrosToUpdate} />
     )
 };

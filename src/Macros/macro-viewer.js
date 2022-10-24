@@ -28,7 +28,7 @@ const MacroViewer = () => {
     const fetchMacros = async () => {
         userID = auth.userID;
         try {
-            const response = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`);
+            const response = await fetch(`https://barbell-factor.herokuapp.com/api/macros/macroslog/${userID}`);
             const responseData = await response.json();
             const macros = responseData.macros;
             macroData = macros.reverse()

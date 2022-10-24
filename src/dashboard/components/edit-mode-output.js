@@ -79,7 +79,7 @@ const EditOutput = (props) => {
         setFormIsValid(true);
         // event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/macros/${mid}`, {
+            const response = await fetch(`https://barbell-factor.herokuapp.com/api/macros/${mid}`, {
             method:'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -114,7 +114,6 @@ const EditOutput = (props) => {
                         animate={{width: "100%"}}
                         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
                         <DoughnutChart items2={macros} />
-                        {/* <h2 className="update_header">Update Macros for {macros.month} {macros.day}</h2> */}
                         <form className="update_form_container">
                             <div className="form_inputs">
                                     <h4>Carbs</h4>

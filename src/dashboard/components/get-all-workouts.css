@@ -12,9 +12,8 @@
 }
 
 .month_container{
-    width: 80%;
+    width: 85%;
     display: flex;
-    flex-direction: column-reverse;
 }
 
 .all_workouts_session_container{
@@ -39,8 +38,6 @@
     display: flex;
     flex-wrap: wrap;
     width: fit-content;
-    /* Much better for large screens */
-    /* width:50%; */
     margin: auto;
     color: white;
 }
@@ -68,15 +65,26 @@
     margin: auto;
 }
 
-/* @media screen and (max-width:415px){
-    .all_workouts_session_container{
-        margin-left: 10px;
-        margin-right: 10px;
+@media screen and (max-width:750px){
+    .month_container{
+        flex-direction: column;
     }
-} */
+}
 
 @media screen and (max-width:550px){
     .movement_data{
         width: 99%;
+    }
+}
+
+@media screen and (min-width:750px){
+    .month_container{
+        width: 95%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .all_workouts_session_container{
+        width: 33%;
     }
 }

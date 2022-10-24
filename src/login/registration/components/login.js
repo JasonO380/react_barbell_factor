@@ -41,7 +41,7 @@ const Login = () => {
         event.preventDefault();
         console.log('Clicked');
         try {
-            const response = await fetch('http://localhost:5000/api/users/login', {
+            const response = await fetch('https://barbell-factor.herokuapp.com/api/users/login', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const Login = () => {
         initial={{width: 0}}
         animate={{width: "100%"}}
         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-            <h2>Login to our account</h2>
+            <h2>Login to your account</h2>
             <form className="login_register_form" onSubmit={loginUser}>
                 <h4>Email</h4>
                 <input
