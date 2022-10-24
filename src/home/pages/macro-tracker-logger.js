@@ -34,7 +34,7 @@ const MacroTrackerLogger = () => {
     const fetchMacros = async () => {
         let editOptions = [];
         try {
-            const response = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`);
+            const response = await fetch(`https://barbell-factor.herokuapp.com/api/macros/macroslog/${userID}`);
             const responseData = await response.json();
             const macros = responseData.macros;
             const date = new Date();
@@ -69,9 +69,6 @@ const MacroTrackerLogger = () => {
             initial={{width: 0}}
             animate={{width: "100%"}}
             exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
-                {/* <div className="macro_header_box">
-                    <h2>EDIT MODE</h2>
-                </div> */}
                 <EditOutput
                 updateData={editArray} />
             </motion.div>

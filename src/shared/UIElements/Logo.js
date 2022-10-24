@@ -8,7 +8,7 @@ import "./Logo.css";
 
 const Logo = (props) => {
     return (
-        <div className="logo" >
+        <div className="logo_container" >
             <NavLink className="logo" to="/">
                 <img 
                 src={barbellfactor}

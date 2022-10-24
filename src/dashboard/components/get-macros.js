@@ -53,55 +53,13 @@ const GetMacros = () => {
         month = event.target.value
         setSelectedMonth(choice);
         console.log(selectedMonth);
-        // fetchMacros()
     };
 
-    // const DonutData = (data)=> {
-    //     console.log(data)
-        
-    //     setMacroMonth(data)
-    //     console.log(allMacros);
-    // }
-
-    // const fetchMacros = async () => {
-    //     userID = auth.userID;
-    //     try {
-    //         const response = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`);
-    //         const responseData = await response.json();
-    //         const macros = responseData.macros;
-    //         macroData = macros.slice(-2);
-    //         macroArray.push(macroData);
-    //         console.log(macroData)
-    //         setMacroMonth(macroData)
-    //         getMonths()
-    //     } catch (err){}
-    // };
-
-    //     const getMonths = () => {
-    //         console.log('here in getMonths')
-    //         macroData.map((macros)=>{
-    //             console.log(macros)
-    //             if(month === macros.month){
-    //                 setIsSelectedMonthLoaded(true);
-    //                 foundMonth.push(macros);
-    //                 DonutData(foundMonth);
-    //                 foundMonth = macros;
-    //                 console.log(foundMonth);
-    //                             } if (foundMonth.length === 0){
-    //                                 console.log(foundMonth.length);
-    //                                 setIsSelectedMonthLoaded(false);
-    //                                 console.log(isSelectedMonthLoaded);
-    //                             }
-    //                         })
-    //                 };
-
     useEffect(()=> {
-        // let macroData=[];
-        // let foundMonth = [];
         const fetchMacros = async () => {
             userID = auth.userID;
             try {
-                const response = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`);
+                const response = await fetch(`https://barbell-factor.herokuapp.com/api/macros/macroslog/${userID}`);
                 const responseData = await response.json();
                 const macros = responseData.macros;
                 macroData = macros.slice(-2);

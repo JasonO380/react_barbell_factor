@@ -46,7 +46,7 @@ const MacrosOutput = (props) => {
     useEffect(()=> {
         const fetchMacrosForDay = async (event) => {
             try {
-                const responseData = await fetch(`http://localhost:5000/api/macros/macroslog/${userID}`)
+                const responseData = await fetch(`https://barbell-factor.herokuapp.com/api/macros/macroslog/${userID}`)
                 setMacrosForGraph(responseData.macros);
                 console.log(responseData)
             } 

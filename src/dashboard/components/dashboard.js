@@ -19,24 +19,6 @@ const Dashboard = () => {
                 <h1>DASHBOARD</h1>
             </header>
             </div>
-            {/* <table className="dashboard_table">
-                <thead>
-                    <tr>
-                        <td>Macro Logger</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Start tracking your carbs protein and fat intake</td>
-                    </tr>
-                    <tr>
-                        <td>Make sure to enter all fields otherwise the form will not submit</td>
-                    </tr>
-                    <tr>
-                        <td>After entering macro nutrient info the last two entries will be editable</td>
-                    </tr>
-                </tbody>
-            </table> */}
             <div className="dashboard_container">
                 <div className="dashboard_wrapper">
                 <div>

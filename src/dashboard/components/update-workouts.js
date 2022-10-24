@@ -135,7 +135,7 @@ const UpdateWorkouts = (props) => {
     const deleteWorkout = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/workouts/${wid}`,
+            const response = await fetch(`https://barbell-factor.herokuapp.com/api/workouts/${wid}`,
             {
             method:'DELETE',
             headers:{

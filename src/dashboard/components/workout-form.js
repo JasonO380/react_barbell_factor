@@ -92,7 +92,7 @@ const WorkoutForm = (props)=>{
         //     props.workoutFormItems(inputState);
         // }
         try {
-            const response = await fetch('http://localhost:5000/api/workouts', {
+            const response = await fetch('https://barbell-factor.herokuapp.com/api/workouts', {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',

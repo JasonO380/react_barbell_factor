@@ -56,7 +56,7 @@ const WorkoutOutput = (props) => {
             setIsUpdateMode(true);
             console.log(isUpdateMode);
             try {
-                const response = await fetch(`http://localhost:5000/api/workouts/${workoutID}`);
+                const response = await fetch(`https://barbell-factor.herokuapp.com/api/workouts/${workoutID}`);
                 const responseData = await response.json();
                 const updateWorkout = responseData.workout;
                 console.log('here in fetch')
