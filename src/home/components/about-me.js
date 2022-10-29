@@ -26,20 +26,20 @@ const AboutMe = (props) => {
     return (
         <React.Fragment>
         <div className="aboutme">
-        <LogoProfilePicFlipCard
+        {/* <LogoProfilePicFlipCard
         className="profile_card"
         imgClassName="profile_pic"
         src={profilepic} />
         <LogoProfilePicFlipCard
         className="main_logo_box"
         imgClassName="main_logo"
-        src={barbellfactor} />
-            {/* <div className="profile_card" >
+        src={barbellfactor} /> */}
+            <div className="profile_card" >
                 <img className="profile_pic" src={profilepic} alt="Profile Pic" />
             </div>
             <div className="main_logo_box">
                 <img className="main_logo" src={barbellfactor} />
-            </div> */}
+            </div>
         </div>
             <div className="bio_container">
             <div className="bio_info">
@@ -62,7 +62,8 @@ const AboutMe = (props) => {
                                 height: !isOpen ? 0 : "auto", 
                                 opacity: !isOpen ? 0 : 1, 
                                 transition: "all .2s ease-out"
-                                }}className="about_list_item">{info}</li>
+                                }}
+                                className="about_list_item">{info}</li>
                     )
                 })}
                 </ul>

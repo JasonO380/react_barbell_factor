@@ -27,6 +27,7 @@ const Dashboard = () => {
                 <div>
                     <p>Track your carb, protein and fat intake in grams</p>
                     <p>Enter all fields or form will not submit</p>
+                    <p>Only enter the numbers in inputs. No letters</p>
                     <p>Edit available on the last two entries</p>
                 </div>
                 </div>
@@ -39,6 +40,7 @@ const Dashboard = () => {
                     <p>Track your weightlifting exercises</p>
                     <p>Enter all fields or form will not submit</p>
                     <p>Edit available on all entries</p>
+                    <p>Enter 0 for bodyweight exercises in the weight input</p>
                 </div>
             </div>
             <div className="dashboard_wrapper">

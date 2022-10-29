@@ -111,7 +111,7 @@ const UpdateWorkouts = (props) => {
             props.showUpdate(true);
         }
         try {
-            const response = await fetch(`http://localhost:5000/api/workouts/${wid}`, {
+            const response = await fetch(`https://barbell-factor.herokuapp.com/api/workouts/${wid}`, {
             method:'PATCH',
             headers: {
                 'Content-Type': 'application/json',
