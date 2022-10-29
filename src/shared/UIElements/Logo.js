@@ -9,7 +9,7 @@ import "./Logo.css";
 const Logo = (props) => {
     return (
         <div className="logo_container" >
-            <NavLink className="logo" to="/">
+            <NavLink className="logo" to="/dashboard">
                 <img 
                 src={barbellfactor}
                 style={{ width:props.width }} />

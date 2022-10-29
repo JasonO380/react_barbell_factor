@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PageHeader from "../components/page-header";
 import PageInfo from "../components/pageInfo";
+import BioTrainingInfo from "../bio-training-info";
 import RegisterLoginPageInfo from "../components/register-login-page_info";
 import infoItems from "../components/infoItems";
 import Services from "../components/services";
@@ -37,7 +38,8 @@ const HomePage = () => {
         animate={{width: "100%"}}
         exit={{x: window.innerWidth, transition: {duration: 0.2}}}>
             <PageHeader />
-            <Greeting />
+            <BioTrainingInfo />
+            {/* <Greeting /> */}
             <Services />
         </motion.div>
         </React.Fragment>

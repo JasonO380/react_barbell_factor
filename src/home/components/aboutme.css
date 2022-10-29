@@ -1,5 +1,6 @@
 .bio_container{
     display: flex;
+    margin-bottom: 10px;
 }
 
 .bio_info:target{
@@ -55,9 +56,9 @@
     color: white;
 }
 
-.about_list_item:hover{
+/* .about_list_item:hover{
     background-color: white;
-}
+} */
 
 .profile_pic {
     width:100%;
@@ -67,9 +68,9 @@
     
 }
 
-.profile_pic:hover{
+/* .profile_pic:hover{
     filter: brightness(50%);
-}
+} */
 
 .main_logo_box{
     flex: 1 1 50%;
@@ -80,4 +81,16 @@
     border-radius: 100%;
     width:100%;
     height: auto;
+}
+
+@media (min-width:600px){
+    .list_frame {
+        width: fit-content;
+    }
+}
+
+@media (max-width:599px){
+    .list_frame {
+        width: 90%;
+    }
 }

@@ -13,7 +13,8 @@ const EditMode = (props) => {
     let editArray = [];
 
     const createUpdate = useCallback((newData)=> {
-        setMacrosToUpdate(newData);
+        let newMacros = newData.reverse()
+        setMacrosToUpdate(newMacros);
         console.log(macrosToUpdate);
     },[])
 
