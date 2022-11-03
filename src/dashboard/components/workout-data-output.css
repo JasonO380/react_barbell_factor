@@ -8,7 +8,8 @@
     border: 2px solid #f8df00;
     border-radius: 20px;
     margin-top: 25px;
-    width: 96%;
+    width: fit-content;
+    /* width: 96%; */
 }
 
 .session_container{

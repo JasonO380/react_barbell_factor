@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion';
 const CardFlip = (props) => {
     const newItems = props.items
     return(
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
                 <motion.div
                             key={newItems}
                             initial={{
