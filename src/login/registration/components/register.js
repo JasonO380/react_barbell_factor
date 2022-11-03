@@ -80,14 +80,14 @@ const Register = () => {
                 className="login_register_input"
                 name="email"
                 value={inputState.email}
-                placeholder="enter email"
+                placeholder="email must include @"
                 onChange={changeHandler} />
                 <h4>Password</h4>
                 <input
                 className="login_register_input"
                 name="password"
                 value={inputState.password}
-                placeholder="enter password"
+                placeholder="6 characters min"
                 onChange={changeHandler} />
                 <div className="login_register_form_enter_button_box">
                 <button 

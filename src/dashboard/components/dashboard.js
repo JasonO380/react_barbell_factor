@@ -1,12 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { motion } from 'framer-motion/dist/framer-motion';
+import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion';
 import { MdOutlineEmail } from "react-icons/md";
+import macroview from "../../macroview.jpeg";
+import macroentry from "../../macroentry.jpeg";
+import workoutview from "../../workoutview.jpeg";
+import workoutentry from "../../workoutentry.jpeg";
+import profilePic from "../../profilepic.jpeg";
+import barbellFactor from "../../barbellfactor.jpeg";
 import { FaInstagram } from "react-icons/fa";
 
 import "./dashboard.css";
 
-
 const Dashboard = () => {
+    const [rotate, setRotate] = useState(false);
+    const [count, setCount] = useState(0);
+    const picOptions = [macroentry, macroview, workoutentry, workoutview]
+    const colorOptions = ["red", "yellow", "green", "white"];
+    const [color, setColor] = useState(colorOptions[count]);
+    // const [pic, setPic] = useState(picOptions[0]);
+    let newColor = colorOptions[count + 1];
+    let newPic = picOptions[count];
+    const [pic, setPic] = useState(newPic);
+
+    const rotateNext = () => {
+        setRotate(true);
+        if(count < picOptions.length - 1){
+            setCount(c => c + 1)
+            setRotate(true)
+            setPic(newPic)
+            // setColor(newColor)
+        } else {
+            setRotate(true)
+            setCount(0)
+            // setColor(newColor)
+            setPic(newPic)
+        }
+    }
     return(
         <React.Fragment>
             <motion.div
@@ -18,6 +47,26 @@ const Dashboard = () => {
             <header>
                 <h1>DASHBOARD</h1>
             </header>
+            </div>
+            <div className="dashboard_container">
+                <div className="dashboard_wrapper">
+                    <motion.h4
+                    whileTap={{ scale: 0.8 }}
+                    onClick={rotateNext} 
+                    className="pic_demo_header">Click</motion.h4>
+                    <AnimatePresence exitBeforeEnter>
+                    <motion.div
+                    key={pic}
+                    // initial={{backgroundColor:color}}
+                    animate={{rotateY: rotate? 360 : 0}}
+                    transition={{scale:.8 }}
+                    // exit={{backgroundColor:color}} 
+                    className="demo_pic_holder">
+                    <img className="pic" src={newPic} />
+                    </motion.div>
+                    </AnimatePresence>
+                    <p>Register to start tracking your progress</p>
+                </div>
             </div>
             <div className="dashboard_container">
                 <div className="dashboard_wrapper">
@@ -71,3 +120,5 @@ const Dashboard = () => {
 export default Dashboard;
 
 
+
+// "#f8df00", "#2a006e",

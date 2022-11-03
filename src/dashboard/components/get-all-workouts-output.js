@@ -20,7 +20,7 @@ const GetAllWorkoutsOutput = (props) => {
                     <div className="month_container">
                         {day.map(fDay => {
                             const foundDay = fDay.day;
-                            const foundActivities = fDay.activities;
+                            const foundActivities = fDay.activities.reverse();
                             const date = new Date();
                             const currentDay = date.getDay();
                             return (

@@ -3,6 +3,32 @@
     color: #fff;
 }
 
+.pic_demo_header {
+    background: #2a006e;
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+    border: 2px solid black;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+}
+
+.demo_pic_holder{
+    width: fit-content;
+    margin: auto;
+    height: 250px;
+}
+
+.pic{
+    text-align: center;
+    max-height: 100%;
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+
+
 .dashboard_container{
     position: relative;
     font-weight: 100;

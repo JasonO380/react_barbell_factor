@@ -22,6 +22,9 @@
     margin-bottom: 15px;
     text-align: center;
     color: white;
+    width: fit-content;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .all_workouts_session_container_form{
@@ -62,7 +65,8 @@
 
 .button_container_update_workout{
     text-align: center;
-    margin: auto;
+    /* margin: auto; */
+    margin-right: 15px;
 }
 
 @media screen and (max-width:750px){
@@ -85,6 +89,6 @@
     }
 
     .all_workouts_session_container{
-        width: 33%;
+        flex: 1 1 30%;
     }
 }
