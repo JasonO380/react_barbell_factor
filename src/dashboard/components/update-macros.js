@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
-import macroData from "./macro-items";
 import { motion } from 'framer-motion/dist/framer-motion';
 import "./update-macros.css";
 
@@ -147,9 +146,10 @@ const UpdateMacros = (props) => {
                         onChange={changeHandler} />
                     </div>
                     <div className="update_macros_button_container">
-                        <button
+                        <motion.button
+                        whileTap={{ scale: 0.8 }}
                         className="form_button" 
-                        onClick={postUpdateMacroData}>Enter</button>
+                        onClick={postUpdateMacroData}>Enter</motion.button>
                     </div>
                     {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
             </form>

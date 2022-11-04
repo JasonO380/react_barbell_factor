@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useContext } from "react";
+import { motion } from 'framer-motion/dist/framer-motion';
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 
 import "./macros-form.css";
@@ -88,7 +89,7 @@ const MacrosForm = (props) => {
             },
             body: JSON.stringify({
                 carbs:inputState.carbs,
-                protein: inputState.carbs,
+                protein: inputState.protein,
                 fats:inputState.fats,
                 year:inputState.year,
                 month:inputState.month,
@@ -156,10 +157,11 @@ const MacrosForm = (props) => {
                     placeholder="Grams of fat"
                     onChange={changeHandler} />
                 </div>
-                    <button
-                    className="form_button" 
+                    <motion.button
+                    className="form_button"
+                    whileTap={{ scale: 0.8 }} 
                     onClick={postMacroData}
-                    in={props.in}>Enter</button>
+                    in={props.in}>Enter</motion.button>
                 </form>
                 {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}
         </div>

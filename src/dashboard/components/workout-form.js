@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useContext } from "react";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import { useNavigate } from "react-router-dom";
-import WorkoutEditMode from "./workout-edit-mode";
+import { motion } from 'framer-motion/dist/framer-motion';
 
 import "./workout-form.css";
 
@@ -166,10 +166,11 @@ const WorkoutForm = (props)=>{
                     onChange={changeHandler} />
             </div>
             <div className="button_container_enter_workouts">
-                <button
-                value={inputState.id} 
+                <motion.button
+                value={inputState.id}
+                whileTap={{ scale: 0.8 }} 
                 className="form_button"
-                onClick={postWorkoutData}>Enter</button>
+                onClick={postWorkoutData}>Enter</motion.button>
             </div>
             </div>
             </form>

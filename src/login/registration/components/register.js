@@ -90,9 +90,10 @@ const Register = () => {
                 placeholder="6 characters min"
                 onChange={changeHandler} />
                 <div className="login_register_form_enter_button_box">
-                <button 
+                <motion.button 
                 className="form_button"
-                onClick={postUserData}>REGISTER</button>
+                whileTap={{ scale: 0.8 }}
+                onClick={postUserData}>REGISTER</motion.button>
                 </div>
             </form>
         </motion.div>
