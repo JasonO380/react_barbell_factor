@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
 import ReactDOM  from "react-dom";
+import { motion } from 'framer-motion/dist/framer-motion';
 import UpdateWorkouts from "./update-workouts";
 
 import "./workout-data-output.css";
@@ -149,10 +150,11 @@ const WorkoutOutput = (props) => {
                                                     <p>Weight: {workouts.weight}</p>
                                                 </div>
                                                 <div className="button_container_workout_data_output">
-                                                    <button
+                                                    <motion.button
                                                     value={wid}
+                                                    whileTap={{ scale: 0.8 }}
                                                     onClick={updateHandler} 
-                                                    className="form_button_workout_data" >Update</button>
+                                                    className="form_button_workout_data" >Update</motion.button>
                                                 </div>
                                                 </React.Fragment>
                                                 </div>

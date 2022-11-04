@@ -187,12 +187,14 @@ const UpdateWorkouts = (props) => {
                             onChange={handleChange} />
                     </div>
                     <div className="button_container_update_workouts">
-                        <button 
+                        <motion.button
+                        whileTap={{ scale: 0.8 }} 
                         className="form_button"
-                        onClick={postUpdate}>Update</button>
-                        <button
+                        onClick={postUpdate}>Update</motion.button>
+                        <motion.button
+                        whileTap={{ scale: 0.8 }}
                         onClick={deleteWorkout} 
-                        className="form_button" >Delete</button>
+                        className="form_button" >Delete</motion.button>
                     </div>
         </motion.div>
         {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}

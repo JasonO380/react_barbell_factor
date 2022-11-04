@@ -88,10 +88,11 @@ const Login = () => {
                 placeholder="enter password"
                 onChange={changeHandler} />
                 <div className="login_register_form_enter_button_box">
-                <button 
+                <motion.button 
                 type="submit"
+                whileTap={{ scale: 0.8 }}
                 className="form_button"
-                >LOGIN</button>
+                >LOGIN</motion.button>
                 </div>
             </form>
             {!login && <div className="error_message"><p className="form_error_message">{accessGranted}</p></div>}

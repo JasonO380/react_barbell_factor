@@ -158,9 +158,10 @@ const EditOutput = (props) => {
                                     onChange={changeHandler} />
                                 </div> 
                                 <div className="update_macros_button_container">
-                                    <button
-                                    className="form_button" 
-                                    onClick={postUpdateMacroData}>Update</button>
+                                    <motion.button
+                                    className="form_button"
+                                    whileTap={{ scale: 0.8 }} 
+                                    onClick={postUpdateMacroData}>Update</motion.button>
                                 </div>
                         </form>
                         {!isValid ? <div style={{display: formIsValid && "none"}} className="error_message"><p className="form_error_message">Please enter all fields</p></div> : null}

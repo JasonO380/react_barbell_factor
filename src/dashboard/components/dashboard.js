@@ -49,7 +49,7 @@ const Dashboard = () => {
             </header>
             </div>
             <div className="dashboard_container">
-                <div className="dashboard_wrapper">
+                <div className="dashboard_demo_wrapper">
                     <motion.h4
                     whileTap={{ scale: 0.8 }}
                     onClick={rotateNext} 
@@ -65,7 +65,7 @@ const Dashboard = () => {
                     <img className="pic" src={newPic} />
                     </motion.div>
                     </AnimatePresence>
-                    <p>Register to start tracking your progress</p>
+                    <h4 className="dashboard_header">Register to start tracking your progress</h4>
                 </div>
             </div>
             <div className="dashboard_container">
