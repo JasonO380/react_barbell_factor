@@ -4,18 +4,13 @@ import { NavLink } from "react-router-dom";
 
 import "./Logo.css";
 
-
-
 const Logo = (props) => {
     return (
-        <div className="logo_container" >
+        <div className="logo_container">
             <NavLink className="logo" to="/">
-                <img 
-                src={barbellfactor}
-                style={{ width:props.width }} />
+                <img src={barbellfactor} style={{ width: props.width }} />
             </NavLink>
         </div>
-        
     );
 };
 

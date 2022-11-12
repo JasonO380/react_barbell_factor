@@ -1,29 +1,21 @@
-.update_form_container{
+.update_form_container {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
 }
 
-.update_header{
+.update_header {
     text-align: center;
 }
 
-/* inherit the form input styling from the macros-form css */
-
-/* .form_inputs {
-    flex: 1 1 30%;
-    text-align: center;
-} */
-
-.macro_inputs{
+.macro_inputs {
     text-align: center;
     height: 50px;
     border-radius: 10px;
     border: 2px solid black;
 }
 
-.update_macros_button_container{
+.update_macros_button_container {
     width: 100%;
     margin: 15px 0 50px;
 }
-

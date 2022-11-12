@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext, } from "react";
 import ReactDOM  from "react-dom";
 import GetAllWorkoutsOutput from "./get-all-workouts-output";
 import UpdateWorkouts from "./update-workouts";
-import DropDownSelect from "../../shared/UIElements/drop-down-select";
-import { LoginRegisterContext } from "../../login/registration/components/context/login-register-context";
+import DropDownSelect from "../shared/UIElements/drop-down-select";
+import { LoginRegisterContext } from "../login/registration/components/context/login-register-context";
 import { motion } from 'framer-motion/dist/framer-motion';
 import "./get-all-workouts.css";
 

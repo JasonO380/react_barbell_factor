@@ -1,23 +1,20 @@
-.page_header_title{
+.page_header_title {
     color: white;
     font-style: italic;
 }
 
-.contact_info_box{
-    /* background-color: white; */
+.contact_info_box {
     border-radius: 10px;
     width: fit-content;
     margin-left: 15px;
 }
 
-.contact_icon{
-    /* color: rgb(68, 225, 53); */
-    /* color: #2a006e; */
+.contact_icon {
     color: #1064d9;
     font-size: 35px;
     margin: 0px 7px;
 }
 
-.contact{
+.contact {
     color: #1064d9;
 }

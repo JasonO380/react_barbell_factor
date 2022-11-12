@@ -8,6 +8,6 @@ const greetingInfo = [
             "Crossfit CL-1 certified",
         ],
     },
-]
+];
 
 export default greetingInfo;

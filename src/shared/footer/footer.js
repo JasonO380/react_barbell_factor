@@ -5,20 +5,17 @@ import FooterCard from "./footer-card";
 import "./footer.css";
 
 const createFooter = (footerInfo) => {
-    return(
+    return (
         <FooterCard
-        name={footerInfo.name}
-        copyright={footerInfo.copyright}
-        tech={footerInfo.tech} />
-    )
+            name={footerInfo.name}
+            copyright={footerInfo.copyright}
+            tech={footerInfo.tech}
+        />
+    );
 };
 
 const Footer = () => {
-    return(
-        <div className="center">
-            {footerInfo.map(createFooter)}
-        </div>
-    )
+    return <div className="center">{footerInfo.map(createFooter)}</div>;
 };
 
 export default Footer;

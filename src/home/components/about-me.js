@@ -7,17 +7,13 @@ import { MdArrowDropDownCircle } from "react-icons/md";
 import LogoProfilePicFlipCard from "./logo-profile-pic-flip-card";
 import barbellfactor from "../../barbellfactor.jpeg";
 
-
-
 import "./aboutme.css";
-
-
 
 const AboutMe = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const accordionToggle = () => {
-        if(isOpen){
+        if (isOpen) {
             setIsOpen(false);
         } else {
             setIsOpen(true);
@@ -25,62 +21,64 @@ const AboutMe = (props) => {
     };
     return (
         <React.Fragment>
-        <div className="aboutme">
-        {/* <LogoProfilePicFlipCard
-        className="profile_card"
-        imgClassName="profile_pic"
-        src={profilepic} />
-        <LogoProfilePicFlipCard
-        className="main_logo_box"
-        imgClassName="main_logo"
-        src={barbellfactor} /> */}
-            <div className="profile_card" >
-                <img className="profile_pic" src={profilepic} alt="Profile Pic" />
-            </div>
-            <div className="main_logo_box">
-                <img className="main_logo" src={barbellfactor} />
-            </div>
-        </div>
-            <div className="bio_container">
-            <div className="bio_info">
-                <header className="header">
-                    <h3 onClick={accordionToggle} className="about_me_header">{props.title} <MdArrowDropDownCircle /> </h3>
-                    
-                </header>
-                <ul className="list_frame" style={{
-                        padding:!isOpen ? 0 : 15, 
-                        margin:!isOpen ? 0 : 3,  
-                        height: !isOpen ? 0 : "auto", 
-                        opacity: !isOpen ? 0 : 1, 
-                        transition: "all .2s ease-out" }}>
-                {props.items.map(info => {
-                    return(
-                            <li 
-                            style = {{
-                                padding:!isOpen ? 0 : 15, 
-                                margin:!isOpen ? 0 : 3,
-                                height: !isOpen ? 0 : "auto", 
-                                opacity: !isOpen ? 0 : 1, 
-                                transition: "all .2s ease-out"
-                                }}
-                                className="about_list_item">{info}</li>
-                    )
-                })}
-                </ul>
-            </div>
-                {trainingInfo.map(info =>{
-                return(
-                    <TrainingList
-                    title={info.title}
-                    items={info.methods}
+            <div className="aboutme">
+                <div className="profile_card">
+                    <img
+                        className="profile_pic"
+                        src={profilepic}
+                        alt="Profile Pic"
                     />
-                )
-            })}
+                </div>
+                <div className="main_logo_box">
+                    <img className="main_logo" src={barbellfactor} />
+                </div>
+            </div>
+            <div className="bio_container">
+                <div className="bio_info">
+                    <header className="header">
+                        <h3
+                            onClick={accordionToggle}
+                            className="about_me_header"
+                        >
+                            {props.title} <MdArrowDropDownCircle />{" "}
+                        </h3>
+                    </header>
+                    <ul
+                        className="list_frame"
+                        style={{
+                            padding: !isOpen ? 0 : 15,
+                            margin: !isOpen ? 0 : 3,
+                            height: !isOpen ? 0 : "auto",
+                            opacity: !isOpen ? 0 : 1,
+                            transition: "all .2s ease-out",
+                        }}
+                    >
+                        {props.items.map((info) => {
+                            return (
+                                <li
+                                    style={{
+                                        padding: !isOpen ? 0 : 15,
+                                        margin: !isOpen ? 0 : 3,
+                                        height: !isOpen ? 0 : "auto",
+                                        opacity: !isOpen ? 0 : 1,
+                                        transition: "all .2s ease-out",
+                                    }}
+                                    className="about_list_item"
+                                >
+                                    {info}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+                {trainingInfo.map((info) => {
+                    return (
+                        <TrainingList title={info.title} items={info.methods} />
+                    );
+                })}
             </div>
         </React.Fragment>
-    )
+    );
 };
 
 export default AboutMe;
-
-

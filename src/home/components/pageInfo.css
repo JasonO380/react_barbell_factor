@@ -1,19 +1,19 @@
 p {
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding-left: 5px;
     padding-right: 5px;
     z-index: 1;
-    color:white;
+    color: white;
 }
 h3 {
     z-index: 2;
 }
 
 .pageInfo-header {
-        width: 100%;
-        padding-left: 5px; 
-        color: white;
-        border-radius: 7 7px;
+    width: 100%;
+    padding-left: 5px;
+    color: white;
+    border-radius: 7 7px;
 }
 
 .pageinfo_card {

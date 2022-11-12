@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 import "./NavLinks.css";
 
-
 const NavLinks = (props) => {
     return (
         <ul className="nav-links">
@@ -14,7 +13,7 @@ const NavLinks = (props) => {
                 <NavLink to="/login">LOGIN</NavLink>
             </li>
         </ul>
-    )
+    );
 };
 
 export default NavLinks;
