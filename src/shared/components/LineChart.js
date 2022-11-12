@@ -8,9 +8,8 @@ import {
     Title,
     Tooltip,
     Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
     CategoryScale,
@@ -22,12 +21,8 @@ ChartJS.register(
     Legend
 );
 
-const LineChart = ( {macroData}, {chartOptions} ) => {
-    return(
-        <Line
-        data = {macroData}
-        options= {chartOptions} />
-    )
+const LineChart = ({ macroData }, { chartOptions }) => {
+    return <Line data={macroData} options={chartOptions} />;
 };
 
 export default LineChart;

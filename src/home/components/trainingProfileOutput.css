@@ -2,12 +2,12 @@
     flex: 1 1 50%;
 }
 
-.list_frame{
-        border: 5px solid #f8df00;
-        border-radius: 20px;
+.list_frame {
+    border: 5px solid #f8df00;
+    border-radius: 20px;
 }
 
-.training-list:target{
+.training-list:target {
     height: auto;
 }
 
@@ -16,24 +16,23 @@
     border-radius: 20px;
     margin: 3px;
     color: white;
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
-.training_header{
+.training_header {
     background: #2a006e;
     color: white;
     padding: 15px;
     border-radius: 20px;
     border: 2px solid black;
     margin: auto;
-    
 }
 
-.header{
+.header {
     width: fit-content;
-    margin:auto
+    margin: auto;
 }
 
-.training_header:hover{
+.training_header:hover {
     filter: 50%;
 }

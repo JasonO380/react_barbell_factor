@@ -9,10 +9,8 @@ div .heading {
     color: white;
 }
 
-.page_info_services{
+.page_info_services {
     position: relative;
-    /* margin-left: 20px;
-    margin-right: 20px; */
     font-weight: 100;
     display: flex;
     overflow: hidden;
@@ -23,8 +21,8 @@ div .heading {
     width: fit-content;
 }
 
-@media screen and (max-width:700px){
-    .page_info_services{
+@media screen and (max-width: 700px) {
+    .page_info_services {
         flex-direction: column;
     }
 }

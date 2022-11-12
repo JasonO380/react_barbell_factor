@@ -30,11 +30,11 @@
     height: 100%;
 }
 
-.register_login_div{
+.register_login_div {
     display: flex;
 }
 
-.register_login_form_button{
+.register_login_form_button {
     background-color: #ff1f06;
     color: white;
     padding: 7px;
@@ -44,12 +44,12 @@
     align-items: baseline;
 }
 
-.logout_div{
+.logout_div {
     color: white;
 }
 
 @media (min-width: 768px) {
     .main-navigation__menu-btn {
-    display: none;
+        display: none;
     }
 }

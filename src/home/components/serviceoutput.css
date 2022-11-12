@@ -1,8 +1,6 @@
-.services_wrapper{
+.services_wrapper {
     flex: 1 1 30%;
-    /* border: 5px solid #2a006e; */
     border: 5px solid #f8df00;
-    /* transition: all .2s ease-in-out; */
     padding: 15px;
     border-radius: 10px;
     margin-left: 20px;
@@ -10,16 +8,6 @@
     margin-bottom: 7px;
 }
 
-/* .services_wrapper:hover{
-    filter:brightness(60%);
-    transform: scale(.9); 
-} */
-
-.services_heading{
+.services_heading {
     color: white;
 }
-
-
-
-
-

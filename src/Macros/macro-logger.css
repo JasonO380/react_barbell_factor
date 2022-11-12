@@ -3,25 +3,29 @@
     flex-wrap: wrap;
 }
 
+.title {
+    text-align: center;
+}
+
 .linechart {
     height: 21rem;
     width: 80%;
     margin: auto;
 }
 
-.select_container{
+.select_container {
     display: flex;
     height: 10rem;
     align-items: center;
 }
 
-.select_label{
+.select_label {
     color: white;
     font-size: 1.25rem;
     padding: 15px;
 }
 
-.select_field{
+.select_field {
     height: 40px;
     font-size: 1rem;
     border: 2px solid black;
