@@ -91,7 +91,7 @@ const BioTrainingInfo = (props) => {
                                     className="about_me_header"
                                     id={methodTitle}
                                 >
-                                    {methodTitle} <MdArrowDropDownCircle />{" "}
+                                    {methodTitle} <MdArrowDropDownCircle />
                                 </motion.h3>
                             </header>
                         </motion.div>
@@ -103,7 +103,7 @@ const BioTrainingInfo = (props) => {
                                     className="about_me_header"
                                     id={bioTitle}
                                 >
-                                    {bioTitle} <MdArrowDropDownCircle />{" "}
+                                    {bioTitle} <MdArrowDropDownCircle />
                                 </motion.h3>
                             </header>
                         </motion.div>

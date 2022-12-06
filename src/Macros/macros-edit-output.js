@@ -82,7 +82,7 @@ const MacrosEditOutput = (props) => {
         setFormIsValid(true);
         try {
             const response = await fetch(
-                `https://barbell-factor.herokuapp.com/api/macros/${mid}`,
+                `https://barbell-factor.onrender.com/api/macros/${mid}`,
                 {
                     method: "PATCH",
                     headers: {

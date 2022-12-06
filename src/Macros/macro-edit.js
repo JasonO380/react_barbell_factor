@@ -26,7 +26,7 @@ const MacroEdit = (props) => {
             const userID = auth.userID;
             try {
                 const response = await fetch(
-                    `https://barbell-factor.herokuapp.com/api/macros/macroslog/${userID}`
+                    `https://barbell-factor.onrender.com/api/macros/macroslog/${userID}`
                 );
                 const responseData = await response.json();
                 const macros = responseData.macros;

@@ -87,7 +87,7 @@ const MacrosForm = (props) => {
         }
         try {
             const response = await fetch(
-                "https://barbell-factor.herokuapp.com/api/macros",
+                "https://barbell-factor.onrender.com/api/macros",
                 {
                     method: "POST",
                     headers: {

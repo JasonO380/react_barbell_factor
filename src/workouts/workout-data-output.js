@@ -58,7 +58,7 @@ const WorkoutOutput = (props) => {
         console.log(isUpdateMode);
         try {
             const response = await fetch(
-                `https://barbell-factor.herokuapp.com/api/workouts/${workoutID}`
+                `https://barbell-factor.onrender.com/api/workouts/${workoutID}`
             );
             const responseData = await response.json();
             const updateWorkout = responseData.workout;
@@ -154,23 +154,23 @@ const WorkoutOutput = (props) => {
                                                     <React.Fragment>
                                                         <div className="movement_data">
                                                             <p>
-                                                                Movement:{" "}
+                                                                Movement:
                                                                 {
                                                                     workouts.movement
                                                                 }
                                                             </p>
                                                             <p>
-                                                                Rounds:{" "}
+                                                                Rounds:
                                                                 {
                                                                     workouts.rounds
                                                                 }
                                                             </p>
                                                             <p>
-                                                                Reps:{" "}
+                                                                Reps:
                                                                 {workouts.reps}
                                                             </p>
                                                             <p>
-                                                                Weight:{" "}
+                                                                Weight:
                                                                 {
                                                                     workouts.weight
                                                                 }

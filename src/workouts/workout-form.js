@@ -92,7 +92,7 @@ const WorkoutForm = (props) => {
         }
         try {
             const response = await fetch(
-                "https://barbell-factor.herokuapp.com/api/workouts",
+                "https://barbell-factor.onrender.com/api/workouts",
                 {
                     method: "POST",
                     headers: {

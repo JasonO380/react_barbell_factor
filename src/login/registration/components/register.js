@@ -30,7 +30,7 @@ const Register = () => {
         event.preventDefault();
         try {
             const response = await fetch(
-                "https://barbell-factor.herokuapp.com/api/users/signup",
+                "https://barbell-factor.onrender.com/api/users/signup",
                 {
                     method: "POST",
                     headers: {

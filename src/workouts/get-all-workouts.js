@@ -40,7 +40,7 @@ const GetAllWorkoutData = () =>{
     const fetchWorkouts = async () => {
         const userID = auth.userID;
         try {
-            const response = await fetch(`https://barbell-factor.herokuapp.com/api/workouts/workoutlog/${userID}`);
+            const response = await fetch(`https://barbell-factor.onrender.com/api/workouts/workoutlog/${userID}`);
             const responseData = await response.json();
             const session = responseData.workout.reverse();
             setWorkout(session);
@@ -127,7 +127,7 @@ const GetAllWorkoutData = () =>{
         setIsUpdateMode(true);
         console.log(isUpdateMode);
         try {
-            const response = await fetch(`https://barbell-factor.herokuapp.com/api/workouts/${selectedWorkoutToUpdate}`);
+            const response = await fetch(`https://barbell-factor.onrender.com/api/workouts/${selectedWorkoutToUpdate}`);
             const responseData = await response.json();
             const updateWorkout = responseData.workout;
             workoutToUpdateArray.push(updateWorkout);

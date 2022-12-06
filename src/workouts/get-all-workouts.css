@@ -69,7 +69,7 @@
     margin-right: 15px;
 }
 
-@media screen and (max-width:750px){
+@media screen and (max-width:749px){
     .month_container{
         flex-direction: column;
     }

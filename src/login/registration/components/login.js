@@ -43,7 +43,7 @@ const Login = () => {
         console.log("Clicked");
         try {
             const response = await fetch(
-                "https://barbell-factor.herokuapp.com/api/users/login",
+                "https://barbell-factor.onrender.com/api/users/login",
                 {
                     method: "POST",
                     headers: {
@@ -59,6 +59,7 @@ const Login = () => {
             accessGranted = responseData.message;
             console.log(responseData.message);
             loginRegister.login(responseData.userID, responseData.token);
+            console.log(accessGranted)
         } catch (err) {
             console.log(err);
         }

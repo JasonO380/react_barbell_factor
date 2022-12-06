@@ -117,7 +117,7 @@ const UpdateWorkouts = (props) => {
         }
         try {
             const response = await fetch(
-                `https://barbell-factor.herokuapp.com/api/workouts/${wid}`,
+                `https://barbell-factor.onrender.com/api/workouts/${wid}`,
                 {
                     method: "PATCH",
                     headers: {
@@ -143,7 +143,7 @@ const UpdateWorkouts = (props) => {
         event.preventDefault();
         try {
             const response = await fetch(
-                `https://barbell-factor.herokuapp.com/api/workouts/${wid}`,
+                `https://barbell-factor.onrender.com/api/workouts/${wid}`,
                 {
                     method: "DELETE",
                     headers: {

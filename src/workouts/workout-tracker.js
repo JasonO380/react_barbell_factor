@@ -43,7 +43,7 @@ const WorkoutTracker = (props) => {
             });
             const currentYear = date.getFullYear();
             const response = await fetch(
-                `https://barbell-factor.herokuapp.com/api/workouts/workoutlog/${userID}`
+                `https://barbell-factor.onrender.com/api/workouts/workoutlog/${userID}`
             );
             const responseData = await response.json();
             const session = responseData.workout;
